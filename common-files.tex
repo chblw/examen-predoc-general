@@ -46,6 +46,10 @@
 	anchorcolor = dlred
 }
 
+\makeatletter
+\@addtoreset{chapter}{part}
+\makeatother  
+
 \usepackage{fontspec}
 \usepackage{titling}
 
@@ -143,6 +147,7 @@ BoldItalicFont=Muli-BoldItalic.ttf]{Muli-Regular.ttf}%
 
 \tcbmaketheorem{definition}{Définition}{defstyle}{mytheorem}{def}
 \tcbmaketheorem{proposition}{Proposition}{propstyle}{mytheorem}{prop}
+\tcbmaketheorem{propriete}{Propriété}{propstyle}{mytheorem}{propriete}
 \tcbmaketheorem{propositionpreuve}{Proposition}{propstyle}{mytheorem}{prop}
 \tcbmaketheorem{theoreme}{Théorème}{theostyle}{mytheorem}{thm}
 \tcbmaketheorem{theoremepreuve}{Théorème}{theostyle}{mytheorem}{thm}

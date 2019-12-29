@@ -1,0 +1,124 @@
+\chapter{La mesure de l'intérêt}
+
+\section{Les fonctions d'accumulation et de montant}
+
+\begin{itemize}
+	\item Le montant initial investi est appelé le \textit{capital}
+	\item Le montant obtenu après une période de temps est appelé la \textit{valeur accumulée}
+	\item La différence entre le montant accumulé et le principal est le \textit{montant d'intérêt} ou \textit{intérêt}
+	\item $t$ est le temps mesuré depuis le début la date d'investissement
+	\item L'unité de temps est la \textit{période de mesure} ou \textit{période}
+\end{itemize}
+
+\begin{definition}{La fonction d'accumulation}{}
+	La fonction d'accumulation $a(t)$ correspond à la valeur accumulée au temps $t\geq 0$ d'un investissement initial de $1$. 
+\end{definition}
+
+La fonction d'accumulation possède les propriété suivantes : 
+\begin{enumerate}
+	\item $a(0) = 1$
+	\item $a(t)$ est généralement croissante
+	\item Si l'intérêt est accumulé en continu, $a(t)$ est continue
+\end{enumerate}
+
+\begin{definition}{Fonction de montant}{}
+	La fonction de montant $A(t)$ correspond à la valeur accumulée au temps $t\geq 0$ d'un investissement initial de $k>0$. On a 
+	$$A(t) = k \times a(t)$$
+	et
+	$$A(0) = k.$$
+\end{definition}
+
+\begin{definition}{Montant d'intérêt}{}
+	Le montant d'intérêt gagné pendant la $n^{\text{ième}}$ période depuis la date d'investissement est $$I_n = A(n) - A(n-1) \quad \text{pour} \quad n\geq 1.$$
+\end{definition}
+
+\section{Le taux d'intérêt effectif}
+
+\begin{definition}{}{}
+	Le taux d'intérêt effectif $i$ est le montant d'argent qu'une unité investie au début de la période va gagner pendant la période, où l'intérêt est obtenu à la fin de la période, c.-à-d. $i = a(1) - a(0)$ ou $a(1) = 1 + i$.
+	\tcblower
+	Le taux d'intérêt $i$ est le ratio du montant d'intérêt gagné pendant la période et du montant de principal investi au début de la période. 
+\end{definition}
+
+Le mot effectif est utilisé lorsque l'intérêt est payé une fois par période. 
+
+Les taux d'intérêt peuvent être calculés sur n'importe quelle période d'investissement. Soit $i_n$, le taux d'intérêt effectif pour la $n^\text{ième}$ période depuis la date d'investissement. Alors, on a 
+$$i_n = \frac{A(n) - A(n-1)}{A(n-1)} = \frac{I_n}{A(n-1)}$$
+pour $n = 1, 2, \dots$
+
+\section{Intérêt simple}
+
+La fonction d'accumulation est linéaire
+$$a(t) = a + it \quad \text{pour} \quad t\geq 0.$$ Accumuler de l'intérêt avec ce patron correspond à l'intérêt simple. On a 
+$$i_n = \frac{i}{1 + i(n-1)},$$
+donc un intérêt simple constant implique un taux d'intérêt effectif décroissant. 
+
+\section{Intérêt composé}
+
+L'intérêt composé assume que le montant accumulé est automatiquement ré-investi. 
+
+$$a(t) = (1 + i)^t \quad \text{pour} \quad t\geq 0.$$
+
+On a $i_n = i$, qui est indépendant de $n$. Alors, un taux d'intérêt composé correspond au taux d'intérêt effectif. 
+
+\section{Valeur actualisée}
+
+Le terme $1 + i$ est le facteur d'accumulation, car il accumule la valeur d'un investissement au début de la période à la fin de la période. On doit parfois déterminer le montant à investir pour obtenir 1 à la fin de la période. Pour ce faire, on définit un nouveau symbole $$v = \frac{1}{1 + i}$$ parfois appelé le facteur d'escompte. 
+
+\begin{itemize}
+	\item La fonction d'escompte est 
+	$$a^{-1}(t) = \frac{1}{a(t)}.$$
+	\item Pour l'intérêt simple, on a 
+	$$a^{-1}(t) = \frac{1}{1 + it}.$$
+	\item Pour l'intérêt composé, on a 
+	$$a^{-1}(t) = \frac{1}{(1 + i)^t} = v^t.$$
+\end{itemize}
+
+\section{Taux effectif d'escompte}
+
+\begin{definition}{Le taux effectif d'escompte}{}
+	Le taux effectif d'escompte $d$ est le ratio du montant d'intérêt gagné pendant la période et du montant investi à la fin de la période.
+\end{definition}
+
+La principale différence entre le taux d'effectif d'intérêt et le taux effectif d'escompte est 
+\begin{itemize}
+	\item Intérêt : payé à la fin de la période divisé par la balance au début de la période.
+	\item Escompte : payé au début de la période divisé sur la balance à la fin de la période. 
+\end{itemize}
+
+$$d_n = \frac{A(n) - A(n-1)}{A(n)} = \frac{I_n}{A(n)}, \quad \text{pour un entier} \quad n \geq 1.$$
+
+\begin{definition}{Équivalence}{}
+	Deux taux d'intérêt ou d'escompte sont dit équivalant si un montant de principal investi pour la même durée à chaque taux d'intérêt produisent la même valeur accumulée. 
+\end{definition}
+
+On utilise le concept d'équivalence pour établir des liens entre les taux d'intérêt. 
+
+Si une personne emprunte 1 au taux d'escompte effectif $d$, le principal initial est $1-d$ et le montant d'intérêt est $d$. Alors, 
+$$i = \frac{d}{1-d} \Rightarrow d = \frac{i}{1 + i} = iv.$$
+Autres relations utiles : 
+$$d = \frac{i}{1 + i} = \frac{1 + i}{1 + i} - \frac{1}{1 + i} = 1 - v;$$
+$$d = iv = i(1-d) = i - id \Rightarrow i - d = id.$$
+
+\section{Taux d'intérêt et d'escompte nominaux}
+
+\begin{itemize}
+	\item On considère les situations où l'intérêt est payé plus fréquemment qu'une fois par période. Ces taux sont appelés nominaux.
+	\item Le symbole pour un taux nominal d'intérêt payé $m$ fois par période est $i^{(m)}$, où $m$ est un entier positif. 
+	\item Par un taux nominal d'intérêt $i^{(m)}$, on veut dire que l'intérêt est $i^{(m)}/m$ pour chaque $\frac{1}{m}$ période. 
+	\item De la définition d'équivalence, on a 
+	$$1 + i = \left(1 + \frac{i^{(m)}}{m}\right)^m \Rightarrow i^{(m)} = m\left[(1 + i)^{\frac{1}{m}} - 1\right]$$
+	\item Le symbole pour un taux nominal d'escompte payé $m$ fois par période est $d^{(m)}$, où $m$ est un entier positif. 
+	\item De la définition d'équivalence, on a 
+	$$1 - d = \left(1 - \frac{d^{(m)}}{m}\right)^m \Rightarrow d^{(m)} = m\left[1 - v^{\frac{1}{m}}\right]$$
+	\item Une autre relation est 
+	$$\frac{i^{(m)}}{m} - \frac{d^{(m)}}{m} = \frac{i^{(m)}}{m} \frac{d^{(m)}}{m}.$$
+\end{itemize}
+
+
+
+
+
+
+
+
