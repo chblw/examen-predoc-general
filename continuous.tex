@@ -1,0 +1,141 @@
+\chapter{Distributions continues}
+
+\section{Créer des nouvelles distributions}
+
+\subsection{Multiplication par une constante}
+
+\begin{theoreme}{}{}
+	Soit $X$, une variable aléatoire continue. Soit $Y = \theta X$ avec $\theta > 0$. Alors, 
+	$$F_Y(y) = F_X\left(\frac{y}{\theta}\right) \quad \text{et} \quad f_Y(y) = \frac{1}{\theta} f_X\left(\frac{y}{\theta}\right)$$
+\end{theoreme}
+
+Le paramètre $\theta$ est un paramètre d'échelle pour la variable aléatoire $Y.$
+
+\subsection{Création de distributions en élevant à une puissance}
+
+\begin{theoreme}{}{}
+	Soit $X$, une variable aléatoire continue et $F_X(0) = 0$. Soit $Y = X^{1/\tau}$. Alors, 
+	\begin{itemize}
+		\item si $\tau > 0$, on a 
+		$$F_Y(y) = F_X\left(y^\tau\right) \quad \text{et} \quad f_Y(y) = \tau y^{\tau - 1} f_{X}\left(y^\tau\right), \quad y>0;$$
+		\item si $\tau < 0 $, on a 
+		$$F_Y(y) = 1-F_X\left(y^\tau\right) \quad \text{et} \quad f_Y(y) = -\tau y^{\tau - 1} f_{X}\left(y^\tau\right), \quad y>0.$$
+	\end{itemize}
+\end{theoreme}
+
+\begin{itemize}
+	\item Lorsqu'on prend une distribution avec puissance $ \tau > 0$, elle est appelée transformée.
+	\item Lorsqu'on prend une distribution avec puissance $ \tau = -1$, elle est appelée inverse.
+	\item Lorsqu'on prend une distribution avec puissance $ \tau < 0, \tau \neq -1$, elle est appelée inverse-transformée.
+\end{itemize}
+
+\subsection{Création de distributions avec exponentiation}
+
+\begin{theoreme}{}{}
+	Soit $X$, une variable aléatoire continue et $f_{X}(x) > 0$ sur le domaine de $x$. Soit $Y = e^X$. Alors, pour $y>0$, on a 
+	$$F_{Y}(y) = F_{X}(\ln y) \quad \text{et} \quad f_{Y}(y) = \frac{1}{y}f_{X}(\ln y).$$
+\end{theoreme}
+
+\subsection{Mélange}
+
+\begin{theoreme}{}{}
+	Soit $X$, une variable aléatoire avec fonction de densité $f_{X\vert \Lambda}(x\vert \lambda)$ et fonction de répartition $F_{X\vert \Lambda}(x\vert \lambda)$, où $\lambda$ est un paramètre de $X$. La fonction de densité inconditionnelle de $X$ est 
+	$$f_{X}(x) = \int f_{X\vert\Lambda}(x\vert \lambda) f_{\Lambda}(\lambda) d\lambda$$
+	et la fonction de répartition est 
+	$$F_{X}(x) = \int F_{X\vert \Lambda}(x\vert\lambda) f_{\Lambda}(\lambda) d\lambda.$$
+\end{theoreme}
+
+Autres résultats :
+\begin{itemize}
+	\item $\displaystyle E\left[X^k\right] = E_{\Lambda}\left[E\left(X^k \vert \Lambda\right)\right]$
+	\item $\displaystyle Var(X) = E\left[Var(X \vert \Lambda)\right] + Var\left(E\left[X \vert \Lambda\right]\right)$
+\end{itemize}
+
+Les modèles de mélange tendent à créer des distributions à queue lourde. En particulier, si la fonction de hasard de $f_{X\vert\Lambda}$ est décroissante pour tout $\lambda$, la fonction de hasard sera aussi décroissante. 
+
+\subsection{Modèles à fragilité}
+
+Mise en place : 
+
+\begin{itemize}
+	\item Soit une variable aléatoire de fragilité $\Lambda>0$
+	\item Soit une fonction de hasard conditionnelle $h_{X\vert \Lambda}(x\vert\lambda) = \lambda a(x)$, où $a(x)$ est une fonction connue. 
+	\item La fragilité quantifie l'incertitude de la fonction de hasard.  
+\end{itemize}
+
+La fonction de survie conditionnelle de $X\vert \Lambda$ est 
+$$S_{X\vert\Lambda}(x\vert\lambda) = \exp\left\{-\int_{0}^{x}h_{X\vert\Lambda}(t\vert\lambda)dt\right\} = e^{-\lambda A(x)},$$
+où $A(x) = \int_{0}^{x}a(t) dt$. Alors, la fonction de survie inconditionnelle est donnée par 
+$$S_{X}(x) = E\left[e^{-\Lambda A(x)}\right] = M_{\Lambda}(-A(x))$$
+
+\subsection{Raccordement de distributions connues}
+
+Si plusieurs processus séparés sont responsables pour générer les pertes
+
+\begin{definition}{}{}
+	Une distribution de raccordement à $k$ composantes a une fonction de densité qui peut être exprimé sous la forme
+	$$f_{X}(x) = \begin{cases}
+	a_1 f_{1}(x), & c_0 \leq x \leq c_1\\
+	a_2 f_{2}(x), & c_1 \leq x \leq c_2\\
+	\vdots & \vdots\\
+	a_k f_{k}(x), & c_{k-1} \leq x \leq c_k
+	\end{cases}$$
+	Pour $j = 1, 2, \dots, k$, chaque $a_j$ soit être positif, $f_{j}$ doit être une fonction de densité avec toute sa masse sur $(c_{j-1}, c_j)$ et $a_1 + a_2 + \dots + a_k = 1$.
+\end{definition}
+
+\section{Familles de distributions et leurs liens}
+
+Connaître les familles de distribution beta transformée et gamma inverse/transformée.
+
+\subsection{Distributions limites}
+
+On peut parfois comparer les familles des distributions basé sur des cas particuliers des familles. Dans d'autres situations, on doit étudier les distributions quand des paramètres tendent vers 0 ou l'infini.
+
+Exemples : 
+
+\begin{itemize}
+	\item La distribution gamma est un cas limite de la distribution beta transformée avec $\theta \to \infty, \alpha \to \infty$ et $\frac{\theta}{\alpha^{1/\gamma}} \to \xi$, une constante. 
+\end{itemize}
+
+
+\section{Théorie des valeurs extrêmes}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
