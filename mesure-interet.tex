@@ -1,5 +1,5 @@
 \chapter{La mesure de l'intérêt}
-
+Voir \cite{kellison2006theory}, chapitre 1
 \section{Les fonctions d'accumulation et de montant}
 
 \begin{itemize}
@@ -23,9 +23,7 @@ La fonction d'accumulation possède les propriété suivantes :
 
 \begin{definition}{Fonction de montant}{}
 	La fonction de montant $A(t)$ correspond à la valeur accumulée au temps $t\geq 0$ d'un investissement initial de $k>0$. On a 
-	$$A(t) = k \times a(t)$$
-	et
-	$$A(0) = k.$$
+	$$A(t) = k \times a(t) \quad \text{et} \quad A(0) = k.$$
 \end{definition}
 
 \begin{definition}{Montant d'intérêt}{}
@@ -43,8 +41,7 @@ La fonction d'accumulation possède les propriété suivantes :
 Le mot effectif est utilisé lorsque l'intérêt est payé une fois par période. 
 
 Les taux d'intérêt peuvent être calculés sur n'importe quelle période d'investissement. Soit $i_n$, le taux d'intérêt effectif pour la $n^\text{ième}$ période depuis la date d'investissement. Alors, on a 
-$$i_n = \frac{A(n) - A(n-1)}{A(n-1)} = \frac{I_n}{A(n-1)}$$
-pour $n = 1, 2, \dots$
+$$i_n = \frac{A(n) - A(n-1)}{A(n-1)} = \frac{I_n}{A(n-1)}, \quad \text{pour} \quad n = 1, 2, \dots$$
 
 \section{Intérêt simple}
 
@@ -54,11 +51,8 @@ $$i_n = \frac{i}{1 + i(n-1)},$$
 donc un intérêt simple constant implique un taux d'intérêt effectif décroissant. 
 
 \section{Intérêt composé}
-
 L'intérêt composé assume que le montant accumulé est automatiquement ré-investi. 
-
 $$a(t) = (1 + i)^t \quad \text{pour} \quad t\geq 0.$$
-
 On a $i_n = i$, qui est indépendant de $n$. Alors, un taux d'intérêt composé correspond au taux d'intérêt effectif. 
 
 \section{Valeur actualisée}
@@ -67,11 +61,11 @@ Le terme $1 + i$ est le facteur d'accumulation, car il accumule la valeur d'un i
 
 \begin{itemize}
 	\item La fonction d'escompte est 
-	$$a^{-1}(t) = \frac{1}{a(t)}.$$
+	$\displaystyle a^{-1}(t) = \frac{1}{a(t)}.$
 	\item Pour l'intérêt simple, on a 
-	$$a^{-1}(t) = \frac{1}{1 + it}.$$
+	$\displaystyle a^{-1}(t) = \frac{1}{1 + it}.$
 	\item Pour l'intérêt composé, on a 
-	$$a^{-1}(t) = \frac{1}{(1 + i)^t} = v^t.$$
+	$\displaystyle a^{-1}(t) = \frac{1}{(1 + i)^t} = v^t.$
 \end{itemize}
 
 \section{Taux effectif d'escompte}
@@ -115,10 +109,49 @@ $$d = iv = i(1-d) = i - id \Rightarrow i - d = id.$$
 	$$\frac{i^{(m)}}{m} - \frac{d^{(m)}}{m} = \frac{i^{(m)}}{m} \frac{d^{(m)}}{m}.$$
 \end{itemize}
 
+\section{Force d'intérêt et d'escompte}
 
+Mesure de l'intensité dont d'intérêt opère, i.e. le taux d'intérêt instantané. La force d'intérêt au temps $t$ est défini par $$\delta_t = \frac{A'(t)}{A(t)} = \frac{a'(t)}{a(t)}.$$
+Par la dérivée en chaîne, on a aussi
+$$\delta_t = \frac{d}{dt} \ln A(t) = \frac{d}{dt}\ln a(t).$$
+Autres relations : 
+\begin{itemize}
+	\item $\displaystyle \exp\left\{\int_{0}^{t}\delta_r dr\right\} = \frac{A(t)}{A(0)} = \frac{a(t)}{a(0)} = a(t);$
+	\item $\displaystyle \int_{0}^{n}A(t) \delta_t dt = \int_{0}^{n}A'(t) dt = A(n) - A(0).$ Intuition : l'intérêt est égal à la somme du capital investi au temps $t$ multiplié par la force d'intérêt au temps $t$.
+\end{itemize}
 
+La force d'escompte est 
+$$\delta_t' = -\frac{\frac{d}{dt}a^{-1}(t)}{a^{-1}(t)}.$$
 
+On a $$\delta_t = \delta'_t$$
 
+Par le principe d'équivalence, on a 
+$$i = e^\delta - 1 \Rightarrow \delta = \ln (1 + i)$$
+Séries de Taylor : 
+\begin{itemize}
+	\item $\displaystyle i = e^\delta - 1 = \delta + \frac{\delta^2}{2!} + \frac{\delta^3}{3!} + \frac{\delta^4}{4!} + \dots$
+	\item $\displaystyle \delta = \ln (1 + i) = i - \frac{i^2}{2!} + \frac{i^3}{3!} - \frac{i^4}{4!} + \dots$
+	\item Les termes $i^k$ et $\delta^k$ sont très petits pour $k>2$ car $i$ et $\delta$ sont très petits.
+\end{itemize}
 
+Liste d'équivalences : 
 
+$$\left(1 + \frac{i^{(m)}}{m}\right)^m = 1 + i = v^{-1} = (1-d)^{-1} = \left(1 - \frac{d^{(p)}}{p}\right)^{-p} = e^\delta.$$
 
+Sous l'intérêt simple, la force d'intérêt est $\delta_t = \frac{i}{1 + it}$ et la force d'escompte est $\delta_t' = \frac{d}{1 - dt}$. On remarque que $\delta_t$ est une fonction croissante et $\delta'_t$ est une fonction décroissante. 
+
+En utilisant l'expansion de Taylor, on a 
+$$\lim\limits_{m\to\infty} i^{(m)} = \delta$$
+et
+$$\lim\limits_{m\to\infty} d^{(m)} = \delta'$$
+
+\section{Intérêt variable}
+
+\begin{itemize}
+	\item Si la force d'intérêt chance, on utilise la relation $a(t) = e^{\int_{0}^{t}\delta_r dr}$
+	\item Si le taux effectif d'intérêt change, on utilise la relation $$a(t) = (1 + i_1)(1 + i_2)(1 + i_3) \dots (1 + i_t) = \prod_{k = 1}^{t}(1 + i_k)$$
+	\item Si le taux effectif d'escompte change, on utilise la relation
+	$$a^{-1}(t) = (1 - d_1)(1 - d_2)(1 - d_3) \dots (1 - d_t) = \prod_{k = 1}^{t}(1 - d_k)$$
+	\item On a aussi
+	$$a^{-1}(t) = (1 + i_1)^{-1}(1 + i_2)^{-1}(1 + i_3)^{-1} \dots (1 + i_t)^{-1} = \prod_{k = 1}^{t}(1 + i_k)^{-1} = \prod_{k = 1}^{t}v_k$$
+\end{itemize}
