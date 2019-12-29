@@ -1,0 +1,65 @@
+\chapter{Caractéristiques des modèles actuariels}
+
+Voir \cite{klugman2012loss}, 
+
+Dans ce chapitre, les modèles sont caractérisés par combien d'information est nécessaire pour spécifier le modèle. Le nombre de paramètre donne une indication de la complexité du modèle. 
+
+\section{Distributions paramétriques et d'échelle}
+
+\begin{definition}{Distributiob paramétrique}{}
+	Ensemble de distributions déterminée par une ou plus valeurs appelé(s) paramètre. Le nombre de paramètre est fixe et connu
+\end{definition}
+
+\begin{definition}{Distribution d'échelle}{}
+	Si une variable aléatoire est multipliée par une constante positive, et que la nouvelle variable aléatoire est dans le même ensemble de distirbutions, elle est dite une distribution d'échelle.
+\end{definition}
+
+\begin{definition}{Paramètre d'échelle}{}
+	Un paramètre d'échelle satisfait deux conditions : 
+	\begin{enumerate}
+		\item Lorsqu'une distribution d'échelle est multipliée par une constante, ce paramètre d'échelle est multiplié par la même constante.
+		\item Tous les autres paramètres de la distribution restent inchangés (le paramètre d'échelle \textit{absorbe} tout le changement d'échelle).
+	\end{enumerate}
+\end{definition}
+
+\section{Familles de distributions paramétriques}
+
+\begin{definition}{Familles de distributions paramétriques}{}
+	Ensemble de distributions qui sont reliées de manière significative. Exemple : la loi exponentielle est un cas particulier de la loi gamma avec $\alpha = 1$. Alors, la loi exponentielle est reliée de manière significative avec la loi gamma. 
+\end{definition}
+
+\section{Distribution de mélange fini}
+
+\begin{definition}{Mélange $k$-point}{}
+	Une distribution est un mélange $k$-point si 
+	$$F_Y(y) = a_1 F_{X_1}(y) + a_2 F_{X_2}(y) + \dots + a_k F_{X_k}(y)$$
+	avec $a_1 + a_2 + \dots + a_k = 1.$
+\end{definition}
+
+\begin{definition}{Mélange à composante variable}{}
+	Une distribution mélange $k$-point où $K$ n'est pas fixé. 
+	\begin{itemize}
+		\item $\displaystyle F(x) = \sum_{j = 1}^{K}a_j F_j(x)$
+		\item $\displaystyle \sum_{j = 1}^{K}a_j = 1$
+		\item $\displaystyle a_j > 0, j = 1, \dots, K$
+		\item $\displaystyle K = 1, 2, \dots$
+		\item Le nombre de paramètres est la somme des paramètres de chaque distribution plus ($K$-1) car le dernier paramètre $a_k$ peut être calculé avec $1 - a_1 - a_2 - \dots - a_{K-1}$.
+	\end{itemize}
+	Ce modèle est appelé semi-paramétrique car sa complexité est entre un modèle paramétrique et non-paramétrique
+\end{definition}
+
+\section{Distributions dépendantes des données}
+
+\begin{itemize}
+	\item Une distribution dépendante des données est au moins aussi compliqué que les données ou l'information produites par ces données. 
+	\item Le nombre de paramètres augmente lorsque le nombre de données augmente
+	\item Exemple : un modèle empirique est une distribution discrète basée sur la taille échantillonnale $n$ qui assigne une probabilité $\frac{1}{n}$ à chaque point
+	\item Exemple : modèle de lissage à noyau
+\end{itemize}
+
+
+
+
+
+
+

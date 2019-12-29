@@ -1,0 +1,173 @@
+\documentclass[11pt]{book}
+\usepackage[margin=1in]{geometry}
+%\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+%\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[french]{babel}
+\author{Christopher Blier-Wong}
+\title{Étude examen prédoctoral général}
+%\date{Version du \today}
+\date{\vfill\includegraphics[width=0.4\textwidth]{UL_actu_3l}}
+\usepackage{hyperref}
+\hypersetup{colorlinks}
+\usepackage{luatexbase}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage[figurename=Illustration]{caption}
+\usepackage[tablename=Tableau]{caption}
+\usepackage{enumitem}
+\usepackage{pbox}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{theorems}
+\tcbuselibrary{skins}
+\usetikzlibrary{shadings}
+\usepackage{multicol}
+\usepackage{cancel}
+\usepackage{microtype}
+\usepackage{vwcol} 
+\usepackage{bbm}
+
+\definecolor{dlblue}{RGB}{43,252,226}
+\definecolor{dlblack}{HTML}{282727}
+\definecolor{dlbeige}{HTML}{FCFCF5}
+\definecolor{dlred}{RGB}{255,107,107}
+\definecolor{dlyellow}{RGB}{255, 230, 109}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks = true,
+	linkcolor = dlred,
+	urlcolor  = dlred,
+	citecolor = dlred,
+	anchorcolor = dlred
+}
+
+\usepackage{fontspec}
+\usepackage{titling}
+
+\setmainfont[Path=Muli/, BoldFont=Muli-Bold.ttf,
+ItalicFont=Muli-Italic.ttf,
+BoldItalicFont=Muli-BoldItalic.ttf]{Muli-Regular.ttf}%
+
+\usepackage{setspace}
+\usepackage{pgfplots}
+\usepackage{titlesec, blindtext, color}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\newcommand{\hspsection}{\hspace{10pt}}
+\newcommand{\hspsubsection}{\hspace{5pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+\titleformat{\section}[hang]{\Large\bfseries}{\thesection\hspsection\textcolor{gray75}{|}\hspsection}{0pt}{\Large\bfseries}
+\titleformat{\subsection}[hang]{\large\bfseries}{\thesubsection\hspsubsection\textcolor{gray75}{|}\hspsubsection}{0pt}{\large\bfseries}
+\usepackage{polynom}
+%\input{longdiv.tex}
+\usetikzlibrary{spy}
+\usepgfplotslibrary{groupplots, colormaps}
+\usetikzlibrary{matrix}
+
+\pgfplotsset{
+	colormap={dlredblue}{
+		rgb255={255,107,107}
+		rgb255=(43,252,226)
+	},
+}
+\pgfplotsset{soldot/.style={color=dlblue,only marks,mark=*}} 
+\pgfplotsset{holdot/.style={color=dlblue,fill=white,only marks,mark=*}}
+\pgfplotsset{
+	integral segments/.code={\pgfmathsetmacro\integralsegments{#1}},
+	integral segments=3,
+	integral/.style args={#1:#2}{
+		ybar interval,
+		domain=#1+((#2-#1)/\integralsegments)/2:#2+((#2-#1)/\integralsegments)/2,
+		samples=\integralsegments+1,
+		x filter/.code=\pgfmathparse{\pgfmathresult-((#2-#1)/\integralsegments)/2}
+	}
+}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\fancyhf{}
+%\setlength{\headheight}{52pt}
+\fancyhead[LO]{\leftmark}
+\fancyhead[RE]{\rightmark}
+\fancyhead[LE,RO]{\thepage}
+%\fancyhead[REF]{Version du \today}
+%\rfoot{Version du \today}
+\usepackage{cleveref}
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{arrows,decorations.markings}
+\crefformat{section}{\S#2#1#3}
+\crefformat{subsection}{\S#2#1#3}
+\crefformat{subsubsection}{\S#2#1#3}
+
+\usetikzlibrary{arrows, shapes, snakes}
+\usepgfplotslibrary{polar}
+\usetikzlibrary{calc,patterns,angles,quotes}
+
+\newcommand{\laplace}[1]{\mathcal{L}\left\{#1\right\}}
+\newcommand{\inverselaplace}[1]{\mathcal{L}^{-1}\left\{#1\right\}}
+\newcommand{\exercicemath}[1]{\displaystyle \boldsymbol{#1}}
+\newcounter{mytheorem}[section]
+\newcounter{myexample}[section]
+\newcounter{mytable}[chapter]
+
+\def\themytheorem{\thesection.\arabic{mytheorem} }
+\def\themyexample{\thesection.\arabic{myexample} }
+\def\themytable{\thechapter.\arabic{mytable} }
+
+\tcbset{
+	defstyle/.style={fonttitle=\bfseries\upshape,
+		arc=2mm, colback=dlblue!10,colframe=dlblue, coltitle=dlblack, breakable,pad at break=5mm,},
+	propstyle/.style={fonttitle=\bfseries\upshape,
+		arc=2mm, colback=dlblue!10,colframe=dlblue, coltitle=dlblack, breakable,pad at break=5mm,},
+	theostyle/.style={fonttitle=\bfseries\upshape, fontupper=\slshape,
+		arc=2mm, colback=dlred!10,colframe=dlred, coltitle=dlblack, breakable, pad at break=5mm,},
+	notestyle/.style={fonttitle=\bfseries\upshape,
+		arc=2mm, colback=dlyellow!10,colframe=dlyellow, coltitle=dlblack, breakable},
+	astucestyle/.style={fonttitle=\bfseries\upshape, fontupper=\slshape,
+		arc=2mm, colback=dlbeige,colframe=dlblack},
+	examplestyle/.style={skin=standard jigsaw,fonttitle=\bfseries\upshape, 
+		arc=2mm, opacityback=0, breakable,pad at break=1mm},
+	exampleimagestyle/.style={skin=standard jigsaw,fonttitle=\bfseries\upshape, 
+		arc=2mm, opacityback=0, breakable,pad at break=1mm, },
+	%	examplestyle/.style={skin=standard jigsaw,fonttitle=\bfseries\upshape, fontupper = \normalsize, 
+	%		arc=2mm, colback = white, breakable, opacitytext=0.0,tikz={opacity=0}, coltext=white, 
+	%		pad at break=1mm,},
+	tablestyle/.style={skin=standard jigsaw,fonttitle=\bfseries\upshape,
+		arc=2mm, opacityback=0},
+}
+
+\tcbmaketheorem{definition}{Définition}{defstyle}{mytheorem}{def}
+\tcbmaketheorem{proposition}{Proposition}{propstyle}{mytheorem}{prop}
+\tcbmaketheorem{propositionpreuve}{Proposition}{propstyle}{mytheorem}{prop}
+\tcbmaketheorem{theoreme}{Théorème}{theostyle}{mytheorem}{thm}
+\tcbmaketheorem{theoremepreuve}{Théorème}{theostyle}{mytheorem}{thm}
+\tcbmaketheorem{corrolaire}{Corollaire}{theostyle}{mytheorem}{cor}
+\tcbmaketheorem{note}{Note}{notestyle}{mytheorem}{note}
+\tcbmaketheorem{remarque}{Remarque}{notestyle}{mytheorem}{rem}
+\tcbmaketheorem{astuce}{Astuce}{astucestyle}{mytheorem}{astuce}
+\tcbmaketheorem{example}{Exemple}{examplestyle}{myexample}{ex}
+\tcbmaketheorem{examplelower}{Exemple}{examplestyle}{myexample}{ex}
+\tcbmaketheorem{exampleimage}{Exemple}{exampleimagestyle}{myexample}{ex}
+\tcbmaketheorem{exampleretirer}{Exemple}{exampleretirerstyle}{myexample}{ex}
+\tcbmaketheorem{tablebox}{Tableau}{tablestyle}{mytable}{tab}
+
+\usepackage{pgfplots}
+\pgfplotsset{%
+	every tick label/.append style = {font=\tiny},
+	every axis label/.append style = {font=\scriptsize}
+}
+\usepgfplotslibrary{fillbetween}
+\pgfplotsset{compat=1.10}
+
+\newtcolorbox[auto counter]{formule}{%
+	skin=standard jigsaw,
+	fonttitle=\bfseries\upshape,
+	arc=2mm, opacityback=0
+}
+
+\definecolor{nocolor}{HTML}{282727}

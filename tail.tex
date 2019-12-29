@@ -1,0 +1,40 @@
+\chapter{Quantités distributionnelles de base}
+Voir \cite{klugman2012loss}, section 3.4
+\section{Queues des distributions}
+
+\begin{itemize}
+	\item Classification basée sur les moments
+	\begin{itemize}
+		\item Une manière de classifier des distributions est basé sur le nombre de moments qui existent. Une distribution dont tous les moments existent (la FGM existe) est à queue légère. 
+	\end{itemize}
+	\item Comparaisons basée sur le comportement de queue limite
+	\begin{itemize}
+		\item Pour deux distributions avec la même moyenne, une distribution a une queue plus lourde que l'autre si le ratio des fonctions de survie diverge à l'infini. 
+	\end{itemize}
+	\item Classification basée sur la fonction de hazard
+	\begin{itemize}
+		\item Les distributions avec une fonction de hazard décroissante a une queue lourde
+		\item Les distributions avec une fonction de hazard croissante a une queue légère
+		\item Une distribution a une queue plus légère que l'autre si sa fonction de hazard augmente à plus rapidement que l'autre. 
+		\item Rappel : 
+		$$h(x) = \frac{f(x)}{S(x)}, \quad S(x) = \exp\left\{-\int_{0}^{x}h(y)dy\right\}$$
+	\end{itemize}
+	\item Classification basée sur la fonction d'excès moyen
+	\begin{itemize}
+		\item Si la fonction d'excès moyen est croissante en $d$, la distribution a une queue lourde. 
+		\item Si la fonction d'excès moyen est décroissante en $d$, la distribution a une queue légère.
+		\item On peut comparer deux distributions basé sur le taux de croissance ou décroissance de la fonction d'excès moyen. 
+		\item Rappel : 
+		$$e_X(d) = E[X-d\vert X>d] = \frac{\int_{d}^{\infty}S(x) dx}{S(d)}$$ 
+	\end{itemize}
+	\item Distributions d'équilibre et comportement de queue
+	\begin{itemize}
+		\item Distribution d'équilibre
+		\begin{itemize}
+			\item $\displaystyle f_e(x) = \frac{S(x)}{E[X]}, \quad x\geq 0$
+			\item $\displaystyle S_e(x) = \frac{\int_{x}^{\infty}S(t) dt}{E[X]}, \quad x\geq 0$
+			\item $\displaystyle h_e(x) = \frac{f_e(x)}{S_e(x)} = \frac{S(x)}{\int_{x}^{\infty}S(t) dt} = \frac{1}{e(x)}$
+		\end{itemize}
+	\item Lire le texte pour le lien entre la fonction de hazard, la fonction d'excès moyen et la lourdeur de la queue
+	\end{itemize}
+\end{itemize}

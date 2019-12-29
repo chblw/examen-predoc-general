@@ -1,0 +1,33 @@
+% !TeX program = lualatex
+
+%\include{common-files1}
+%\input{preambule/tcb-complet}
+\include{common-files}
+
+\begin{document}
+	
+	\frontmatter
+	\maketitle
+	\cleardoublepage
+    \tableofcontents    
+	\cleardoublepage
+	\setlength{\parskip}{\baselineskip}%
+	\allowdisplaybreaks
+	\mainmatter
+	
+	\include{math-fin}
+	\include{math-vie}
+	\include{distributions}
+	\include{credibilite}
+	\include{risque}
+	\include{processus}
+	\include{finance}
+	
+	\include{bibl}
+	
+	
+\end{document}
+
+
+
+% \pgfmathparse{0.5*2*2*4}\pgfmathprintnumber[precision=1]\pgfmathresult %  Pour un calcul mathématique
