@@ -1,0 +1,116 @@
+\chapter{Fréquence et sévérité avec modifications de la couverture}
+
+\begin{itemize}
+	\item Par perte (\textit{Per-loss}) : $Y^L$
+	\item Par paiement (\textit{Per-payment}) : $Y^P$
+	\item $Y^P = Y^L \vert Y^L > 0.$
+\end{itemize}
+
+\section{Déductibles}
+
+\begin{definition}{Déductible ordinaire}{}
+	Un déductible ordinaire transforme la variable en excès-moyen ou en variable translatée. On a 
+	$$Y^P = \begin{cases}
+	\text{indéfini},& X\leq d,\\
+	X - d,& X > d
+	\end{cases}$$
+	$$Y^L = \begin{cases}
+	0,& X\leq d,\\
+	X - d,& X > d
+	\end{cases}$$
+\end{definition}
+
+Relations : 
+
+\begin{center}
+	\begin{tabular}{ccc}
+		\hline
+		&                              $Y^P$                               &                  $Y^L$                  \\ \hline
+		densité   &          $\displaystyle \frac{f_{X}(y + d)}{S_{X}(d)}$           &      $\displaystyle f_{X}(y + d)$       \\
+		survie    &          $\displaystyle \frac{S_{X}(y + d)}{S_{X}(d)}$           &      $\displaystyle S_{X}(y + d)$       \\
+		répartition &     $\displaystyle \frac{F_{X}(y + d) - F_{X}(d)}{S_{X}(d)}$     & $\displaystyle F_{X}(y + d) - F_{X}(d)$ \\
+		hasard    & $\displaystyle \frac{f_{X}(y + d)}{S_{X}(y + d)} = h_{X(y + d)}$ &      indéfinie à 0, donc indéfinie      \\
+		moyenne   &        $\displaystyle \frac{E[X] - E[X \wedge d]}{S(d)}$         &  $\displaystyle E[X] - E[X \wedge d]$   \\ \hline
+	\end{tabular}
+\end{center}
+
+\begin{definition}{Déductible franchise}{}
+	Un déductible franchise paie le montant au complet si la franchise est atteinte. On a 
+	$$Y^P = \begin{cases}
+		\text{indéfini}, & X\leq d, \\
+		X,               & X > d
+	\end{cases}$$
+	$$Y^L = \begin{cases}
+		0, & X\leq d, \\
+		X, & X > d
+	\end{cases}$$
+\end{definition}
+
+
+\begin{center}
+	\begin{tabular}{ccc}
+		\hline
+		            &                     $Y^P$                      &      $Y^L$       \\ \hline
+		  densité   & $\displaystyle \frac{f_{X}(y)}{S_{X}(d)}, y>d$ & $\displaystyle \begin{cases} F_{X}(d),& y = 0\\ f_{X}(y),& y > d\\ \end{cases}$ \\
+		  survie    & $\displaystyle \begin{cases}	1,&0\leq y\leq d\\ \frac{S_X(y)}{S_{X}(d)},& y>d \end{cases}$ & $\displaystyle \begin{cases} S_{X}(d),& 0\leq y\leq d\\ S_{X}(y),& y > d\\ \end{cases}$ \\
+		répartition & $\displaystyle \begin{cases}	0,&0\leq y\leq d\\ \frac{F_{X}(y) - F_{X}(d)}{S_{X}(d)},& y>d \end{cases}$ & $\displaystyle \begin{cases} F_{X}(d),& 0\leq y\leq d\\ F_{X}(y),& y > d\\ \end{cases}$ \\
+		  hasard    & $\displaystyle \begin{cases}	0,&0< y< d\\ h_{X}(y),& y>d \end{cases}$ & $\displaystyle \begin{cases}	0,&0< y< d\\ h_{X}(y),& y>d \end{cases}$ \\
+		  moyenne   & $\displaystyle \frac{E[X] - E\left[X\wedge d\right]}{S(d)} + d$ & $\displaystyle E[X] - E[X \wedge d] + d\left[S(d)\right]$ \\ \hline
+	\end{tabular}
+\end{center}
+
+\section{Ratio d'élimination de perte et effet de l'inflation sur les déductibles ordinaires}
+
+\begin{definition}{Ratio d'élimination de pertes}{}
+	Le ratio d'élimination de pertes est le ratio de la décroissance en paiement espéré avec un déductible ordinaire versus un paiement espéré sans déductible : 
+	$$\frac{E[X\wedge d]}{E[X]}$$
+\end{definition}
+
+\begin{theoreme}{}{}
+	Pour un déductible ordinaire $d$ après inflation uniforme de $1 + r$, l'espérance du coût par perte est
+	$$(1 + r) \left\{E[X] - E\left[X \wedge \frac{d}{1 + r}\right]\right\}$$
+	\tcblower
+	Si $F\left(\frac{d}{1+r}\right) < 1$, l'espérance du coût par paiement est 
+	$$\frac{(1 + r) \left\{E[X] - E\left[X \wedge \frac{d}{1 + r}\right]\right\}}{S\left(\frac{d}{1 + r}\right)}.$$
+	Savoir le prouver. 
+\end{theoreme}
+
+\section{Limites de polices}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

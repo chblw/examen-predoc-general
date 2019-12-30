@@ -1,0 +1,128 @@
+\chapter{Distributions discrètes}
+
+\section{Notation et rappels}
+
+\begin{itemize}
+	\item $\displaystyle p_k = \Pr(N = k), \quad k = 0, 1, 2, \dots .$
+	\item $\displaystyle P(z) = P_N(z) = E\left[z^N\right] = \sum_{k = 0}^{\infty}p_k z^k.$
+	\item $\displaystyle p_m = \left.\frac{1}{m!} \frac{d^m}{dz^m}P(z)\right\vert_{z = 0}$
+\end{itemize}
+
+\section{Loi Poisson}
+
+\begin{itemize}
+	\item $\displaystyle p_k= \frac{e^{-\lambda}\lambda^k}{k!}, \quad k = 0, 1, 2, \dots.$
+	\item $\displaystyle P(z) = e^{\lambda(z - 1)}, \quad \lambda > 0.$
+	\item $E[N] = \lambda$
+	\item $Var(N) = \lambda$
+	\item Équidispersion (moyenne = variance)
+\end{itemize}
+
+\begin{theoreme}{}{}
+	Soit $N_1, N_2, \dots, N_n$, des v.a. Poisson avec paramètres $\lambda_1, \lambda_2, \dots, \lambda_n$. Alors, $N = N_1 + N_2 + \dots + N_n$ est Poisson avec paramètre $\lambda = \lambda_1 + \lambda_2 + \dots + \lambda_n$.
+	\tcblower
+	Preuve : produit des fgp.
+\end{theoreme}
+
+\begin{theoreme}{}{}
+	Supposons que le nombre d'évènements $N$ est Poisson avec moyenne $\lambda$. De plus, supposons que chaque évènement peut être classifié en $m$ types avec probabilité $p_1, p_2, \dots, p_m$ indépendant des autres évènements. Alors, le nombre d'évènements $N_1, N_2, \dots, N_m$ correspondent au types d'évènements $1, 2, \dots, m$ respectivement sont des distributions Poisson mutuellement indépendants avec moyennes $\lambda p_1, \lambda p_2, \dots, \lambda p_m$.
+	\tcblower
+	\begin{itemize}
+		\item Idée de la preuve : 
+		\begin{itemize}
+			\item Pour $N$ fixé, la distribution conjointe de $(N_1, N_2, \dots, N_m)$ est multinomiale. La fonction de densité multivariée correspond au produit de Poissons. 
+			\item La marginale de $N_j$ est Poisson. 
+			\item Le cas 1 égal le produit des cas 2, donc ils sont mutuellement indépendants. 
+		\end{itemize}
+		\item Utile pour ajouter ou retirer une couverture d'assurance ($\lambda$ ne change pas)
+		\item Utile pour déductibles ou franchises : les risques en haut de la franchise sont Poisson. 
+	\end{itemize}
+\end{theoreme}
+
+\section{Loi binomiale négative}
+
+\begin{itemize}
+	\item $\displaystyle p_k= \binom{k + r - 1}{k}\left(\frac{1}{1 + \beta}\right)^r \left(\frac{\beta}{1 + \beta}\right)^k, \quad k = 0, 1, 2, \dots, r>0, \beta > 0.$
+	\item $\displaystyle P(z) = \left[1 - \beta(z-1)\right]^{-r}$
+	\item $E[N] = r\beta$
+	\item $Var(n) = r\beta(1 + \beta)$
+	\item Surdispersion (variance > moyenne)
+	\item On peut retrouver la binomiale négative avec une loi mélange (Poisson + gamma)
+	\item La loi Poisson est un cas limite de la binomiale négative ($r\to \infty, \beta \to 0, r\beta$ demeure constant).
+\end{itemize}
+
+Un cas particulier est la géométrique ($r = 1$)
+\begin{itemize}
+	\item Sans mémoire
+	\item Cas exponentiel : \textit{Given that a claim exceeds a certain level d, the expected amount of the claim in excess of d is constant and so does not depend on d.}
+	\item Cas géométrique : \textit{Given that there are at least m claims, the probability distribution of the number of claims in excess of m does not depend on m.}
+	\item Si $r>1$, on considère que la distribution a une queue légère.
+	\item Si $r<1$, on considère que la distribution a une queue lourde.
+\end{itemize}
+
+\section{Loi binomiale}
+
+\begin{itemize}
+	\item $\displaystyle P(z) = \left[1 + q(z-1)\right]^m, \quad 0<q<1$
+	\item $\displaystyle p_k = \binom{m}{k}q^k(1-q)^{m-k}, \quad k = 0, 1, 2, \dots, m.$
+	\item $E[N] = mq$
+	\item $Var(N) = mq(1-q)$
+	\item Sousdispersion (moyenne > variance)
+\end{itemize}
+
+\section{La classe $(a, b, 0)$}
+
+\begin{definition}{La classe $(a, b, 0)$}{}
+	Une v.a. est membre de la classe $(a, b, 0)$ s'il existe des constantes $a$ et $b$ tels que
+	$$\frac{p_k}{p_{k-1}} = a + \frac{b}{k}, \quad k = 1, 2, 3, \dots.´$$
+\end{definition}
+
+\begin{center}
+	\begin{tabular}{cccc}
+		\hline
+		   Distribution    &            $a$            &              $b$               &       $p_0$        \\ \hline
+		     Poisson       &            $0$            &           $\lambda$            &   $e^{-\lambda}$   \\
+		    Binomiale      &     $-\frac{q}{1-q}$      &     $(m + 1)\frac{q}{1-q}$     &     $(1-q)^m$      \\
+		Binomiale négative & $\frac{\beta}{1 + \beta}$ & $(r-1)\frac{\beta}{1 + \beta}$ &  $(1+\beta)^{-r}$  \\
+		   Géométrique     & $\frac{\beta}{1 + \beta}$ &              $0$               & $(1 + \beta)^{-1}$ \\ \hline
+	\end{tabular}
+\end{center}
+
+Outil diagnostique pour déterminer la loi à utiliser : en utilisant la relation $$k\frac{p_k}{p_{k-1}} = ak + b,$$
+faire un graphique de 
+$$k \frac{\hat{p}_k}{\hat{p}_{k-1}} = k\frac{n_k}{n_{k-1}}.$$
+\begin{itemize}
+	\item Si la droite est plate, on a $a = 0\Rightarrow$ Poisson
+	\item Si la droite est négative, on a $a < 0\Rightarrow$ Binomiale
+	\item Si la droite est positive, on a $a > 0\Rightarrow$ Binomiale négative.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
