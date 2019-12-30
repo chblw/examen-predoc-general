@@ -1,0 +1,90 @@
+\chapter{Rappel des notions de mathématiques statistiques}
+
+\section{Estimation ponctuelle}
+
+Dans cette section, on s'intéresse à produire une seule valeur pour déterminer la la valeur d'une quantité pour une population inconnue. 
+
+\subsection{Mesures de qualité}
+
+\begin{definition}{Biais}{}
+	Un estimateur $\hat{\theta}$ est sans biais si $E[\hat{\theta}\vert \theta] = \theta, ~\forall ~\theta$. Le biais est $$\text{bias}_{\hat{\theta}}(\theta) = E[\hat{\theta}\vert \theta] - \theta.$$
+\end{definition}
+
+\begin{definition}{Biais asymptotique}{}
+	Soit $\hat{\theta}_n$, un estimateur de $\theta$ basé sur un échantillon de taille $n$. L'estimateur est asymptotiquement sans biais si $$\lim\limits_{n\to \infty }E[\hat{\theta}_n\vert \theta] = \theta, ~\forall \theta.`$$
+\end{definition}
+
+\begin{definition}{Convergence}{}
+	Un estimateur est convergent si, pour tout $\delta > 0$ et pout tout $\theta$, 
+	$$\lim\limits_{n\to \infty} \Pr\left(|\hat{\theta}_n - \theta| > \delta\right) = 0.$$
+	\tcblower
+	\begin{itemize}
+		\item Une condition suffisante (mais pas nécessaire) est que l'estimateur soit asymptotiquement sans biais et $Var\left(\hat{\theta}_n\right) \to 0$.
+		\item Critique : le choix de $\delta$ est parfois arbitraire. 
+	\end{itemize}
+\end{definition}
+
+\begin{definition}{Erreur quadratique moyenne}{}
+	L'erreur quadratique moyen d'un estimateur est 
+	$$MSE_{\hat{\theta}}(\theta) = E\left[\left(\hat{\theta} - \theta \right)^2 \vert \theta \right].$$
+	\tcblower
+	On peut décomposer cet estimateur comme
+	$$MSE_{\hat{\theta}}(\theta) = E\left[ \left.\left(\hat{\theta} - E[\hat{\theta}\vert \theta] + E[\hat{\theta}\vert \theta] - \theta\right)^2 \right\vert \theta  \right] = Var\left(\hat{\theta}\vert \theta\right) + \left[\text{bias}_{\hat{\theta}}(\theta)\right]^2$$
+\end{definition}
+
+\begin{definition}{Estimateur sans biais à variance minimale}{}
+	Un estimateur $\hat{\theta}$ est appelé estimateur sans biais à variance minimale si il est sans biais et pour la vraie valeur de $\theta$ il n'existe pas d'estimateur avec une plus faible variance. 
+\end{definition}
+
+\section{Intervalles de confiance}
+
+Dans cette section, on s'intéresse à produire un intervalle de valeurs possibles d'une quantité pour une population inconnue. 
+
+\begin{definition}{}{}
+	Un intervalle de confiance à $100(1-\alpha)\%$ pour un paramètre $\theta$ est une paire de valeurs aléatoires, $L$ et $U$, calculé d'un échantillon aléatoire tel que $$\Pr(L\leq \theta \leq U) \geq 1 - \alpha, ~\forall \theta.$$
+\end{definition}
+
+Si la population est normale avec moyenne et variance inconnue, on a 
+$$L = \overline{X} - t_{\alpha / 2, n-1} \frac{s}{\sqrt{n}}, \quad U = \overline{X} + t_{\alpha / 2, n-1} \frac{s}{\sqrt{n}}$$
+et
+$$s = \sqrt{\frac{\sum_{j = 1}^{n}\left(X_j - \overline{X}\right)^2}{n-1}}.$$
+
+Sinon, l'approximation normale peut être utilisée. Si $\hat{\theta}$ est approximativement normal, on a (approximtivement)
+$$1 - \alpha = \Pr \left( -z_{\alpha / 2} \leq \frac{\hat{\theta} - \theta}{\sqrt{v(\theta)}} \leq z_{\alpha / 2}\right).$$
+On remarque que $\theta$ apparaît à deux endroits. Alors, si isoler $\theta$ est trop compliqué, on peut utiliser l'approximation $v(\theta) \approx v(\hat{\theta})$ et l'intervalle de confiance devient
+$$1 - \theta = \Pr\left(\theta - z_{\alpha / 2} \sqrt{v(\hat{\theta})} \leq \theta \leq \theta + z_{\alpha / 2} \sqrt{v(\hat{\theta})}\right).$$
+
+\section{Tests d'hypothèse}
+
+Un test d'hypothèse est composé de deux hypothèses :
+\begin{itemize}
+	\item l'hypothèse nulle (notée $H_0$), et
+	\item l'hypothèse alternative (notée $H_1$).
+\end{itemize}
+
+Les deux hypothèses ne sont pas symmétriques : les alterner peut changer les résultats. 
+
+\begin{itemize}
+	\item Déterminer l'hypothèse est faite avec une statistique de test. C'est une fonction des observations et est une variable aléatoire. 
+	\item La spécification d'un test est complétée en construisant une région de rejet. 
+	\item Les bornes de la région (autre que $\pm \infty$) sont appelées les valeurs critiques. 
+\end{itemize}
+
+\subsection{Types d'erreur.}
+
+Lorsqu'on construit un test, on peut avoir deux types d'erreurs. Le premier se produit si on rejette l'hypothèse nulle mais que l'hypothèse nulle était vraie. On appelle cet erreur \textit{type I}. 
+
+\begin{definition}{Niveau d'importance}{}
+	Le niveau d'importance (exceptionnel) d'un test d'hypothèse est la probabilité de faire un erreur de type I sachant que l'hypothèse nulle est vraie. On note ce niveau $\alpha$. Le niveau d'importance est habituellement déterminé d'avance, entre 0.01 et 0.1. 
+\end{definition}
+
+Le deuxième type d'erreur est de ne pas rejetter l'hypothèse nulle alors que l'hypothèse alternative est vraie. La puissance du test est 1 - la probabilité de faire un erreur de type II. 
+
+\begin{definition}{}{}
+	Un test d'hypothèse est uniformément plus puissant s'il n'existe aucun autre test qui a le même ou plus bas niveau d'importance et, pour une valeur particulière dans l'hypothèse alternative, a une plus petite probabilité de faire un erreur de type II. 
+\end{definition}
+Généralement, diminuer un type d'erreur cause l'autre à augmenter. 
+
+\begin{definition}{}{}
+	Pour un test d'hypothèse, la valeur-$p$ est la probabilité que la statistique de test prend une valeur moins d'accord avec l'hypothèse nulle que la valeur obtenue dans l'échantillon. Les tests effectués à un niveau de confiance supérieur à la valeur-$p$ mènent à rejeter l'hypothèse nulle, et les test effectués à un niveau de confiance infétieur à la valeur-$p$ mènent à l'échec de rejeter l'hypothèse nulle. 
+\end{definition}
