@@ -97,36 +97,80 @@ Exemples :
 	\item La distribution gamma est un cas limite de la distribution beta transformée avec $\theta \to \infty, \alpha \to \infty$ et $\frac{\theta}{\alpha^{1/\gamma}} \to \xi$, une constante. 
 \end{itemize}
 
-
 \section{Théorie des valeurs extrêmes}
 
+\subsection{Distributions à valeur extrêmes (DVE)}
 
+\begin{definition}{La distribution Gumbel}{}
+	La distribution Gumbel standard a la fonction de répartition
+	$$F(x) = G_{0}(x) = \exp \left[-\exp(-x)\right], \quad -\infty <x<\infty.$$
+	\tcblower
+	Avec les paramètres de location et d'échelle, on a 
+	$$F(x) = G_{0, \mu, \theta}(x) = \exp \left[-\exp\left(-\frac{x-\mu}{\theta}\right)\right], \quad -\infty <x<\infty, \theta>0.$$
+\end{definition}
 
+\begin{definition}{La distribution de Fréchet}{}
+	La distribution de Fréchet standard a la fonction de répartition
+	$$F(x) = G_{1, \alpha}(x) = \exp\left(-x^{-\alpha}\right), \quad x\geq 0, \alpha > 0,$$
+	où $\alpha$ est un paramètre de forme. 
+	\tcblower
+	Avec les paramètres de location et d'échelle, on a
+	$$F(x) = G_{1, \alpha, \mu, \theta}(x) = \exp\left[-\left(\frac{x-\mu}{\theta}\right)^{-\alpha}\right], x\geq \mu, \alpha, \theta > 0.$$
+	On note que le support de la distribution de Fréchet est pour $x$ supérieur au paramètre de location. 
+\end{definition}
 
+\begin{definition}{La distribution Weibull}{}
+	La distribution de Weibull standard a la fonction de répartition 
+	$$F(x) = G_{2, \alpha}(x) = \exp\left[-\left(-x\right)^{-\alpha}\right], \quad x\leq 0, \alpha < 0.$$
+	\tcblower
+	Avec les paramètres de location et d'échelle, on a 
+	$$F(x) = G_{2, \alpha, \mu, \theta}(x) = \exp\left[-\left(-\frac{x - \mu}{\theta}\right)^{-\alpha}\right], \quad x\leq \mu, \alpha < 0.$$
+	
+	On note :
+	\begin{itemize}
+		\item Cette distribution n'est pas la même que la distribution Weibull couramment utilisée en actuariat
+		\item Cette distribution a un support pour $x$ inférieur au paramètre de location $\mu$
+		\begin{itemize}
+			\item Pour cette raison, cette distribution n'est pas utilisée en actuariat.
+		\end{itemize}
+	\end{itemize}
+\end{definition}
 
+\begin{definition}{La distribution de valeurs extrêmes généralisée}{}
+	La distribution de valeurs extrêmes généralisée incorpore les trois distributions à valeur extrême comme cas particuliers. L'expression de la fonction de répartition est 
+	$$F(x) = \exp \left[-\left(1 + \frac{x}{\alpha}\right)^{-\alpha}\right]$$
+	ou (notation équivalente)
+	$$F(x) = \exp \left[-\left(1 + \gamma x\right)^{-\frac{1}{\gamma}}\right]$$
+	\tcblower
+	\begin{itemize}
+		\item Pour $\gamma \to 0$, on obtient la distribution Gumbel
+		\item Pour $\gamma  > 0$, on obtient la distribution Fréchet
+		\item Pour $\gamma < 0$, on obtient la distribution Weibull
+	\end{itemize}
+\end{definition}
 
+\subsection{Distribution du maximum}
 
+Soit $M_{n}$, la variable aléatoire qui correspond à la valeur maximale de $n$ observations d'une variable aléatoire. Si on a $n$ observations d'une variable aléatoire iid, la fonction de répartition du maximum est 
+$$F_{n}(x) = \Pr(M_n \leq x) = \Pr(X_1\leq x, X_2 \leq x, \dots, X_n \leq x) \stackrel{\text{ind}}{=} \prod_{i = 1}^{n} \Pr(X_i\leq x) = \left[F_{X}(x)\right]^n.$$
+Les deux premiers moments sont
 
+$$E\left[M_n\right] = \int_{0}^{\infty} [1 - F_{X}^n] dx;$$
+$$E\left[M_n^2\right] = 2\int_{0}^{\infty} x[1 - F_{X}^n] dx.$$
 
+Si le nombre $n$ est inconnu, $N$ est une variable aléatoire. On a 
+\begin{align*}
+F_{M_{N}}(x) &= \Pr(M_{N} \leq x) \\
+&= \sum_{n = 0}^{\infty} \Pr(M_{N} \leq x \vert N = n) \Pr(N = n)\\
+&= \sum_{n = 0}^{\infty} F_X(x)^n \Pr(N = n)\\
+&= P_N\left[F_{X}(x)\right].
+\end{align*}
 
+\subsection{Stabilité du maximum des DVE}
 
+On peut montrer que la distribution du maximum des DVE, après normalisation du paramètre de location ou d'échelle, est la même DVE.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\subsection{Théorème Fisher-Tippett}
 
 
 
