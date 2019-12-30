@@ -77,40 +77,51 @@ Relations :
 
 \section{Limites de polices}
 
+\begin{definition}{}{}
+	Une police avec limite $u$ paie la perte complète si la perte est inférieure à $u$, et $u$ si la perte est supérieure à $u$. On a 
+	$$Y = \begin{cases}
+	Y,& y<u\\
+	u,& y\geq u.
+	\end{cases}$$
+\end{definition}
 
+Quelques résultats : 
 
+\begin{itemize}
+	\item $\displaystyle F_{Y}(y) = \begin{cases}
+	F_{X}(y),& y < u\\
+	1,& y\geq u.
+	\end{cases}$
+	\item $\displaystyle F_{Y}(y) = \begin{cases}
+	f_{X}(y),& y < u\\
+	1-F_{X}(u),& y = u.
+	\end{cases}$
+	\item Pour une limite de police $u$, après inflation uniforme $1 + r$, le coût espéré est
+	$$(1 + r)E\left[X \wedge \frac{u}{1 + r}\right]$$
+\end{itemize}
 
+\section{Coassurance, déductibles et limites}
 
+Dans le cas où la compagnie paie une portion $\alpha$ de la perte, la variable aléatoire est $Y = \alpha X$. La variable aléatoire qui incorpore les quatre modifications du chapitre est 
 
+$$Y^L = \begin{cases}
+0,& X< \frac{d}{1 + r}\\
+\alpha \left[(1 + r)X - d\right],& \frac{d}{1 + r} \leq X < \frac{u}{1 + r}\\
+\alpha(u-d), & X\geq \frac{u}{1 + r}
+\end{cases}$$
 
+On note que les quantités sont appliqués dans un ordre particulier : la coassurance est appliquée en dernier. 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\begin{theoreme}{Quelques moments pour les modifications}{}
+Le premier moment par perte est
+$$E\left[Y^L\right] = \alpha(1 + r)\left\{ E\left[X \wedge \frac{u}{1 + r}\right] - E\left[X \wedge \frac{d}{1 + r}\right]\right\}$$
+et le premier moment par paiement est
+$$E\left[Y^P\right] = \frac{E\left[Y^L\right]}{1 - F_{X}\left(\frac{d}{1 + r}\right)}.$$
+\tcblower
+Le deuxième moment par perte est
+$$E\left[\left(Y^L\right)^2\right] = \alpha^2 (1 + r)^2 \left\{ E\left[(X \wedge u^*)^2\right]-E\left[(X \wedge d^*)^2\right] -2d^*E\left[X \wedge u^*\right] + 2d^*E\left[X \wedge d^*\right]\right\},$$
+où $$u^* = \frac{u}{1 + r} \quad \text{et}\quad d^* = \frac{d}{1 + r}.$$
+Pour par-paiement, on a 
+$$E\left[\left(Y^L\right)^2\right] = \frac{E\left[\left(Y^L\right)^2\right]}{1 - F_{X}\left(d^*\right)}.$$
+Preuve : facile, manipuler les mins et max et prendre l'espérance. À connaître. 
+\end{theoreme}
