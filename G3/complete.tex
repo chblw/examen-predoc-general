@@ -1,0 +1,49 @@
+\chapter{Estimation for complete data}
+
+Lorsque les observations sont collectées d'une distribution de probabilité, la situation idéale est d'avoir les réalisations de chaque observation. Ce cas est référé aux données complètes individuelles. 
+
+Les données exactes peuvent être impossibles à avoir car
+\begin{enumerate}
+	\item les données peuvent être groupées;
+	\item les données peuvent être censurées ou tronquées. 
+\end{enumerate}
+
+On considère premièrement l'estimation pour les données complètes et individuelles. 
+
+\begin{definition}{}{}
+	La fonction de distribution empirique est 
+	$$F_n(x) = \frac{\text{Nombre d'observations }\leq x}{n},$$
+	où $n$ est le nombre total d'observations. 
+\end{definition}
+
+\begin{definition}{}{}
+	La fonction de hasard cumulative est définie selon 
+	$$H(x) = -\ln S(x).$$
+	\tcblower
+	Source de la fonction : 
+	$$H'(x) = -\frac{S'(x)}{S(x)} = \frac{f(x)}{S(x)} = h(x) \Rightarrow H(x) = \int_{-\infty}^{x} h(y) dy.$$
+\end{definition}
+
+Autre notation : 
+
+\begin{itemize}
+	\item Soit $n$, la taille échantillonnalle
+	\item Soit $y_1<y_2<\dots<y_k$ être les $k$ valeurs uniques
+	\item Soit $s_j$, le nombre de gois dont $y_j$ apparraît dans l'échantillon. 
+	\item Soit le nombre d'observations plus grande qu'une valeur. L'ensemble des risques $r_j$ est définie par $r_j = \sum_{i = j}^{k}s_j$, le nombre d'observations plus grand ou égal à $y_j$.
+\end{itemize}
+En utilisant cette notation, on obtient
+$$F_n(x) = \begin{cases}
+0,&x<y_1\\
+1-\frac{r_j}{n}, & y_{j-1}\leq x < y_j,\quad j = 2, 3, \dots, k\\
+1,& x\geq y_k
+\end{cases}$$
+
+\begin{definition}{L'estimateur Nelson-\AA{}alen}{}
+	L'estimateur Nelson-\AA{}alen de la fonction de hasard cumulative est 
+	$$\hat{H}(x) = \begin{cases}
+	0,&x<y_1\\
+	\sum_{i = 1}^{j-1} \frac{s_i}{r_i}, & y_{j-1}\leq x < y_j,\quad j = 2, 3, \dots, k\\
+	\sum_{i = 1}^{k} \frac{s_i}{r_i},& x\geq y_k
+	\end{cases}$$
+\end{definition}
