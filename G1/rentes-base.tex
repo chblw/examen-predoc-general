@@ -1,5 +1,5 @@
 \chapter{Rentes de base}
-Voir \cite{kellison2006theory}, chapitre 3
+Voir \cite{kellison2006theory}, chapitres 3 et 4
 \section{Introduction}
 
 \begin{definition}{Rente}{}
@@ -110,6 +110,70 @@ Comparaison des rentes :
 	\draw (8,0) node[below, yshift = -15pt, scale = 1.5, color = dlred] {$\sx**{\angln}$};
 	\end{tikzpicture}
 \end{center}
+
+\section{Perpetuité}
+
+Une perpetuité est une rente de durée infinie. 
+
+$$\ax{\angl{\infty}} = \frac{1}{i}; \quad \ax**{\angl{\infty}} = \frac{1}{d}$$
+
+\section{Rentes payables à fréquences autres que l'intérêt est converti}
+
+\subsection{Rente à fréquence inférieure à la période de conversion}
+
+S'il y a $k$ périodes de conversion dans une période de paiement, la valeur actualisée d'une rente immédiate est 
+$$v^k + v^{2k} + \dots + v^{\frac{n}{k} \times k} = \frac{v^k - v^{nk}}{1 - v^{k}} = \frac{1 - v^n}{(1 + i)^k - 1} = \frac{\ax{\angln}}{\sx{\angl{k}}}.$$
+
+La valeur actualisée d'une rente due est
+
+$$1 + v^k + v^{2k} + \dots + v^{\frac{n}{k} \times k - k} = \frac{1 - v^{nk}}{1 - v^{k}} =  \frac{\ax{\angln}}{\ax{\angl{k}}}.$$
+
+Note : la manipulation des termes $\ax{\angln}$ et $\sx{\angln}$ doit être intuitive. 
+
+\section{Rentes à fréquence supérieure à la période de conversion}
+
+Soit $m$, le nombre de paiements par période de conversion de l'intérêt et $n$, le nombre de périodes de conversion de l'intérêt. Chaque paiement est de $\frac{1}{m}$, tel que la somme de 1 est payée pendant une période de conversion. Alors, il y a $mn$ paiements. 
+
+La valeur actualisée de cette rente immédiate est 
+
+$$\ax{\angln}[(m)] = \frac{1}{m}\left[v^{\frac{1}{m}} + v^{\frac{2}{m}} + \dots + v^{\frac{mn-1}{m}} + v^{\frac{mn}{m}} \right]= \frac{1 - v^n}{m\left((1 + i)^{\frac{1}{m}} - 1\right)} = \frac{1-v^n}{i^{(m)}}$$
+
+et la valeur accumulée est 
+$$\sx{\angln}[(m)] = \ax{\angln}[(m)] (1 + i)^n = \frac{(1 + i)^n - 1}{i^{(m)}}.$$
+
+De manière équivalante, la valeur actualisée d'une rente due est
+
+$$\ax**{\angln}[(m)] = \frac{1-v^n}{d^{(m)}}$$
+
+\section{Rente continue}
+
+L'expression pour la valeur actualisée d'une rente qui paie 1 par période d'intérêt est 
+
+$$\ax*{\angln} = \int_{0}^{n}v^t dt = \frac{1 - v^t}{\delta}.$$
+
+L'expression pour la valeur accumulée d'une rente qui paie 1 par période d'intérêt est 
+
+$$\sx*{\angln} = \int_{0}^{n}(1 + i)^t dt = \frac{(1+i)^t - 1}{\delta}.$$
+
+On a aussi
+$$\frac{d}{dt}\sx*{\angl{t}} = 1 + \delta \sx*{\angl{t}}$$
+alors, à chaque moment, la rente paie 1 et la force de l'intérêt fois la valeur accumulée de la rente depuis le début de la rente. 
+
+
+\section{Rentes variables}
+
+Progression géométrique seulement. Dans le cas de l'intérêt composé avec des paiements qui grandissent selon un patron géométrique, on peut se définir un nouveau taux d'intérêt et utiliser les résultats existants. 
+
+
+
+
+
+
+
+
+
+
+
 
 
 

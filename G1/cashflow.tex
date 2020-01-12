@@ -1,0 +1,136 @@
+\chapter{Analyse du flux de trésorerie}
+
+Voir \cite{kellison2006theory}, chapitre 5. Dans ce chapitre, on s'intéresse à étudier des positions financières où des entrées et des sorties de fonds sont faites dans le comte. 
+
+\section{Taux de rendement}
+
+On considère des situations où l'investisseur des entrées de fonds de montant $C_0, C_1, C_2, \dots, C_n$ aux temps $0, 1, 2, \dots, n$. On suppose que les temps $t, t + 1$ sont espacés de manière uniforme. Note : $C_i, i = 1, \dots, n$ peut être négatif, qui correspond à une sortie de fonds. 
+
+On note un rendement (sortie de fonds) au temps $t$ par $R_t, t = 0, 1, 2, \dots, n$, alors $C_t = -R_t, t = 0, 1, 2, \dots, n$. 
+
+La valeur actualisée nette est
+$$P(i) = \sum_{t = 0}^{n} v^tR_t.$$
+\begin{definition}{}{}
+	Le taux de rendement est le taux où la valeur actualisée nette des rendements de l'investissement est égale à la valeur actualisée des contributions dans l'investissement. Ce taux est aussi appelé le taux de rendement interne. 
+\end{definition}
+On peut trouver le taux de rendement $i$ selon l'équation de valeur $$P(i) = 0.$$
+Un taux de rendement est seulement comparable à un autre si la durée de l'investissement est identique. 
+
+\section{Taux de réinvestissement}
+
+Jusqu'à présent, on n'a pas considéré le taux d'intérêt sur les réinvestissements, on a supposé que ce taux était constant toute la durée de l'investissement. Par contre, un investissement à court terme rapportera probablement un taux d'intérêt inférieur à un investissement à long terme, donc le taux de réinvestissement pourrait être plus petit que le taux de rendement initial. 
+
+On considère un investissement de 1 pour $n$ périodes au taux $i$ et au taux de réinvestissement $j$. L'investissement initial retourne $i$ à chaque période, qui est investi au taux $j$. Le diagramme de temps est
+
+\begin{center}
+	\begin{tikzpicture}
+	\draw (0,0) -- (8,0);
+	\draw (0,0.1) -- + (0,-0.2) node[below] {$0$};
+	\draw (0,0.1) -- + (0,-0.2) node[above, yshift=8pt] {$1$};
+	\foreach \i in {1,2} {
+		\draw (\i,0.1) -- + (0,-0.2) node[below] {$\i$};
+		\draw (\i,0.1) -- + (0,-0.2) node[above, yshift=-30pt] {$i$};}
+	\draw (8,0.1) -- + (0,-0.2) node[below] {$n$};
+	\draw (4.5,0) node[above, yshift = 8pt] {$\dots$};
+	\draw (4.5,0) node[below, yshift = -8pt] {$\dots$};
+	\draw (7,0.1) -- + (0,-0.2) node[below] {$n-1$};
+	\draw (7,0.1) -- + (0,-0.2) node[above, yshift=-30pt] {$i$};
+	\draw (8,0.1) -- + (0,-0.2) node[above, yshift=-30pt] {$i$};
+	\draw (8,0) node[below, yshift = -30pt, scale = 1.5, color = dlblue] {$t_2$};
+	\end{tikzpicture}
+\end{center}
+
+La valeur accumulée est $1 + i\sx{\angln j}$.
+
+\section{Mesure de l'intérêt dans un fonds}
+
+Définitions : 
+
+\begin{itemize}
+	\item $A$ : le montant dans le fonds au début de la période
+	\item $B$ : le montant dans le fonds à la fin de la période
+	\item $I$ : le montant d'intérêt obtenu pendant la période
+	\item $C_t$ : le montant net de capital contribué au temps $t$, pour $0\leq t\leq 1$
+	\item $C$ : le montant de capital total pendant la période, $C \sum_t C_t$
+	\item ${}_ai_b$ : le montant d'intérêt obtenu pour un capital de 1 investi au temps $b$ pendant $a$ unités, et $a + b \leq 1$
+\end{itemize}
+
+\subsection{Résultats en discret}
+
+Le montant dans le fonds à la fin de la période est la somme du montant initial, les contributions et l'intérêt
+$$B = A + C + I.$$
+
+Le montant d'intérêt obtenu est la somme de l'intérêt sur le montant initial et sur les contributions. 
+$$I = iA + \sum_{t}C_t \times {}_{1-t}i_t.$$
+
+Avec l'hypothèse d'intérêt composé, on a 
+$${}_{1-t}i_t = (1 + i)^{1-t}-1.$$
+
+Une hypothèse simplificatrice est 
+$${}_{1-t}i_t \backsimeq (1-t)i,$$
+qui nous permet d'écrire
+$$i \backsimeq \frac{I}{A + \sum_t C_t(1-t)},$$
+qui s'interprète comme l'investissement obtenu divisé par la somme pondérée des contributions. Cet hypothèse tient si les $C_t$ sont petits comparés à $A$. 
+
+Une autre hypothèse est que les contributions sont faits uniformément sur la période, donc en moyenne au temps 0.5. L'approximation devient
+$$i \backsimeq \frac{I}{A + 0.5(B-A-I)} = \frac{2I}{A+B-I}.$$
+
+\subsection{Résultats en continu}
+
+Le montant du fonds au temps $n$ est 
+$$B_n = B_0(1 + i)^n + \int_{0}^{n} C_t(1 + i)^{n-t}dt.$$
+Une formule plus générale est 
+$$B_n = B_0 e^{\int_{0}^{n}\delta_s ds} + \int_{0}^{n}C_t e^{\int_{t}^{n}\delta_s ds} dt,$$
+qui a une équation différentielle associée 
+$$\frac{d}{dt}B_t = \delta_t B_t + C_t,$$
+donc le rendement instantanné est la somme de 
+\begin{itemize}
+	\item la force d'intérêt au temps $t$ multiplié par la valeur du fonds au temps $t$ ; 
+	\item la contribution continue. 
+\end{itemize}
+
+\section{Taux d'intérêt pondéré par le temps}
+
+Le taux de rendement peut dépendre des contributions intermédiaires $C_t, t = 0, 1, 2, \dots, n$. Si une contribution est faite juste avant que la valeur du fonds augmente ou diminue, la performance du fonds sera amplifié. Par exemple, si le fonds performe bien au début et mal à la fin tel que la valeur du fonds au début et à la fin est pareille. Si un individu investi beaucoup d'argent au début et retire de l'argent au milieu, il est moins exposé au mauvais rendement et son taux d'intérêt est bon. Si un individu investi peu d'argent au début et contribue un grand montant au milieu, il peu exposé au bon rendement et plus exposé au mauvais rendement et le taux d'intérêt est mauvais. Les méthodes de la section précédente sont appelés des taux d'intérêts pondérés par l'argent mais ne reflectent pas la performance du gestionnaire du fonds. 
+
+Le taux d'intérêt pondéré par le temps est une mesure de performance différente. On décompose la période d'investissement à chaque fois où une contribution est faite et on détermine le taux d'intérêt pour chaque intervalle intermédiaire. 
+
+Le taux d'intérêt de l'intervalle $k$ est $$j_k = \frac{B_k'}{B_{k-1}' + C_{k-1}'}.$$
+Le taux de rendement est obtenu selon la relation
+$$1 + i = (1+j_1)(1+j_2)\dots(1+j_m).$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
