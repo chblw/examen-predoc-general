@@ -1,0 +1,66 @@
+\chapter{Assurance vie}
+
+\section{Assurance continue}
+
+La variable aléatoire qui représente l'assurance vie est notée $Z = b_T v_T$, où $b_t$ est une fonction de prestation et $v_t$ est une fonction d'escompte. La variable aléatoire $T$ représente la durée de vie de l'assuré, comme présenté dans le chapitre sur les distributions de survie. 
+
+\begin{definition}{Assurance vie temporaire $\exercicemath{n}$-années}{}
+	Cette assurance paie 1 si l'assuré décède pendant les $n$ premières années et 0 sinon. La variable aléatoire est
+	$$Z = \begin{cases}
+	v^T,& T\leq n\\
+	0,& T>n
+	\end{cases}$$
+	
+	L'espérance de cette variable aléatoire est  
+	$$\Ax*[][]{\termxn} = E[Z] = \int_{0}^{n}v^t \px[t]{x}\mu_x(t) dt.$$
+	
+	Le $j^{\text{ème}}$ moment est
+	
+	$$\Ax*[][j]{\termxn} = E\left[Z^j\right] = \int_{0}^{n}\left(v^t\right)^j \px[t]{x}\mu_x(t) dt,$$
+	donc est égal au premier moment mais où la force d'intérêt est multipliée par $j$. De plus, on a 
+	$$F_{Z}(x) = \begin{cases}
+	\overline{F}_{T_x}(n),& x = 0\\
+	\overline{F}_{T_x}(n),& 0<x<bv^n\\
+	\overline{F}_{T_x}\left(-\frac{1}{\delta}\ln \left(\frac{x}{b}\right)\right),& bv^n<x<b\\
+	1,& x>b
+	\end{cases}$$
+	On déduit que 
+	$$VaR_\kappa(Z) = \begin{cases}
+	0,& 0<\kappa < \overline{F}_{T_x}(n)\\
+	bv^{VaR_{1-\kappa}(T_x)},& \overline{F}_{T_x}(n)<\kappa<1
+	\end{cases}$$
+	et
+	$$TVaR_{\kappa}(Z) = \begin{cases}
+	\frac{1}{1 - \kappa}b\Ax*{\termxn},& 0<\kappa < \px[n]{x}\\
+	\frac{1}{1 - \kappa}b\Ax*{\nthtop{1}{x}:\angl{VaR_{1-\kappa}(T_x)}},& \px[n]{x}<\kappa<1\\
+	\end{cases}$$
+\end{definition}
+
+\begin{definition}{Assurance vie complète}{}
+	La variable aléatoire pour une assurance vie complète est $$Z=v^T, t\geq 0.$$ C'est un cas particulier de l'assurance vie temporaire avec $n\to \infty$. On a 
+	$$\Ax*[][j]{x} =  \int_{0}^{\infty}v^{jt} \px[t]{x}\mu_x(t) dt.$$
+\end{definition}
+
+\begin{definition}{Capital différé}{}
+	Un capital différé verse une prestation après $n$ années si l'assuré a survécu les $n$ années. La v.a. est
+	$$Z = \begin{cases}
+	0&, T\neq n\\
+	v^n&, T > n
+	\end{cases}$$	
+	La notation est 
+	$$\Ax*{\pureendowxn} = \Ex[n]{x}= v^n \px[n]{x}.$$
+\end{definition}
+
+\begin{definition}{Assurance capital différé (assurance mixte)}{}
+	Une assurance capital différé verse une prestation au décès ou après $n$ années. La v.a. est
+	$$Z = \begin{cases}
+	0&, T\neq n\\
+	v^n&, T > n
+	\end{cases}$$	
+	La notation est 
+	$$\Ax*{\pureendowxn} = \Ex[n]{x}= v^n \px[n]{x}.$$
+\end{definition}
+
+
+
+
