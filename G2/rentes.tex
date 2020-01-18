@@ -1,0 +1,55 @@
+\chapter{Rentes}
+
+\begin{definition}{}{}
+	Une rente vie-entière paie des prestations jusqu'à la mort de l'individu. La variable aléatoire correspondant à la valeur actualisée de cette rente est 
+	$$Y = \ax*{\angl{T}}.$$
+	La fonction de répartition est 
+	$$F_Y(y) = F_T\left(\frac{-\log(1-\delta y)}{\delta}\right), \quad 0<y< \frac{1}{\delta}$$
+	et la fonction de densité est
+	$$\frac{1}{1- \delta y} f_T\left(\frac{-\log(1-\delta y)}{\delta}\right), \quad 0<y< \frac{1}{\delta}.$$
+	La valeur actualisée est 
+	$$\ax*{x} = E[Y] = \int_{0}^{\infty} \ax*{\angl{x}} \px[t]{x}\mu_{x + t} dt = \int_{0}^{\infty} v^t \px[t]{x} dt = \int_{0}^{\infty} \Ex[t]{x}dt.$$
+\end{definition}
+
+On peut définir des relations de récursion comme
+$$\ax*{x} = \ax{x:\angl{1}} + vp_x \ax*{x+1}.$$ Savoir interpréter ces relations (\textit{Une rente vie entière est une rente temporaire un an plus une rente vie entière dans un an, si l'assuré survit un an}).
+
+De la définition de la rente continue, on avait
+$$\ax*{\angl{t}} = \frac{1 - v^t}{\delta}.$$
+En prenant l'espérance des deux côtés de l'équation, on obtient la relation 
+$$\ax*{x} = \frac{1 - \Ax{x}}{\delta}.$$
+On a aussi 
+\begin{align*}
+Var\left(\ax*{\angl{T}}\right) &= Var \left(\frac{1 - v^T}{\delta}\right)\\
+&= \frac{Var(v^T)}{\delta^2} = \frac{\Ax*[][2]{x} - \left(\Ax*{x}\right)^2}{\delta^2}
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

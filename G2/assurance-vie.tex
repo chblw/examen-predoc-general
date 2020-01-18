@@ -61,6 +61,54 @@ La variable aléatoire qui représente l'assurance vie est notée $Z = b_T v_T$,
 	$$\Ax*{\pureendowxn} = \Ex[n]{x}= v^n \px[n]{x}.$$
 \end{definition}
 
+\section{Assurance discrète}
+
+Une assurance discrète est une assurance payable à la fin de l'année de décès. 
+\begin{definition}{}{}
+	La variable aléatoire pour une assurance temporaire $n$ années est 
+	$$Z = \begin{cases}
+	v^{K + 1}, & K = 0, 1, 2, \dots, n-1\\
+	0, & \text{sinon}
+	\end{cases}$$
+	L'espérance de la valeur actualisée de cette variable aléatoire est 
+	$$\Ax{\termxn} = \sum_{k = 0}^{n-1}v^{k + 1}\px[k]{x}\qx[]{x+k}.$$
+	Avec la règle des moments, on a 
+	$$Var\left(Z\right) = \Ax[][2]{\termxn} - \left(\Ax{\termxn}\right),$$
+	où $$\Ax[][2]{\termxn} = \sum_{k = 0}^{n-1}v^{2k + 2}\px[k]{x}\qx[]{x+k}$$
+\end{definition}
+
+Des relations de récursion existent aussi pour une assurance discrète : 
+$$\Ax{\termxn} = vq_x + vp_x \Ax{\nthtop{1}{x+1}:\angl{n-1}}$$
+Intuition : une assurance temporaire $n$ années est égale à une assurance temporaire un an plus une assurance temporaire $n-1$ ans à un assuré d'âge $x+1$ dans un an.
+
+\begin{definition}{}{}
+	La variable aléatoire pour une assurance capital différé payable à la fin de l'année est 
+	$$Z = \begin{cases}
+	v^{K + 1}, & K = 0, 1, 2, \dots, n-1\\
+	v^n, & K = n, n+1, \dots
+	\end{cases}$$
+	La valeur actuarielle actualisée est 
+	$$\Ax{\endowxn} = \sum_{k = 0}^{n-1}v^{k+1}\px[k]{x}\qx[]{x+k} + v^n \px[n]{x}$$
+\end{definition}
+
+\section{Relation entre l'assurance payable au moment du décès et la fin de l'année}
+
+Avec l'hypothèse DUD, on a 
+$$\Ax*{x} = \frac{i}{\delta}A_x.$$
+De manière similaire, on a 
+$$\Ax{x}[(m)] = \frac{i}{i^{(m)}}A_x.$$
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
