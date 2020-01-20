@@ -82,32 +82,31 @@ $$a_x = \frac{1 - (1 + i)A_x}{i}.$$
 
 \section{Rentes payables $m$ fois par année}
 
-On s'intéresse à une rente payable plusieurs fois par année. 
+\begin{definition}{}{}
+	Une rente qui paie $m$ fois par année le montant $\frac{1}{m}$ chaque période où l'assuré survit est noté $\ax**{x}[(m)]$. La variable aléatoire de la valeur actualisée est
+	$$Y = \sum_{j = 0}^{mK + J}\frac{1}{m}v^{j/m} = \ax**{\angl{K + (J + 1)/m}}[(m)] = \frac{1 - v^{K + (J + 1)/m}}{d^{(m)}},$$
+	où $K$ est le nombre d'années complètes et $J + 1$ est le nombre de paiements faits dans l'année de décès. L'espérance de cette variable aléatoire est 
+	$$\ax**{x}[(m)] = \frac{1}{m}\sum_{h = 0}^{\infty} v^{h/m}\px[h/m]{x} = \frac{1 - A_x^{(m)}}{d^{(m)}}.$$
+\end{definition}
 
+\subsection{Approximations}
 
+On peut utiliser des approximations sur la mortalité pour obtenir des approximations des rentes payables $m$ fois par année à partir des rentes payables une fois par année. 
 
+\begin{proposition}{}{dud-mfois}
+	Sous DUD, on a 
+	$$\ax**{x}[(m)] = \alpha(m)\times \ax**{x}[(m)] - \beta(m),$$
+	où 
+	$$\alpha(m) = \sx{\angl{1}}[(m)]\ax**{\angl{1}}[(m)]$$
+	et
+	$$\beta(m) = \frac{\sx{\angl{1}}[(m)] - 1}{d^{(m)}}$$
+\end{proposition}
 
+\begin{proposition}{}{lineaire-mfois}
+	Sous l'hypothèse que $v^{k + j/m}\px[k + j/m]{x}$ est linéaire, on a 
+	$$\alpha(m) = 1$$
+	et
+	$$\beta(m) = \frac{m-1}{2m}$$
+\end{proposition}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Connaître la peuve des propositions \ref{prop:dud-mfois} et \ref{prop:lineaire-mfois}.
