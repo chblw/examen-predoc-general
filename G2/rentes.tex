@@ -24,7 +24,65 @@ Var\left(\ax*{\angl{T}}\right) &= Var \left(\frac{1 - v^T}{\delta}\right)\\
 &= \frac{Var(v^T)}{\delta^2} = \frac{\Ax*[][2]{x} - \left(\Ax*{x}\right)^2}{\delta^2}
 \end{align*}
 
+\section{Rentes discrètes}
 
+\begin{definition}{Rente-due vie entière}{}
+	On considère une rente qui paie 1 au début de chaque période chaque année où $(x)$ survit. 
+	
+	La variable aléatoire de la valeur actualisée est $$Y = \ax**{\angl{K + 1}}.$$
+	
+	La valeur actuarielle actualisée est 
+	$$\ax**{x} = \sum_{k = 0}^{\infty} \ax**{\angl{K + 1}} \px[k]{x}q_{k + k} = \sum_{k = 0}^{\infty} v^k \px[k]{x}.$$
+\end{definition}
+
+La relation avec une rente discrète est 
+$$\frac{1 - A_x}{d}.$$
+
+\subsection{Rente temporaire}
+
+\begin{definition}{Rente temporaire $n$ années}{}
+	La variable aléatoire de la valeur actualisée pour une rente temporaire est 
+	$$Y = \begin{cases}
+	\ax**{\angl{K + 1}}, & 0\leq K < n \\
+	\ax**{\angl{n}},     & K \geq n
+	\end{cases}$$
+	L'espérance de cette variable aléatoire est 
+	$$\ax**{\endowxn} = \sum_{k = 0}^{n - 1} \ax**{\angl{k+1}} \px[k]{x}q_{x+k} + \ax**{\angln}\px[n]{x} = \sum_{k = 0}^{n-1}v^k \px[k]{x}.$$
+	On a la relation 
+	$$\frac{1 - \Ax{\endowxn}}{d}.$$
+\end{definition}
+
+\begin{definition}{Rente différée $n$ années}{}
+	Une rente différée $n$ années paie 1 au début de chaque année lorsque $(x)$ survit, à partir de l'âge $x + n$. La variable aléatoire est 
+	$$Y = \begin{cases}
+	0,& 0\leq K < n\\
+	\ax**[n|]{\angl{K + 1 - n}}, & K \geq n
+	\end{cases}$$
+	L'espérance de la variable aléatoire est 
+	$$\ax[n|]{x} = \sum_{k = n}^{\infty} v^k \px[k]{x} = \Ex[n]{x} \ax**{x + n} = \ax**{x} - \ax**{\endowxn}.$$
+\end{definition}
+
+\begin{definition}{Rente viagère garantie $n$ années}{}
+	Une rente viagère garantie $n$ années paie une rente certaine pour $n$ ans (peu importe si l'assuré survie ou non) et continue les paiements jusqu'au décès. La variable aléatoire de la valeur actualisée des paiements est 
+	$$Y = \begin{cases}
+	\ax**{\angln}, & 0\leq K < n\\
+	\ax**{\angl{K + 1}}, & K \geq n
+	\end{cases}$$
+	$$\ax*{\joint\endowxn} = \ax**{\angln} \qx[n]{x} + \sum_{k = n}^{\infty} \ax**{\angl{k + 1}} \px[k]{x}q_{x+k} = \ax**{\angln} + \sum_{k = n}^{\infty} v^k \px[k]{x}$$
+\end{definition}
+
+\subsection{Rentes payables en fin d'année}
+
+Des versions fin de période sont disponibles pour les rentes. La variable aléatoire qui représente la valeur actualisée des paiements de ces rentes de type
+$$ Y = \ax{\angl{T}}$$
+et l'espérance de cette variable aléatoire est 
+$$a_x = \sum_{k = 0}^{\infty} \px[k]{x} q_{x + k} \ax{\angl{k}} = \sum_{k = 1}^{\infty} v^k \px[k]{x}.$$
+Le lien entre cette variable aléatoire et une assurance est 
+$$a_x = \frac{1 - (1 + i)A_x}{i}.$$
+
+\section{Rentes payables $m$ fois par année}
+
+On s'intéresse à une rente payable plusieurs fois par année. 
 
 
 
