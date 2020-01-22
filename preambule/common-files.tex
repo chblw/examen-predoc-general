@@ -49,7 +49,7 @@
 }
 
 \makeatletter
-\@addtoreset{chapter}{part}
+\@addtoreset{chapter}{part}  % Pour recommencer la numération des chapitres à chaque partie
 \makeatother  
 
 \usepackage{fontspec}
@@ -100,8 +100,6 @@ BoldItalicFont=Muli-BoldItalic.ttf]{Muli-Regular.ttf}%
 \fancyhead[LO]{\leftmark}
 \fancyhead[RE]{\rightmark}
 \fancyhead[LE,RO]{\thepage}
-%\fancyhead[REF]{Version du \today}
-%\rfoot{Version du \today}
 \usepackage{cleveref}
 \tikzstyle{arrow} = [thick,->,>=stealth]
 \usetikzlibrary{arrows.meta}
@@ -140,9 +138,6 @@ BoldItalicFont=Muli-BoldItalic.ttf]{Muli-Regular.ttf}%
 		arc=2mm, opacityback=0, breakable,pad at break=1mm},
 	exampleimagestyle/.style={skin=standard jigsaw,fonttitle=\bfseries\upshape, 
 		arc=2mm, opacityback=0, breakable,pad at break=1mm, },
-	%	examplestyle/.style={skin=standard jigsaw,fonttitle=\bfseries\upshape, fontupper = \normalsize, 
-	%		arc=2mm, colback = white, breakable, opacitytext=0.0,tikz={opacity=0}, coltext=white, 
-	%		pad at break=1mm,},
 	tablestyle/.style={skin=standard jigsaw,fonttitle=\bfseries\upshape,
 		arc=2mm, opacityback=0},
 }
