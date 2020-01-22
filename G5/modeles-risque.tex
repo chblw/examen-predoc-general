@@ -1,0 +1,155 @@
+\chapter{Modélisation des risques}
+
+\section{Modèle stochastique du risque}
+
+\begin{definition}{Modèle stochastique du risque}{}
+	On définit la v.a. $X$ par une somme aléatoire 
+	$$X = \begin{cases}
+	\sum_{k = 1}^{M}B_k, & M>0\\
+	0, & M = 0.
+	\end{cases}$$
+	
+	\begin{itemize}
+		\item La v.a. discrète $M$ représente le nombre de sinistres (fréquence)
+		\item La v.a. continue et positive $B_k$ correspond au montant du $k^{\text{ième}}$ sinistre (sévérité)
+		\item On dit que la v.a. est composée
+	\end{itemize}
+\end{definition}
+
+L'espérance de $X$ est 
+$$E[X] = E[E[X \vert M]] = E[M \times E[B]] = E[M]E[B].$$
+La variance de $X$ est 
+$$Var(X) = E_M[Var(X\vert M)] + Var_M(E[X \vert M]).$$
+Avec $Var(X \vert M) = M Var(B)$, on obtient
+$$Var(X) = E[M]Var(B) + Var(M)E[B]^2.$$
+
+La fonction de répartition est 
+\begin{align*}
+	F_X(x) & = E[F_X(x) \vert M]                                                      \\
+	       & = \Pr(M = 0) + \sum_{k = 1}^{\infty} \Pr(M = k)F_{B_1 + \dots + B_k}(x).
+\end{align*}
+
+La fgm est 
+$$E\left[e^{tX}\right] = E_M\left[E\left[e^{tX}\vert M\right]\right] = E_M\left[e^{t(B_1 + \dots + B_k)}\right] = E_M\left[e^{Bt}\right] \stackrel{ind}{=} E_M\left[M_B(t)^M\right] = P_M(M_B(t)).$$
+
+\section{Approche indemnitaire et forfaitaire}
+
+Un cas particulier du modèle stochastique est où $M$ obéit à une loi Bernouilli. On a 
+$$X = M \times B = \begin{cases}
+B, & M = 1\\
+0, & M = 0.
+\end{cases}$$
+
+\begin{definition}{Approche indemnitaire}{}
+	Dans l'approche indemnitaire, on suppose qu'un seul sinistre peut arriver dans une période. Les coûts de l'évènement sont définis par la v.a. $B$. On a 
+	
+	
+	\begin{itemize}
+		\item $\displaystyle F_X(x) = 1-q + qF_B(x)$
+		\item $\displaystyle E[X] = qE[B]$
+		\item $\displaystyle Var(X) = qVar(B) + q(1-q)E[B]^2$
+		\item $\displaystyle VaR_\kappa(X) = \begin{cases}
+		0, & 0<\kappa<1-q\\
+		VaR_{\frac{\kappa - (1-q)}{q}}(B), & 1-q<\kappa<1
+		\end{cases}$
+		\item $\displaystyle TVaR_\kappa(X) = \frac{qE\left[B\times \mathbbm{1}_{\{X > VaR_\kappa(X)\}}\right] + VaR_\kappa(X)(F_X(VaR_\kappa(X)) - \kappa)}{1 - \kappa}$
+	\end{itemize}
+\end{definition}
+
+\begin{definition}{}{}
+	Approche 
+\end{definition}
+
+\section{Généralisations des principales lois de fréquence}
+
+\begin{definition}{Loi Poisson-mélange}{}
+	Soit une v.a. $\Theta$ de telle sorte que $E[\Theta] = 1, Var(\Theta) < \infty$ et $M_\Theta(x)$ existe. La distribution de fréquence est définie selon
+	$$(M\vert \Theta = \theta) \sim Pois(\lambda \theta).$$
+	On a 
+	\begin{itemize}
+		\item $\displaystyle E[M] = E_\Theta[E[M \vert \Theta]]$
+		\item $\displaystyle Var(X) = \lambda + \lambda^2 Var(\Theta)$
+		\item $\displaystyle P_M(t) = M_\Theta(\lambda(t-1))$
+		\item $\displaystyle \Pr(M = k) = \int_{0}^{\infty} e^{-\lambda t} \frac{(\lambda \theta)^k}{k!}dF_\theta(\theta)$
+	\end{itemize}
+\end{definition}
+
+\section{Sommes aléatoires et allocation}
+
+Soit la v.a. $X$ définie selon un modèle stochastique du risque. Si $B$ est continue et positive, on a 
+$$TVaR_\kappa(X) = \frac{1}{\kappa}\sum_{k = 1}^{\infty} f_M(k) E\left[ \left(\sum_{j = 1}^{k}B_j\right)\times \mathbbm{1}_{\left\{\sum_{j = 1}^{k}B_j > VaR_\kappa(X)\right\}}\right].$$
+On présente deux règles d'allocation du capital. 
+
+\begin{definition}{Règle basée sur la variance}{}
+	Les parts alloués aux v.a. $B$ et $M$ sont
+	\begin{align*}
+	C_\kappa^{Var}(M) &= \frac{Var(E[X\vert M])}{Var(X)} TVaR_\kappa(X) = \frac{Var(M)E[B]^2}{Var(X)} TVaR_\kappa(X)\\
+	C_\kappa^{Var}(B) &= \frac{E(E[X\vert M])}{Var(X)} TVaR_\kappa(X) = \frac{E[M]Var(B)}{Var(X)} TVaR_\kappa(X)
+	\end{align*}
+\end{definition}
+
+\begin{definition}{Régle basée sur la TVaR}{}
+	Avec la décomposition 
+	$$E[X \times \mathbbm{1}_{\{X>b\}}] = \underbrace{E_M[(X - E[X\vert M])\times \mathbbm{1}_{\{X>b\}}]}_{\text{part allouée à }M} + \underbrace{E_M[E[X\vert M]\times \mathbbm{1}_{\{X>b\}}]}_{\text{part allouée à }B},$$
+	On déduit
+	$$C_\kappa^{TVaR}(M) = \frac{E_M\left[E[X \vert M] \times \mathbbm{1}_{\{X>VaR_\kappa(X)\}}\right]}{1 - \kappa}$$
+	et
+	$$C_\kappa^{TVaR}(B) = TVaR_\kappa(X) - C_\kappa^{TVaR}(M).$$
+\end{definition}
+
+\section{Pertes financières}
+
+\begin{definition}{}{}
+	Soit $V(0)$, la v.a. qui représente le capital initial investi dans un fonds et $V(1)$, la v.a. qui représente la valeur du fonds au temps $t = 1$. La perte liée à cet investissement est défini selon la v.a. $L = V(0) - V(1)$. Le rendement instantanné pour une période est défini selon la v.a. $R$, alors, $L = V(0) - V(0)e^R$. Si la v.a. $R$ est continue, on a 
+	$$VaR_\kappa(L) = V(0) + VaR_\kappa(-V(1)) = V(0) - VaR_{1 - \kappa}(V(1))$$
+	et
+	$$TVaR_\kappa(L) = V(0) - \frac{1}{1 - \kappa} \left(E[X]-\kappa TVaR_{1 - \kappa}(X)\right).$$
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
