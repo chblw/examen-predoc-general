@@ -1,0 +1,29 @@
+\chapter{Mutualisation des risques}
+
+\section{Aggrégation des risques}
+
+On s'intéresse au comportement de la v.a. $S = \sum_{i = 1}^{n}X_i$ représentant les coûts  d'un portefeuille de $n$ risques. On a 
+$$E[S] = E\left[\sum_{i = 1}^{n} X_i\right] = \sum_{i = 1}^{n}E[X_i]$$
+et
+$$Var(S) = Var\left(\sum_{i = 1}^{n}X_i\right) = \sum_{i = 1}^{n} Var(X_i) + \underset{i \neq 1}{\sum_{i = 1}^{n}\sum_{j = 1}^{n}}Cov(X_i, X_j).$$
+La fgm est donnée par 
+$$M_S(t) = E\left[e^{t\sum_{i = 1}^{n}X_i}\right] \stackrel{ind}{=} \prod_{i = 1}^{n} E\left[e^{tX_i}\right] = \prod_{i = 1}^{n}M_{X_i}(t).$$
+Si les v.a. $X_i$ sont iid, on a 
+$$M_S(t) = M_{X_i}(t)^n.$$ 
+
+\begin{proposition}{Loi Poisson composée et aggrégation}{}
+	Soient les v.a. indépendantes $X_1, \dots, X_n$ où
+	$$X_i \sim PComp(\lambda_i, F_{B_i}), i = 1, 2, \dots, n.$$
+	Alors, 
+	$$S = \sum_{i = 1}^{n} X_i = \sim PComp(\lambda_S, F_{C}),$$
+	où $\lambda_S = \sum_{i = 1}^{n}\lambda_i$ et 
+	$$F_{C}(s) = \frac{\lambda_1}{\lambda_S}F_{B_1}(x) + \frac{\lambda_2}{\lambda_S}F_{B_2}(x) + \dots + \frac{\lambda_n}{\lambda_S}F_{B_n}(x)$$
+\end{proposition}
+
+\begin{proposition}{Loi binomiale négative composée et aggrégation}{}
+	Soient les v.a. indépendantes $X_1, \dots, X_n$ où
+	$$X_i \sim BNComp(r_i, q, F_{B_i}), i = 1, 2, \dots, n.$$
+	Alors, 
+	$$S = \sum_{i = 1}^{n} X_i = \sim BNComp(r_S, q, F_{B}),$$
+	où $r_S = \sum_{i = 1}^{n}r_i$.
+\end{proposition}
