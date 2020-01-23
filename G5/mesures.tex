@@ -1,11 +1,65 @@
 \chapter{Mesures de risque}
 
+\section{Quelques mesures de risque}
+
 \begin{definition}{Value-at-risk}{}
 	$$VaR_\kappa (X) = F^{-1}_X(\kappa) = \inf \left\{x\in \mathbb{R} : F_X(x) > \kappa \right\}$$
 \end{definition}
 
+\begin{definition}{Tail Value-at-risk}{}
+	La Tail Value-at-risk (TVaR) est une mesure de risque défini par l'équation
+	\begin{align*}
+		TVaR_\kappa (X) & = \frac{1}{1 - \kappa} \int_{\kappa}^{1} VaR_u(X)du                                                                           \\
+		                & = \frac{1}{1 - \kappa} \left\{E\left[X \times \mathbbm{1}_{\{X > VaR_\kappa(X)\}}\right] + VaR_\kappa(X)(F_X(VaR_\kappa(X)) - \kappa)\right\}.
+	\end{align*}
+	D'autres formes incluent
+	\begin{itemize}
+		\item $\displaystyle TVaR_\kappa(X) = \lim\limits_{n\to\infty}\frac{\sum_{j = [nk]+ 1}^{n}X_{j:n}}{[n(1-\kappa)]}$
+	\end{itemize}
+	
+\end{definition}
 
+\begin{definition}{Capital économique}{}
+	Le capital économique pour un portefeuille basée sur la mesure de risque $\zeta_\kappa(S)$ est 
+	$$CE_\kappa(S) = \zeta_\kappa(S) - E[S].$$
+\end{definition}
 
+\begin{definition}{Bénifice de mutialisation}{}
+	Le bénifice de mutualisation est 
+	$$B_\kappa^\zeta(S) = \sum_{i = 1}^{n}\zeta_\kappa(X_i) - \zeta_\kappa(S).$$
+\end{definition}
 
+\section{Propriétés désirables et cohérence}
 
+\begin{propriete}{Homogénéité}{homo}
+	Soit un risque $X$ et une constante $a \in \mathbb{R}^+$. Une mesure $\zeta_\kappa$ est homogène si $$\zeta_\kappa(aX) = a\zeta_\kappa(X),$$
+	pour $0<\kappa<1$.
+\end{propriete}
 
+\begin{propriete}{Invariance à la translation}{invtran}
+	Soit un risque $X$ et une constante $a \in \mathbb{R}$. Une mesure $\zeta_\kappa$ est invariante à la translation si $$\zeta_\kappa(aX) = a\zeta_\kappa(X),$$
+	pour $0<\kappa<1$.
+\end{propriete}
+
+\begin{propriete}{Monotonicité}{mono}
+	Soient deux risques $X_1$ et $X_2$ tels que $\Pr(X_1 \leq X_2) - 1$. Une mesure $\zeta_\kappa$ est monotone si 
+	$$\zeta_\kappa(X_1) \leq \zeta_\kappa(X_2),$$
+	pour $0<\kappa<1$.
+\end{propriete}
+
+\begin{propriete}{Sous-additivité}{sousadd}
+	Soient deux risques $X_1$ et $X_2$. La mesure $\zeta_\kappa$ est sous-additive si 
+	$$\zeta_\kappa(X_1 + X_2)\leq \zeta_\kappa(X_1) + \zeta_\kappa(X_2),$$
+	pour $0<\kappa<1$.
+\end{propriete}
+
+\begin{definition}{Mesure de risque cohérente}{}
+	Une mesure de risque cohérente satisfait les propriétés d'homogénéité, d'invariance à la translation, de monotonicité et de sous-additivité. La mesure de risque TVaR est cohérente. La mesure de risque VaR n'est pas sous-additive, donc n'est pas cohérente (preuve : contre-exemple).
+\end{definition}
+
+\section{Mesures de solvabilité sur une période}
+
+\begin{definition}{}{}
+	La probabilité de ruine correspond à la probabilité que la compagnie ne rencontre pas ses engagements au cours de la prochaine période en supposant un capital initial $u\geq 0$. Soit $X_i, i = 1, 2, \dots, n$ les coûts pour un contrat et $\pi_i$, la prime demandée pour le risque. La probabilité de ruine $\psi_n(u)$ est définie par
+	$$\psi_n(u) = \Pr\left(S_n > \sum_{i = 1}^{n} \pi_i + u\right) = 1 - F_{S_n}\left(\sum_{i = 1}^{n}\pi_i + u\right)$$
+\end{definition}

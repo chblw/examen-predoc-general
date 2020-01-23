@@ -1,0 +1,61 @@
+\chapter{Méthodes de simulation}
+
+\section{Méthode de base}
+
+Un algorithme pour simuler la réalisation d'une v.a. $X^{(j)}, j = 1, 2, \dots, m$ à partir de la fonction de répartition d'une fonction. Pour $j = 1, 2, \dots, m$, 
+\begin{enumerate}
+	\item simuler la réalisation $U^{(j)} \sim Unif(0, 1)$ à partir d'un GNPA ou \texttt{runif} ;
+	\item calculer la simulation $X^{(j)}$ de $X$ avec $X^{(j)} = F_{X}^{-1}\left(U^{(j)}\right)$.
+\end{enumerate}
+
+\subsection{Simulations de v.a. définis par un mélange}
+
+Soit une v.a. $\Theta$ et une v.a. $X$ dont la fonction de réparition conditionnelle de $(X \vert \Theta = \theta)$ est $F_{X\vert \Theta = \theta}$ et la fonction quantile est $F_{X \vert \Theta = \theta}^{-1}$. Pour simuler des réalisations de $\underline{X}$, on procède avec les étapes suivantes
+\begin{enumerate}
+	\item on simule une réalisation $\Theta^{(j)}$ de $\Theta$ ;
+	\item on produit une réalisation $X$
+\end{enumerate}
+
+\subsection{Simulation  de somme aléatoire}
+
+Soit $X$ une v.a. définie par le modèle stochastique. La procédure pour simuler des réalisations de $X$ est 
+\begin{enumerate}
+	\item Simuler une réalisation $M^{(j)}$ de la v.a. $M$. 
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

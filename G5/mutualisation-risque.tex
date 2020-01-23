@@ -27,3 +27,86 @@ $$M_S(t) = M_{X_i}(t)^n.$$
 	$$S = \sum_{i = 1}^{n} X_i = \sim BNComp(r_S, q, F_{B}),$$
 	où $r_S = \sum_{i = 1}^{n}r_i$.
 \end{proposition}
+
+\section{Méthodes d'approximation basée sur les moments}
+
+\subsection{Approximation basée sur la distribution normale}
+
+L'approximation basée sur la distribution normale est fondée sur le théorème central limite. On approxime la v.a. $S$ par la v.a. $T$, en supposant $E[S]$ et $Var(S)$ connus. On a alors
+$$T \sim Norm(E[S], Var(S)).$$
+On obtient alors
+\begin{align*}
+	F_S(x)         & \approxeq F_T(x) = \Phi\left(\frac{x - E[S]}{\sqrt{Var(S)}}\right) \\
+	VaR_\kappa(S)  & \approxeq VaR_\kappa(T) = E[S] + \sqrt{Var(S)} VaR_\kappa(Z)       \\
+	TVaR_\kappa(S) & \approxeq TVaR_\kappa(T) = E[S] + \sqrt{Var(S)} TVaR_\kappa(Z).
+\end{align*}
+
+\subsection{Approximation basée sur la loi gamma translatée}
+
+L'approximation basée sur la loi gamma est utile pour approximer la distribution de la v.a. $S$ pour la queue de droite. On approxime la v.a. $S$ par $T + x_0$, où $T + x_0$ obéit à une loi gamma translatée. 
+
+À partir des trois premiers moments, on a 
+\begin{align*}
+E[S] &= \frac{\alpha}{\beta} + x_0\\
+Var(S) &= \frac{\alpha}{\beta^2}\\
+\gamma(S) = \frac{2}{\alpha^{0.5}}.
+\end{align*}
+Avec la méthode des moments, on en déduit que
+\begin{align*}
+\hat{\alpha} &= \frac{4}{\gamma(S)^2}\\
+\hat{\beta} &= \frac{2}{\gamma(S) \sqrt{Var(S)}}\\
+\hat{x_0} &= E[S] - \frac{2\sqrt{Var(S)}}{\gamma(S)}
+\end{align*}
+On peut approximer les mesures de risque suivantes pour $\kappa$ élevés : 
+\begin{align*}
+	VaR_\kappa(S)  & \approxeq VaR_\kappa(T) + x_0  \\
+	TVaR_\kappa(S) & \approxeq TVaR_\kappa(T) + x_0
+\end{align*}
+
+\subsection{Autres approximations}
+
+\begin{itemize}
+	\item lognormale : $\sigma_T = \sqrt{\ln \frac{E[S^2]}{E[S]^2}}$ et $\mu = \ln(E[S]) - \frac{1}{2}\sigma_T^2$
+	\item F-généralisée.
+\end{itemize}
+
+\section{Mutualisation et activités d'assurance}
+
+\begin{definition}{Coût moyen par contrat}{}
+	Le coût moyen par contrat est 
+	$$W_n = \frac{S_n}{n}.$$
+	On a 
+	$$E[W_n] = E\left[\frac{S_n}{n}\right] = \frac{1}{n}E[S_n] = E[X]$$
+	La variance est donnée par 
+	$$Var(W_n) = Var\left(\frac{S_n}{n}\right) = \frac{1}{n^2}Var(S_n) \stackrel{\text{ind}}{=} \frac{1}{n}Var(X).$$
+	On remarque que $Var(W_n)$ converge vers 0 lorsque $n$ tend vers l'infini. 
+\end{definition}
+
+Si les v.a. ne sont pas indépendantes, on a 
+$$Var(W_n) = \frac{1}{n^2}[nVar(X) + n(n-1) Cov(X_1, X_2)] = \frac{Var(X)}{n} + \frac{n-1}{n}Cov(X_1, X_2).$$
+On remarque que $Var(W_n)$ converge vers $Cov(X_1, X_2)$ lorsque $n$ tend vers l'infini. 
+
+\begin{proposition}{}{}
+	Soient les risques $X_1, X_2, \dots, X_n$ et la prime $\pi_i = (1 + \eta_i)E[X_i]$. On définit le coefficient $\rho_B$ comme étant la solution strictement positive (si elle existe) de $E[e^{tS}] = e^{t\pi_S}$, où 
+	$$\psi_n(u) \leq e^{-\rho_B u}, \quad u\geq 0.$$
+\end{proposition}
+
+\begin{proposition}{}{}
+	Soient les risques iid $X_1, X_2, \dots, X_n$ et la prime $\pi_i = (1 + \eta_i)E[X_i] = \pi_i$. Alors, on a 
+	\begin{enumerate}
+		\item si $\pi > E[X], \lim\limits_{n \to \infty}\phi_n(u) = 0, u\geq 0$
+		\item si $\pi < E[X], \lim\limits_{n \to \infty}\phi_n(u) = 1$
+	\end{enumerate}
+\end{proposition}
+
+
+
+
+
+
+
+
+
+
+
+

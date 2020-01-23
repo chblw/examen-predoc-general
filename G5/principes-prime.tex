@@ -1,0 +1,37 @@
+\chapter{Principes de prime}
+
+\section{Propriétés désirables}
+
+\begin{enumerate}
+	\item Marge de sécurité positive\label{principe-1}
+	\item Exclusion de marge de sécurité non justifiée\label{principe-2}
+	\item Additivité\label{principe-3}
+	\item Sous-dditivité\label{principe-4}
+	\item Invariance à l'échelle\label{principe-5}
+	\item Invariance à la translation\label{principe-6}
+	\item Maximum\label{principe-7}
+\end{enumerate}
+
+\section{Principes de prime}
+
+\subsection{Principe de la valeur espérée}
+La prime majorée est $\Pi(X) = (1 + \kappa)E[X]$, où $\kappa > 0$. Cette prime satisfait les propriétés \ref{principe-1}, \ref{principe-3}, \ref{principe-4}, \ref{principe-5}.
+
+\subsection{Principe de la variance}
+La prime est $\Pi(X) = E[X] + \kappa Var(X)$, où $\kappa > 0$. Cette prime satisfait les propriétés \ref{principe-1}, \ref{principe-2}, \ref{principe-3}, \ref{principe-6}.
+
+\subsection{Principe de l'écart type}
+La prime est $\Pi(X) = E[X] + \kappa \sqrt{Var(X)}$, où $\kappa > 0$. Cette prime satisfait les propriétés \ref{principe-1}, \ref{principe-2}, \ref{principe-6}.
+
+\subsection{Principe de la VaR}
+La prime est $\Pi(X) = VaR_\kappa(X)$, pour $\kappa$ élevé (0.95 ou plus, en pratique). Cette prime satisfait les propriétés \ref{principe-2}, \ref{principe-5}, \ref{principe-6}, \ref{principe-7}.
+
+\subsection{Principe de la TVaR}
+La prime est $\Pi(X) = TVaR_\kappa(X)$, pour $\kappa$ élevé (0.95 ou plus, en pratique). Cette prime satisfait les propriétés \ref{principe-1} à \ref{principe-7}.
+
+\subsection{Approche top-down}
+
+Le principe de la VaR et la TVaR utilise la v.a. $W_n$ au lieu de la v.a. $X$. Elle permet de tenir compte du bénifice de mutualisation. Les principes avec l'approche top-down sont les mêmes que pour le principe de la VaR et le principe de la TVaR. 
+
+\subsection{Principe exponentiel}
+La prime est $\Pi(X) = \frac{1}{\kappa}\ln\{M_X(\kappa)\}$, pour $\kappa > 0$. Cette prime satisfait les propriétés \ref{principe-1} à \ref{principe-7}.
