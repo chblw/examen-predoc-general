@@ -1,0 +1,147 @@
+\chapter{Comparaison des risques}
+
+L'ordre en dominance stochastique permet de comparer l'ampleur de deux v.a. et l'ordre convexe compare leur variabilité. 
+
+\section{Ordres partiels}
+
+\begin{definition}{}{}
+	Soit $A$ un ensemble de fonctions de répartition. Une relation binaire $\preceq$ définie sur $A$ est un ordre partiel si cet ordre satisfait les trois propriétés suivantes : \begin{enumerate}
+		\item Transitivité : Si $F_X \preceq F_Y$ et $F_Y \preceq F_Z$, alors $F_X \preceq F_Z$. 
+		\item Réflexicité : $F_X \preceq F_Y$
+		\item Anti-symétrie : Si $F_X \preceq F_Y$ et $F_Y \preceq F_X$, alors $F_X \equiv F_y$.
+	\end{enumerate}
+\end{definition}
+
+Les propriétés désirables pour les ordres partiels sont les suivants : 
+
+\begin{propriete}{Fermeture sous le mélange}{}
+	Soient les v.a. $X, X'$ et $\Theta$. On dit que l'ordre stochastique $\preceq$ est fermé sous le mélange si $X\vert \Theta = \theta \preceq X'\vert \Theta = \theta$ pour tout $\theta$ implique $X \preceq X'$. 
+\end{propriete}
+
+\begin{propriete}{Fermeture sous la convolution}{}
+	Soient deux suites de v.a. indépendantes $\underline{X} = \left\{X_i, i \in \mathbb{N}^+ \right\}$ et $\underline{X'} = \left\{X_i', i \in \mathbb{N}^+ \right\}$ avec $X_i \preceq X_i'$ pour tout $i \in \mathbb{N}^+$. On dit que l'ordre stochastique $\preceq$ est fermé sous la convolution si $$\sum_{i = 1}^{n}X_i \preceq \sum_{i = 1}^{n}X_i'$$ est satisfait.
+\end{propriete}
+
+\begin{propriete}{Fermeture sous la composition}{}
+	On dit que la 'ordre est fermé sous la composition si $$\sum_{i = 1}^{N}X_i \preceq \sum_{i = 1}^{N'}X_i$$ pour $N \preceq N'$. 
+\end{propriete}
+
+\section{Ordre en dominance stochastique}
+
+\begin{definition}{}{}
+	Soient les v.a. $X$ et $X'$ telles que $E[X] < \infty$ et $E[X']< \infty$. Alors, $X$ est inférieure à $X'$ sous l'ordre en dominance stochastique, notée $X \preceq_{sd}X'$, si $F_X(x) \geq F_{X'}(x)$ ou $\overline{F}_X(x) \leq \overline{F}_{X'}(x)$ pour tout $x\in \mathbb{R}$. 
+\end{definition}
+
+\begin{proposition}{}{}
+	Soient deux v.a. $X$ et $X'$ telles que $X \preceq_{sd} X'$. Alors, on a $VaR_\kappa(X) \leq VaR_\kappa(X')$. 
+\end{proposition}
+
+\begin{theoreme}{}{}
+	Soient les v.a. $X$ et $X'$ telles que $E[X] <\infty$ et $E[X'] < \infty$. 
+	\begin{enumerate}
+		\item Si $X \preceq_{sd} X'$ alors $E[X] \leq E[X']$. 
+		\item Si $X \preceq_{sd} X'$ et $E[X] = E[X']$ alors $X$ et $X'$ ont la même distribution. 
+	\end{enumerate}
+\end{theoreme}
+
+\begin{theoreme}{}{}
+	Soient les deux v.a. $X$ et $X'$. Alors, on a $X\preceq_{sd} X'$ si et seulement si $E[\phi(X)] \leq E[\phi(X')]$ pour toute fonction croissante $\phi$. 
+\end{theoreme}
+
+\begin{theoreme}{}{}
+	Soient les v.a. $X$ et $X'$ telles que $E[X^m] < \infty$ et $E[X'^m]<\infty$, pour $m\in\mathbb{N}^+$. Si on a $X \preceq_{sd} X'$, alors
+	\begin{enumerate}
+		\item $E[X^m]\leq E[X'^m]$, pour $m = 1, 3, 5, \dots$ ;
+		\item $E[X^m]\leq E[X'^m]$, pour $m = 1, 2, 3,  \dots$ si les v.a. $X$ et $Y$ sont positives. 
+	\end{enumerate}
+\end{theoreme}
+
+\begin{theoreme}{}{}
+	Soient deux v.a. $X$ et $X'$. Si $X \preceq_{sd} X'$ alors on a $\phi(X) \preceq_{sd} \phi(X')$ pour toute fonction croissante $\phi$. 
+	\tcblower
+	Soient $X_1, \dots, X_n$ et $X_1', \dots, X_n'$ des v.a. indépendantes avec $X_i \preceq_{sd} X_i'$ pour $i = 1, 2, \dots, n$. On suppose que $\psi : \mathbb{R}^+ \to \mathbb{R}$ est une fonction croissante. Alors, on a $\psi(X_1, \dots, X_n) \preceq_{sd} \psi(X_1', \dots, X_n')$.  
+\end{theoreme}
+
+L'ordre en dominance stochastique est fermé sous la convolution, le mélange et la composition.
+
+\begin{proposition}{Condition suffisante pour déterminer l'ordre en dominance stochastique}{}
+	Soient deux v.a. $X$ et $Y$ ayant la propriété qu'il existe un nombre réel $a\geq 0$ tel que 
+	\begin{align*}
+	dF_X(x) &\geq dF_Y(x) \text{ pour } x\in(-\infty, a)\\
+	dF_X(x) &\leq dF_Y(x) \text{ pour } x\in(-\infty, a).
+	\end{align*}
+	Alors, $X\preceq_{sd} Y$. 
+\end{proposition}
+
+Quelques lois avec paramètres différents sont d'ordre en dominance stochastique. Par exemple, 
+$$X \sim Exp(\beta) \text{ et } X' \sim Exp(\beta') \text{ avec } \beta \geq \beta'.$$
+Il est aussi possible de comparer des lois paramétriques différentes. Par exemple, si $M \sim Bern(q)$ et $M' \sim Pois(\lambda)$ où $\lambda = -\ln (1 - q)$. Alors, on a $M \preceq_{sd} M'$.
+
+\begin{proposition}{}{}
+	Soient les v.a. $\widetilde{X}^{(u, h')}, \widetilde{X}^{(u, h)}, X, \widetilde{X}^{(l, h)}, \widetilde{X}^{(l, h')}$, où $X$ est un modèle stochastique $\widetilde{X}$ est l'approximation upper ou lower pour $B$. Alors, 
+	$$\widetilde{X}^{(u, h')} \preceq_{sd}\widetilde{X}^{(u, h)}\preceq_{sd} X\preceq_{sd} \widetilde{X}^{(l, h)}\preceq_{sd} \widetilde{X}^{(l, h')}$$
+	pour $0<h\leq h$. 
+\end{proposition}
+
+\begin{definition}{}{}
+	Une v.a. $X_\theta$ est dite stochastiquement croissante si et seulement si $X_\theta \preceq_{sd} X_{\theta'}$ quand $\theta\leq \theta'$. 
+\end{definition}
+
+\begin{proposition}{}{}
+	Si $\Theta \preceq_{sd} \Theta'$, alors $X_\Theta \preceq_{sd} X_{\Theta'}$. 
+\end{proposition}
+
+\section{Ordres convexes}
+
+\begin{definition}{}{}
+	Une fonction est dite convexe si $\phi(\alpha x + (1-\alpha)y) \leq \alpha \phi(x) + (1-\alpha) \phi(y)$ pour tout $x$ et $y$ et pour tout $0<\alpha<1$. 
+	\tcblower
+	Une fonction $\phi$ est dite concave si $-\phi$ est convexe. 
+\end{definition}
+
+On définit des ordres stochastiques. 
+
+\begin{definition}{}{}
+	Soient $X$ et $X'$ telles que $E[X] < \infty$ et $E[X'] < \infty$. Alors, 
+	\begin{itemize}
+		\item Ordre convexe : $X\preceq_{cx} X'$ si $E[\phi(X)] \leq E[\phi(X')]$, pour toute fonction réelle \textit{convexe} $\phi$ et en supposant que les espérances existent. 
+		\item Ordre convexe croissante : $X\preceq_{icx} X'$ si $E[\phi(X)] \leq E[\phi(X')]$, pour toute fonction réelle \textit{convexe} \textit{croissante} $\phi$ et en supposant que les espérances existent. 
+		\item Ordre convave croissante : $X\preceq_{icv} X'$ si $E[\phi(X)] \leq E[\phi(X')]$, pour toute fonction réelle \textit{concave} \textit{croissante} $\phi$ et en supposant que les espérances existent. 
+	\end{itemize}
+\end{definition}
+
+\begin{definition}{Ordre stop-loss}{}
+	$X\preceq_{sl}X'$, si $E[(X-d)_+] \leq E[(X'-d)_+]$, pour tout $d\in \mathbb{R}$, où $(u)_+ = \max(u;0)$.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
