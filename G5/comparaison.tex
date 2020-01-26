@@ -106,7 +106,7 @@ On définit des ordres stochastiques.
 	\begin{itemize}
 		\item Ordre convexe : $X\preceq_{cx} X'$ si $E[\phi(X)] \leq E[\phi(X')]$, pour toute fonction réelle \textit{convexe} $\phi$ et en supposant que les espérances existent. 
 		\item Ordre convexe croissante : $X\preceq_{icx} X'$ si $E[\phi(X)] \leq E[\phi(X')]$, pour toute fonction réelle \textit{convexe} \textit{croissante} $\phi$ et en supposant que les espérances existent. 
-		\item Ordre convave croissante : $X\preceq_{icv} X'$ si $E[\phi(X)] \leq E[\phi(X')]$, pour toute fonction réelle \textit{concave} \textit{croissante} $\phi$ et en supposant que les espérances existent. 
+		\item Ordre concave croissante : $X\preceq_{icv} X'$ si $E[\phi(X)] \leq E[\phi(X')]$, pour toute fonction réelle \textit{concave} \textit{croissante} $\phi$ et en supposant que les espérances existent. 
 	\end{itemize}
 \end{definition}
 
@@ -114,10 +114,40 @@ On définit des ordres stochastiques.
 	$X\preceq_{sl}X'$, si $E[(X-d)_+] \leq E[(X'-d)_+]$, pour tout $d\in \mathbb{R}$, où $(u)_+ = \max(u;0)$.
 \end{definition}
 
+\begin{theoreme}{}{}
+	Les propositions suivantes sont équivalentes : 
+	\begin{enumerate}
+		\item $X \preceq_{icx} X'$ ;
+		\item $X \preceq_{sl}$. 
+	\end{enumerate}
+\end{theoreme}
 
+\begin{remarque}{}{}
+	$X\preceq_{sd} X'$ implique $X \preceq_{icx} X'$ mais pas $X\preceq_{cx} X'$. 
+\end{remarque}
 
+Les ordres convexes, convexes croissantes et \textit{stop loss} sont fermés sous la convolution, le mélange et la composition.
 
+\begin{proposition}{Critère de Karlin-Novikoff}{}
+	Soient deux v.a. $X$ et $X'$ telles que $E[X] \leq E[X'] < \infty$. S'il existe un nombre $c>0$ tel que 
+	\begin{align*}
+	F_X(x) \leq F_{X'}(x), \quad x<c\\
+	F_X(x) \geq F_{X'}(x), \quad x\geq c,
+	\end{align*}
+	alors $X\preceq_{icx} X'$ ou $X\preceq_{sl} X'$. 
+\end{proposition}
 
+\begin{proposition}{}{}
+	Soient les v.a. $X$ et $X'$. Alors, on a $X\preceq_{icx} X'$ si et seulement si $TVaR_\kappa(X) \leq TVaR_\kappa(X')$, pour tout $0<\kappa<1$. 
+\end{proposition}
+
+\begin{proposition}{}{}
+	Soient la v.a. positive $\Theta$ et la v.a. $X_\theta \sim Pois(\lambda \theta)$, pour $\theta \in \mathbb{R}^+$. Les v.a. $\Theta$ et $X_\theta$ sont indépendantes. Alors, $\Theta \preceq_{icx} \Theta'$ implique $X_\Theta \preceq_{icx} X_{\Theta'}$. 
+\end{proposition}
+
+\begin{proposition}{}{}
+	On a $W_{n+1} \preceq_{icx} W_n$ pour tout $n\in \mathbb{N}^+$.
+\end{proposition}
 
 
 

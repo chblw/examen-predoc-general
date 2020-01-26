@@ -1,1 +1,120 @@
 \chapter{Copules}
+
+\section{Copules bivariées}
+
+\begin{definition}{}{}
+	Une copule $C(u_1, u_2)$ est une application $[0, 1] \to [0, 1]$ ayant les mêmes propriétés qu'une fonction de répartition : 
+	\begin{itemize}
+		\item $C(u_1, u_2)$ est non décroissante sur $[0, 1]^2$ ;
+		\item $C(u_1, u_2)$ est continue à droite sur $[0, 1]^2$ ;
+		\item $\lim\limits_{u_i \to 0} C(u_1, u_2)  = 0$ pour $i = 1, 2$ ;
+		\item $\lim\limits_{u_1 \to 1} C(u_1, u_2)  = u_2$ et $\lim\limits_{u_2 \to 0} C(u_1, u_2)  = u_1$ ;
+		\item on a $\delta_{a_1, b_1} \delta_{a_2, b_2} C(u_1, u_2) \geq 0$, pour tout $a_1 \leq b_1$ et $a_2 \leq b_2$, où 
+		\begin{align*}
+			\delta_{a_1, b_1} \delta_{a_2, b_2} C(u_1, u_2) &= C(b_1, b_2) - C(b_1, a_2) - C(a_1, b_2) + C(a_1, a_2). 
+		\end{align*}
+	\end{itemize}
+De plus, on a 
+$$\delta_{a_1, b_1} \delta_{a_2, b_2} C(u_1, u_2) = \Pr(a_1 < U_1\leq b_1, a_2<U_2 \leq b_2). $$
+\end{definition}
+
+\begin{theoreme}{Théorème de Sklar}{}
+	Soit $F \in \Gamma(F_1, F_2)$ ayant des fonctions de répartition marginales $F_1$ et $F_2$. Alors, il existe une copule $C$ telle que, pour tout $\underline{x} \in \mathbb{R}^+$, 
+	$$F(x_1, x_2) = C(F_1(x_1), F_2(x_2)).$$
+	Si $F_1$ et $F_2$ sont continues, alors $C$ est unique. Sinon, $C$ est uniquement déterminée sur $RanF_1 \times Ran F_2$, où $RanF$ est le support de $F$. Inversement, si $C$ est une copule et si $F_1$ et $F_2$ sont des fonctions de répartition, alors la fonction définie par $$F(x_1, x_2) = C(F_1(x_1), F_2(x_2))$$ est une fonction de répartition bivariée avec des fonctions de répartition marginales $F_1$ et $F_2$. 
+\end{theoreme}
+
+\begin{corollaire}{}{}
+	Soit $F$ une fonction de répartition bivariée avec des marginales continutes $F_1, F_2$ et la copule $C$. Alors, pour tout $(u_1, u_2)$ dans $[0, 1]^2$, 
+	$$C(u_1, u_2) = F\left(F_1^{-1}(u_1), F_2^{-1}(u_2)\right)$$
+\end{corollaire}
+
+\section{Propriétés des copules}
+
+\begin{definition}{}{}
+	Soit $C(u_1, u_2)$ une copule définie sur $[0, 1]^2$. Alors, on a 
+	$$C^-(u_1, u_2) \leq C(u_1, u_2) \leq C^+(u_1, u_2),$$
+	où $C^-(u_1, u_2) = \max(u_1 + u_2 - 1; 0)$ et $C^+(u_1, u_2) = \min(u_1, u_2)$ correspondent aux copules borne inférieure et supérieure de Fréchet (antimonotone et comonotone). 
+\end{definition}
+
+On a aussi 
+\begin{itemize}
+	\item $\displaystyle c(u_1, u_2) = \frac{\partial^2}{\partial u_1 \partial u_2} C(u_1, u_2)$
+	\item Pour une paire de v.a. continues $(X_1, X_2)$ avec 
+	$ \displaystyle F_{X_1, X_2}(x_1, x_2) = C(F_{X_1}(x_1), F_{X_2}(x_2))$
+	\item la fonction de densité est $\displaystyle f_{X_1, X_2}(x_1, x_2) = c(F_{X_1}(x_1), F_{X_2}(x_2))f_{X_1}(x_1)f_{X_2}(x_2)$
+\end{itemize}
+
+La copule de survie est obtenue selon 
+$$\overline{F}_{X_1, X_2}(x_1, x_2) = \widehat{C}\left(\overline{F}_{X_1}(x_1), \overline{F}_{X_2}(x_2)\right)$$
+et on obtient la formule 
+$$\widehat{C}(u_1, u_2) = C(1 - u_1, 1 - u_2) + u_1 + u_2 - 1.$$
+On note que 
+$$\Pr(U_1>u_1, U_2>u_1) \neq \widehat{C}(u_1, u_2).$$
+
+\begin{propriete}{}{}
+	Soient $X_1$ et $X_2$ des v.a. continues dont la structure de dépendance est définie selon la copule $C$. Soient $\phi_1$ et $\phi_2$ des fonctions continues monotones. On a les propriétés suivantes : 
+	\begin{enumerate}
+		\item Si $\phi_1$ et $\phi_2$ sont non décroissantes, alors la structure de dépendance de $(\phi(X_1), \phi(X_2))$ est la copule $C$.  
+	\end{enumerate}
+\end{propriete}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
