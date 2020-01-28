@@ -1,0 +1,255 @@
+\chapter{Processus de Poisson}
+
+\section{Distribution exponentielle}
+Définition :
+
+\begin{itemize}
+	\item $\displaystyle f_X(x) = \lambda e^{-\lambda x}, \quad x \geq 0$
+	\item $\displaystyle F_X(x) = 1 -  e^{-\lambda x}, \quad x \geq 0$
+	\item Premier moment : $\displaystyle E[X] = \frac{1}{\lambda}$
+	\item FGM : $\displaystyle M_X(t) = \frac{\lambda}{\lambda - t}, \quad \text{où } t < \lambda$
+	\item Fonction d'intensité : $\displaystyle r(t) = \frac{f(t)}{1 - F(t)}$
+\end{itemize}
+
+Propriétés : 
+
+\begin{itemize}
+	\item Sans mémoire : $\displaystyle \Pr(X > s + t \vert X > t) = \Pr(X > s)$
+	\item Probabilité avec les minimums : $\displaystyle \Pr(X_1 < X_2) = \frac{\lambda_1}{\lambda_1 + \lambda_2}$
+	\item Probabilité avec les minimums ($n$ v.a.): $\displaystyle \Pr(X_i  = \min(X_1, \dots, X_n)) = \frac{\lambda_i}{\sum\lambda_j}$
+	\item Distribution des minimums : exponentielle avec somme des intensités
+\end{itemize}
+
+MANQUE ERLANG GÉNÉRALISÉE
+
+\section{Processus de Poisson}
+
+\begin{definition}{Processus de comptage}{}
+	Un processus de comptage 
+	\begin{enumerate}
+		\item $N(t) \geq 0$
+		\item $N(t)$ est un entier
+		\item si $s<t$, alors $N(s) \leq N(t)$
+		\item Pour $s<t, N(t) - N(s)$ correspond au nombre d'évènements dans l'intervalle $(s, t]$.
+	\end{enumerate}
+\end{definition}
+
+Un processus de comptage a
+\begin{itemize}
+	\item des accroissements indépendants si le nombre d'évènements dans des intervalles distinctes sont indépendants
+	\item des accroissements stationnaires si la distribution du nombre d'évènements dans l'intervalle dépend seulement de la longueur de l'intervalle. 
+\end{itemize}
+
+\begin{definition}{Processus de Poisson I}{}
+	Le processus de comptage $\{N(t), t \geq 0\}$ est un processus de Poisson avec taux $\lambda > 0$ si
+	\begin{enumerate}
+		\item $N(0) = 0$
+		\item Le processus a des accroissements indépendants
+		\item Le nombre d'évènements dans l'intervalle de longueur $t$ est Poisson avec moyenne $\lambda t$
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}{}{}
+	Une fonction $f$ est dite $o(h)$ si 
+	$$\lim\limits_{h\to 0} \frac{f(h)}{h} = 0.$$
+\end{definition}
+
+\begin{definition}{Processus de Poisson II}{}
+	Le processus de comptage $\{N(t), t\geq 0\}$ est dit un processus de Poisson avec taux d'intensité $\lambda > 0$ si
+	\begin{enumerate}
+		\item $N(0) = 0$
+		\item Le processus a des accroissements indépendants et stationnaires
+		\item $\Pr(N(h) = 1) = \lambda h + o(h)$
+		\item $\Pr(N(h) = 2) = o(h)$
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}{}{}
+	La séquence de temps entre les arrivés est notée par $\{T_n, n = 1, 2, \dots\}$. Le temps du premier sinistre est $T_1$. Avec 
+	$$\Pr(T_1 > t) = \Pr(N(t) = 0) = e^{-\lambda t},$$
+	donc le temps du premier sinistre est de distribution exponentielle avec paramètre $\lambda$. Le temps entre le premier et le deuxième sinistre $T_2$ est 
+	$$\Pr(T_2 > t \vert T_1 = s) = \Pr(N(t + s) - N(s) = 0) = e^{-\lambda (t + s - s)} = e^{-\lambda t}.$$
+	\tcblower
+	$T_n, n = 1, 2, \dots$ sont iid et de distribution exponentielle avec paramètre $\lambda$. 
+\end{definition}
+
+\begin{definition}{}{}
+	Le temps d'attente au $n^\text{e}$ évènement est noté par la v.a. $S_n = \sum_{i = 1}^{n}T_i, n\geq 1$. De plus, on a $S_n \sim Gamma(n, \lambda)$.
+\end{definition}
+
+Les énoncés suivants sont équivalents : 
+$$N(t) \geq n \Leftrightarrow S_n \leq t.$$
+
+\begin{propriete}{}{}
+	Soient $N_1(t)$ et $N_2(t)$, deux processus de Poisson avec intensités respectives $\lambda p$ et $\lambda(1-p)$. Alors, $N(t) = N_1(t) + N_2(t)$ est un processus de Poisson avec intensité $\lambda$. 
+\end{propriete}
+
+La probabilité que $n$ évènements de type I (noté $S_n^1$) arrivent avant $m$ évènements de type II (noté $S_m^2$). On a $P(S_1^1 < S_1^2) = \frac{\lambda_1}{\lambda_1 + \lambda_2}$. Répéter cette expérience donne une v.a. binomiale et on a 
+$$\Pr\left(S_n^1<S_m^2\right) = \sum_{k = n}^{n + m - 1} \binom{m + n - 1}{k} \left(\frac{\lambda_1}{\lambda_1 + \lambda_2}\right)^k \left(\frac{\lambda_2}{\lambda_1 + \lambda_2}\right)^{n+m-1-k}.$$
+
+\begin{proposition}{}{}
+	Si 1 évènement d'un processus de Poisson a eu lieu au temps $t$, le temps de cet évènement est uniforme sur $[0, t]$. En effet, on a 
+	\begin{align*}
+	\Pr(T_1 < s \vert N(t) = 1) &= \frac{\Pr(T_1 < s, N(t) = 1)}{\Pr(N(t) = 1)}\\
+	&= \frac{\Pr(\text{1 évènement sur }[0, s), \text{0 évènement sur }[s, t])}{\Pr(N(t) = 1)}\\
+	&= \frac{\Pr(\text{1 évènement sur }[0, s))\Pr(\text{0 évènement sur }[s, t])}{\Pr(N(t) = 1)}\\
+	&= \frac{\lambda s e^{-\lambda s} e^{-\lambda(t-s)}}{\lambda t e^{-\lambda t}}\\
+	&= \frac{s}{t}.
+	\end{align*}
+\end{proposition}
+
+Une version plus générale de ce résultat est présenté dans le théorème suivant : 
+
+\begin{theoreme}{}{}
+	Sachant $N(t) = n$, les temps d'inter-arrivé $S_1, \dots, S_n$ sont distribués comme les statistiques d'ordres des $n$ v.a. uniformes sur $(0, t)$.
+	\tcblower
+	La densité conditionnelle de $S_1, \dots, S_n$ sachant $N(t) = n$ est équivalante à la densité conditionnelle de $T_1 = s_1, T_2 = s_2 - s_1, \dots, T_n = s_n - s_{n-1}, T_{n+1} > t - s_n$. Alors, on a 
+	\begin{align*}
+	f(s_1, \dots, s_n \vert n) &= \frac{f(s_1, \dots, s_n, n)}{\Pr(N(t) = n)}\\
+	&= \frac{\lambda e^{-\lambda s_1} \lambda e^{-\lambda(s_2 - s_1)} \dots \lambda e^{-\lambda (s_n - s_{n-1})} e^{\lambda(t-s_n)}}{\frac{e^{-\lambda t}(\lambda t)^n}{n!}}\\
+	&= \frac{n!}{t^n}, \quad 0<s_1<\dots <s_n<t.
+	\end{align*}
+\end{theoreme}
+
+\begin{proposition}{}{}
+	On suppose que si un évènement arrive au temps $y$, alors il sera classifié comme type $i$, indépendanment, avec probabilité $P_i(y), i = 1, \dots, k$, où $\sum_{i = 1}^{k}\P_i(y) = 1.$ Alors, si $N_i(t), i = 1, \dots, k$ représente le nombre d'évènements de type $i$ qui arrivent d'ici le temps $t$ alors $N_i(t), i = 1, \dots, k$ sont des v.a. indépendantes avec moyennes 
+	$$E[N_i(t)] = \lambda \int_{0}^{t}P_i(s) ds. $$
+\end{proposition}
+
+\section{Généralisations du processus de Poisson}
+
+\begin{definition}{}{}
+	Le processus de comptage $\{N(t), t\geq 0\}$ est un processus de Poisson non-homogène avec fonction d'intensité $\lambda(t), t\geq 0$ si 
+	\begin{enumerate}
+		\item $\displaystyle N(0) = 0$
+		\item $\displaystyle \{N(t), t\geq t\}$ a des accroissements indépendants
+		\item $\displaystyle \Pr(N(t + h) - N(t) \geq 2) = o(h)$
+		\item $\displaystyle \Pr(N(t + h) - N(t) = 1) = \lambda(t) h + o(h)$
+	\end{enumerate}
+\end{definition}
+
+\begin{proposition}{}{}
+	Soient $\{N(t), t \geq 0\}$ et $\{M(t), t\geq 0\}$, des processus de Poisson non-homogènes indépendants, avec fonctions d'intensités respectives $\lambda(t)$ et $\mu(t)$, et soit $N^*(t) = N(t) + M(t)$. Alors, 
+	\begin{enumerate}
+		\item $\{N^*(t), t\geq 0\}$ est un processus de Poisson non homogène avec fonction d'intensité $\lambda(t) + \mu(t)$
+		\item Sachant qu'un évènement de type $t$ arrive au temps $t$, alors, indépendament de ce qu'il se passe avant $t$, l'évènement au temps $t$ provient du processus $\{N(t)\}$ avec probabilité $\frac{\lambda(t)}{\lambda(t) + \mu(t)}$
+	\end{enumerate}
+\end{proposition}
+
+% RENDU 341
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
