@@ -118,7 +118,7 @@ Une version plus générale de ce résultat est présenté dans le théorème su
 
 \section{Généralisations du processus de Poisson}
 
-\begin{definition}{}{}
+\begin{definition}{Processus de Poisson non homogène}{}
 	Le processus de comptage $\{N(t), t\geq 0\}$ est un processus de Poisson non-homogène avec fonction d'intensité $\lambda(t), t\geq 0$ si 
 	\begin{enumerate}
 		\item $\displaystyle N(0) = 0$
@@ -138,11 +138,15 @@ Une version plus générale de ce résultat est présenté dans le théorème su
 
 % RENDU 341
 
+Un avantage du processus de Poisson non-homogène est que l'hypothèse d'accroissements non stationnaires n'est plus requise. De plus, le nombre d'évènements entre $s$ et $s + t$ est Poisson avec moyenne $\int_{s}^{s+ t}\lambda(y) dy.$
 
+\begin{definition}{}{}
+	Le temps du $n^\text{e}$ évènement d'un processus de Poisson non-homogène est 
+	$$f_{S_n}(t)= \lambda(t) e^{-m(t)}\frac{[m(t)]^{n-1}}{(n-1)!},$$
+	où $m(t) = \int_{0}^{t}\lambda(s) ds.$
+\end{definition}
 
-
-
-
+\subsection{Processus de comptage composé}
 
 
 
