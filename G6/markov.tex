@@ -1,1 +1,24 @@
 \chapter{Chaînes de Markov}
+
+\begin{enumerate}
+	\item Soit $\{X_n, n = 0, 1, \dots\}$, un processus qui peut prendre un nombre fini ou comptable d'états. 
+	\item Si le processus est dans l'état $i$ au temps $n$, on le note $X_n = i$. 
+	\item Si le processus est dans l'état $i$, il a une probabilité fixe, notée $P_{ij}$, que le processus sera dans l'état $j$ au prochain état. 
+	\item Ce processus est appelé un processus de Markov. 
+\end{enumerate}
+
+On a $$P_{ij} \geq 0, i, j \geq 0$$
+et
+$$\sum_{j =0 }^{\infty} P_{ij} = 1, i = 0, 1, \dots .$$
+Les probabilités sont présentés dans une matrice de transition
+$$P = \left|\begin{array}{ccccc}
+	P_{00} & P_{01} & \dots & P_{0j} & \dots \\
+	P_{10} & P_{11} & \dots & P_{1j} & \dots \\
+	\vdots & \vdots & \ddots & \vdots & \dots \\
+	P_{i0} & P_{i1} & \dots & P_{ij} & \dots \\
+	\vdots & \vdots & \vdots & \vdots & \ddots 
+\end{array}\right|
+$$
+
+
+
