@@ -146,9 +146,33 @@ Un avantage du processus de Poisson non-homogène est que l'hypothèse d'accrois
 	où $m(t) = \int_{0}^{t}\lambda(s) ds.$
 \end{definition}
 
-\subsection{Processus de comptage composé}
+\subsection{Processus de Poisson composé}
 
+Un processus stochastique $\{X(t), t\geq 0\}$ est un processus de Poisson composé s'il peut être représenté par le modèle stochastique 
+$$X(t)= \sum_{i = 1}^{N(t)}Y_i, \quad t\geq 0,$$
+où $\{N(t), t \geq 0\}$ est un processus de Poisson et $Y_i$ sont des v.a. iid et indépendantes du processus de comptage. On a 
+$$E[X(t)] = \lambda t E[Y] \quad \text{ et } \quad Var(X(t)) = \lambda t E[Y^2].$$
 
+\begin{propriete}{}{}
+	Soit $\{X(t), t \geq 0\}$, un processus de Poisson composé avec intensité $\lambda_1$ et fonction de répartition $F_1$. Soit aussi $\{Y(t), t \geq 0\}$, un processus de Poisson composé avec $\lambda_2$ et $F_2$. Alors, $\{X(t) + Y(t),t\geq 0\}$ est un processus de Poisson composé avec intensité $\lambda_1 + \lambda_2$ et fonction de répartition
+	$$F(x) = \frac{\lambda_1}{\lambda_1 + \lambda_2} F_1(x) + \frac{\lambda_2}{\lambda_1 + \lambda_2} F_2(x).$$
+\end{propriete}
+
+\subsection{Processus de Poisson conditionnel ou mixte}
+
+Soit $\{N(t), t\geq 0\}$, un processus de Poisson avec paramètre $\lambda$. Soit $\Lambda$, une v.a. positive représentant l'hétérogénéité du paramètre $\lambda$. Ce processus de Poisson est appelé conditionnel ou mixte. Stratégie générale : conditionner. On a 
+\begin{align*}
+	\Pr(N(t + s) - N(s) = n) &= \int_{0}^{\infty}\Pr(N(t + s) - N(s) = n \vert \Lambda=\lambda) f_\Lambda(\lambda)d\lambda\\
+	&= \int_{0}^{\infty}\frac{(\lambda t)^n e^{-\lambda t}}{n!} f_\Lambda(\lambda)d\lambda\\
+\end{align*}
+On a aussi 
+$$Var(N(t)) = tE[L] + t^2Var(L).$$
+De plus, 
+$$\Pr(\Lambda \leq x \vert N(t) = n) = \frac{\int_{0}^{x}(\lambda t)^ne^{-\lambda t}f_\Lambda(\lambda) d\lambda }{\int_{0}^{\infty}(\lambda t)^ne^{-\lambda t}f_\Lambda(\lambda) d\lambda }$$
+et
+$$f_{\Lambda \vert N(t) = n}(\lambda \vert n) = \frac{(\lambda t)^ne^{-\lambda t}f_\Lambda(\lambda)}{\int_{0}^{\infty}(\lambda t)^ne^{-\lambda t}f_\Lambda(\lambda) d\lambda }.$$
+Enfin, 
+$$\Pr(N(t) > n) = \int_{0}^{\infty}\overline{F}_\Lambda(\lambda)\lambda \frac{(\lambda t)^n e^{-\lambda t}}{n!}d\lambda.$$
 
 
 
