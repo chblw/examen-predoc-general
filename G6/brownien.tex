@@ -1,0 +1,116 @@
+\chapter{Mouvement Brownien}
+
+\section{Définition}
+
+\begin{definition}{}{}
+	Un processus stochastique $\{X(t), t\geq 0\}$ est un mouvement Brownien si 
+	\begin{enumerate}
+		\item $X(0) = 0$
+		\item $\{X(t), t\geq 0\}$ a des accroissements stationnaires et indépendants
+		\item pour tout $t>0$, $X(t)$ est de distribution normale avec moyenne 0 et variance $\sigma^2 t$.
+	\end{enumerate}
+\end{definition}
+
+La densité conjointe des observations est 
+$$f(x_1, x_2, \dots, x_n) = f_{t_1}(x_1)f_{t_2 - t_1}(x_2 - x_1) \dots f_{t_n - t_{n-1}}(x_1 - x_n).$$
+Avec cette fonction de densité, on peut calculer, par exemple, la distribution conditionnelle de $X(s)$ sachant que $X(t) = B$, où $s<t$. On a 
+$$f_{s\vert t}(x \vert B) = \frac{f_{s}(x) f_{t-s}(B - x)}{f(B)} \propto \exp\left\{-\frac{(x - Bs/t)^2}{2s(t-s)/t}\right\},$$
+donc $(X(s) \vert X(t) = B) \sim Norm\left(\frac{s}{t}B, \frac{s}{t}(t-s)\right)$. 
+
+\section{Temps d'atteinte d'une barrière}
+
+Soit $T_a$, la première atteinte à la barrière $a$ du mouvement Brownien. Pour calculer $\Pr(T_a \leq t)$, on utilise la décomposition suivante : 
+
+\begin{align*}
+\Pr(X(t) \geq a) &= \underbrace{\Pr(X(t) \geq a \vert T_a \leq t)}_{\frac{1}{2}} \Pr(T_a \leq t) + \underbrace{\Pr(X(t) \geq a \vert T_a > t)}_{0} \Pr(T_a > t)\\
+\Pr(T_a \geq t) &= 2\Pr(X(t) > a)\\
+&= 2\left(1 - \Phi \left(\frac{a}{\sqrt{t}}\right)\right).
+\end{align*}
+
+\section{Variations au mouvement Brownien}
+
+\subsection{Mouvement Brownien avec dérive}
+
+\begin{definition}{}{}
+	On dit que $\{X(t), t\geq 0\}$ est un mouvement Brownien avec dérive $\mu$ et variance $\sigma^2$ si 
+	\begin{enumerate}
+		\item $X(0) = 0$
+		\item $\{X(t), t \geq 0\}$ a des accroissements indépendants et stationnaires
+		\item $X(t)$ est de distribution normale avec moyenne $\mu t$ et variance $t \sigma^2$. 
+	\end{enumerate}
+	On peut exprimer le mouvement Brownien avec dérive en fonction d'un mouvement Brownien standard avec la relation 
+	$$X(t) = \mu t + \sigma B(t).$$
+\end{definition}
+
+\subsection{Mouvement Brownien géométrique}
+
+\begin{definition}{}{}
+	Soit $\{Y(t), t\geq 0\}$n un mouvement Brownien avec dérive $\mu$ et variance $\sigma^2$. Le processus $\{X(t), t \geq 0\}$ défini selon $$X(t) = e^{Y(t)}$$
+	est un mouvement Brownien géométrique. 
+\end{definition}
+On peut montrer, à l'aide des hypothèses d'accroissements indépendants et stationnaires de $Y(t)$, que l'espérance du processus au temps $t$ qu'on a observé jusqu'à $s, s<t$ est 
+$$E[X(t) \vert X(u), 0\leq u \leq s] = X(s) e^{(t-s)(\mu + \sigma^2/2)}.$$
+
+\section{Processus Gaussien}
+
+\begin{definition}{}{}
+	Un processus stochastique $\{X(t), t\geq 0\}$ est appelé Gaussien, ou normal, si $\left(X(t_1), X(t_2), \dots, X(t_n)\right)$ a une distribution normale pour tout $t_1, t_2, \dots, t_n$.
+\end{definition}
+
+Un mouvement Brownien est un processus Gaussien. On a 
+$$Cov(X(s), X(t)) =Cov(X(s), X(s) + [X(t) - X(s)]) = Cov(X(s), X(s)) = Var(X(s)) = s.$$
+
+On considère ensuite le processus Gaussien entre 0 et 1, sachant que $X(1) = 0$. Puisque la distribution conditionnelle de $X(t_1), X(t_2), \dots X(t_n)$ est Gaussienne, la distribution conditionnelle est aussi Gaussienne et on l'appel un pont Brownien (car on sait que $X(t) = 0$ pour $t=0$ et $t=1$). 
+
+On a, pour $s<t<1$ (en conditionnant sur $X(t)$)
+$$Cov[(X(s), X(t)) \vert X(1) = 0] = s(1-t).$$
+
+\begin{proposition}{}{}
+	Si $\{X(t), t\geq 0\}$ est un mouvement Brownien standard, alors $\{Z(t), 0\leq t \leq 1\}$ est un pont Brownien lorsque $Z(t) = X(t) - tX(1)$.
+\end{proposition}
+
+\subsection{Mouvement Brownien intégré}
+
+Si $\{X(t), t\geq 0\}$ est un mouvement Brownien, alors le processus $\{Z(t), t\geq 0\}$ est défini selon
+$$Z(t) = \int_{0}^{t} X(s) ds$$
+est appelé un mouvement Brownien intégré. Le processus est aussi Gaussien avec 
+$$E[Z(t)] = 0$$
+et
+$$Cov(Z(s), Z(t)) = s^2\left(\frac{t}{2} - \frac{s}{6}\right).$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
