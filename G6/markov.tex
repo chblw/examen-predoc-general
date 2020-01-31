@@ -40,6 +40,36 @@ Q_{A, A} = 1.
 
 \section{Classification des états}
 
+\begin{itemize}
+	\item L'état $j$ est dit accessible de l'état $i$ si $P_{ij}^n > 0$ pour un $n\geq 0$
+	\item Deux états $i$ et $j$ qui sont accessibles l'un à l'autre sont appelés des états communicants et on les note $i\leftrightarrow j$
+	\item Deux états qui communiques sont appelés dans la même classe
+	\item Une chaîne de Markov avec une seule classe est appelée irréductible
+	\item Pour un état $i$, on note $f_i$ la probabilité que partant de l'état $i$, le processus revisitera l'état $i$. 
+	\begin{itemize}
+		\item Si $f_i = 1$, on note l'état $i$ récurrent. On a aussi 
+		$$\sum_{n = 1}^{\infty} P_{ii}^n = \infty$$
+		\item Si $f_i < 1$, on note l'état transient. La probabilité que le processus sera dans l'état $i$ pour $n$ périodes est une distribution géométrique. On a aussi
+		$$\sum_{n = 1}^{\infty} P_{ii}^n < \infty$$
+	\end{itemize}
+	\item Si $i$ est réccurent, et $i$ communique avec $j$, alors $j$ est aussi récurrent. 
+\end{itemize}
+
+\section{Probabilités limites}
+
+\begin{theoreme}{}{}
+	Pour une chaîne de Markov irréductible et ergodique, $\lim\limits_{n\to \infty}P_{ij}^n$ existe et est indépendant de $i$. De plus, avec 
+	$$\pi_j = \lim\limits_{n\to\infty}P_{ij}^n, \quad j\geq 0$$
+	alors $\pi_j$ est la solution positive unique de 
+	\begin{align*}
+	\pi_j &= \sum_{i = 0}^{\infty} \pi_iP_{ij}, \quad j\geq 0,\\
+	\sum_{j = 0}^{\infty}\pi_j &= 1. 
+	\end{align*}
+\end{theoreme}
+
+
+
+
 
 
 
