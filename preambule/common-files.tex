@@ -32,6 +32,7 @@
 \usepackage{bbm}
 \usepackage{actuarialsymbol}
 \usepackage{booktabs}
+\usepackage{etoolbox}  % Pour avoir l'option de skip le cleardoublepage
 
 \definecolor{dlblue}{RGB}{43,252,226}
 \definecolor{dlblack}{HTML}{282727}
@@ -49,6 +50,7 @@
 }
 
 \makeatletter
+\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}  % Pour skip cleardoublepage après chapitres
 \@addtoreset{chapter}{part}  % Pour recommencer la numération des chapitres à chaque partie
 \makeatother  
 
