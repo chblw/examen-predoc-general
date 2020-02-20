@@ -59,9 +59,29 @@ $$\Pr(U_1>u_1, U_2>u_1) \neq \widehat{C}(u_1, u_2).$$
 	\end{enumerate}
 \end{propriete}
 
+\subsection{Notions de dépendance}
 
-
-
+\begin{itemize}
+	\item Dépendant positivement par quadrant 
+	$$\overline{F}_X(x_1, x_2) \geq \overline{F}_1(x_1)\overline{F}_2(x_2) ~\forall~ x_1, x_2 \in \mathbb{R}$$
+	$$C(u_1, u_2) > u_1 u_2 ~\forall~ u_1, u_2 \in [0, 1]$$
+	\item Associé
+	$$Cov\left(\Phi_1(X_1, X_2), \Phi_2(X_1, X_2)\right) \geq 0$$
+	quelles que soient les fonctions $\Phi_1$ et $\Phi_2 : \mathbb{R}^2 \to \mathbb{R}$ non-décroissants telles que la covariance existe. 
+	\begin{itemize}
+		\item X associé $\Rightarrow$ X positivement dépendant par quadrant
+	\end{itemize}
+	\item Conditionnellement croissant : si $x_1 \leq y_1$ dans le support de $X_1$, on a 
+	$$\Pr(X_2 > t \vert X_1 = x_1) \leq \Pr(X_2 > t \vert X_1 = y_1) ~ \forall~ t \in \mathbb{R}$$
+	(idem pour $X_2$). La copule $C$ est conditionnellement croissant ssi 
+	\begin{enumerate}[label=\roman*)]
+		\item $\displaystyle \forall\leq u_2 \leq 1, u_1 \longmapsto \frac{\partial}{\partial u_1} C(u_1, u_2)$ est strictement croissante, c.-à-d. $u_1 \longmapsto C(u_1, u_2)$ est une fonction concave
+		\item $\displaystyle \forall\leq u_1 \leq 1, u_2 \longmapsto \frac{\partial}{\partial u_2} C(u_1, u_2)$ est strictement croissante, c.-à-d. $u_2 \longmapsto C(u_1, u_2)$ est une fonction concave
+	\end{enumerate}
+	
+	
+	
+\end{itemize}
 
 
 
