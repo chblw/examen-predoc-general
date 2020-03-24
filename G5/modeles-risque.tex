@@ -4,10 +4,12 @@
 
 \begin{definition}{Modèle stochastique du risque}{}
 	On définit la v.a. $X$ par une somme aléatoire 
-	$$X = \begin{cases}
-	\sum_{k = 1}^{M}B_k, & M>0\\
-	0, & M = 0.
-	\end{cases}$$
+	\begin{equation}\label{eq:collective}
+		X = \begin{cases}
+		\sum_{k = 1}^{M}B_k, & M>0\\
+		0, & M = 0.
+		\end{cases}
+	\end{equation}
 	
 	\begin{itemize}
 		\item La v.a. discrète $M$ représente le nombre de sinistres (fréquence)
@@ -16,7 +18,23 @@
 	\end{itemize}
 \end{definition}
 
-L'espérance de $X$ est 
+\begin{definition}{Modèle collectif vs modèle individuel}{}
+	Un modèle collectif du risque est un modèle de la forme \ref{eq:collective} où 
+	\begin{itemize}
+		\item conditionnel à $N = n$, les v.a. $B_k$ sont i.i.d ;
+		\item conditionnel à $N = n$, la suite de v.a. $\{B_k, k = 1, \dots, n\}$ sont i.i.d et ne dépend pas de $n$ ;
+		\item la distribution de $N$ ne dépend pas des valeurs $B_k, k = 1, \dots, n$.
+	\end{itemize}
+	\tcblower
+	Un modèle individuel du risque représente la perte agrégée sous la forme d'une somme de $n$ contrats d'assurance : $$S = \sum_{i = 1}^{n}X_i.$$
+	\begin{itemize}
+		\item Les pertes $X_i$ sont assumés indépendants mais pas nécessairement identiquement distribués ;
+		\item La distribution des $X_i$ a habituellement une masse à 0, représentant la probabilité qu'aucun paiement n'est fait pour un contrat. 
+	\end{itemize}
+\end{definition}
+
+
+L'espérance de $X$ dans un modèle collectif est 
 $$E[X] = E[E[X \vert M]] = E[M \times E[B]] = E[M]E[B].$$
 La variance de $X$ est 
 $$Var(X) = E_M[Var(X\vert M)] + Var_M(E[X \vert M]).$$
@@ -28,9 +46,34 @@ La fonction de répartition est
 	F_X(x) & = E[F_X(x) \vert M]                                                      \\
 	       & = \Pr(M = 0) + \sum_{k = 1}^{\infty} \Pr(M = k)F_{B_1 + \dots + B_k}(x).
 \end{align*}
+Pour le modèle collectif, on a 
+$$F_X(x) = \sum_{k = 0}^{\infty} p_k F_B^{*k}(x),$$
+où $F_B^{*k}(x)$ est le produit de convolution. En dérivant, on obtient
+$$f_X(x) = \sum_{k = 0}^{\infty} p_k f_B^{*k}(x).$$
+
+La fgp est 
+
+$$E\left[t^{X}\right] = E_M\left[E\left[t^{X}\vert M\right]\right] = E_M\left[t^{B_1 + \dots + B_k}\right] = E_M\left[\prod_{i = 1}^{k}t^{B_i}\right] \stackrel{iid}{=} E_M\left[P_B(t)^M\right] = P_M(P_B(t)).$$
 
 La fgm est 
-$$E\left[e^{tX}\right] = E_M\left[E\left[e^{tX}\vert M\right]\right] = E_M\left[e^{t(B_1 + \dots + B_k)}\right] = E_M\left[e^{Bt}\right] \stackrel{ind}{=} E_M\left[M_B(t)^M\right] = P_M(M_B(t)).$$
+$$E\left[e^{tX}\right] = E_M\left[E\left[e^{tX}\vert M\right]\right] = E_M\left[e^{t(B_1 + \dots + B_k)}\right] = E_M\left[\prod_{i = 1}^{k}e^{B_it}\right] \stackrel{iid}{=} E_M\left[M_B(t)^M\right] = P_M(M_B(t)).$$
+
+La transformée de Laplace est 
+
+$$L_X(t) = P_M(L_B(t)).$$
+
+\subsection{Fréquence et sévérité avec modification de la couverture}
+
+Soit $v = \Pr(Y^L = 0)$. On a 
+\begin{itemize}
+	\item Relation entre montant des pertes par perte et par paiement : $\displaystyle M_{Y^L}(t) = (1-v) + vM_{Y^P}(t)$
+	\item Relation entre nombres de pertes par perte et par paiement : $\displaystyle P_{N^P}(t) = P_{N^L}(1-v + vt)$
+\end{itemize}
+Dans le modèle collectif du risque, on a 
+\begin{itemize}
+	\item $\displaystyle M_S(t) = P_{N^L}\left(M_{Y^L}(t)\right)$
+	\item $\displaystyle M_S(t) = P_{N^P}\left(M_{Y^P}(t)\right)$
+\end{itemize}
 
 \section{Approche indemnitaire et forfaitaire}
 
@@ -42,7 +85,6 @@ B, & M = 1\\
 
 \begin{definition}{Approche indemnitaire}{}
 	Dans l'approche indemnitaire, on suppose qu'un seul sinistre peut arriver dans une période. Les coûts de l'évènement sont définis par la v.a. $B$. On a 
-	
 	
 	\begin{itemize}
 		\item $\displaystyle F_X(x) = 1-q + qF_B(x)$
@@ -56,9 +98,13 @@ B, & M = 1\\
 	\end{itemize}
 \end{definition}
 
-\begin{definition}{}{}
-	Approche 
-\end{definition}
+L'approche indemnitaire est utile pour l'assurance vie. Soit $S = X_1 + X_2 + \dots + X_n$. Soit $q_j$, la probabilité de décès de l'individu $j$ et $b_j$, la prestation de décès. Alors, 
+\begin{itemize}
+	\item $\displaystyle E[S] = \sum_{j = 1}^{n}b_j q_j$
+	\item $\displaystyle Var(S) = \sum_{j = 1}^{n}b_j^2 q_j(1-q_j)$
+	\item $\displaystyle P_S(t) = \prod_{j = 1}^{n}(1 - q_j + q_j z ^ b_j)$
+	\item $\displaystyle M_S(t) = \prod_{j = 1}^{n}(1 - q_j + q_j M_{B_j}(t))$
+\end{itemize}
 
 \section{Généralisations des principales lois de fréquence}
 

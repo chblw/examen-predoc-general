@@ -15,16 +15,18 @@ $$M_S(t) = M_{X_i}(t)^n.$$
 	Soient les v.a. indépendantes $X_1, \dots, X_n$ où
 	$$X_i \sim PComp(\lambda_i, F_{B_i}), i = 1, 2, \dots, n.$$
 	Alors, 
-	$$S = \sum_{i = 1}^{n} X_i = \sim PComp(\lambda_S, F_{C}),$$
+	$$S = \sum_{i = 1}^{n} X_i \sim PComp(\lambda_S, F_{C}),$$
 	où $\lambda_S = \sum_{i = 1}^{n}\lambda_i$ et 
 	$$F_{C}(s) = \frac{\lambda_1}{\lambda_S}F_{B_1}(x) + \frac{\lambda_2}{\lambda_S}F_{B_2}(x) + \dots + \frac{\lambda_n}{\lambda_S}F_{B_n}(x)$$
+	\tcblower
+	Preuve : fgm et mettre $\lambda_S$ en évidence. 
 \end{proposition}
 
 \begin{proposition}{Loi binomiale négative composée et aggrégation}{}
 	Soient les v.a. indépendantes $X_1, \dots, X_n$ où
 	$$X_i \sim BNComp(r_i, q, F_{B_i}), i = 1, 2, \dots, n.$$
 	Alors, 
-	$$S = \sum_{i = 1}^{n} X_i = \sim BNComp(r_S, q, F_{B}),$$
+	$$S = \sum_{i = 1}^{n} X_i \sim BNComp(r_S, q, F_{B}),$$
 	où $r_S = \sum_{i = 1}^{n}r_i$.
 \end{proposition}
 
@@ -70,6 +72,15 @@ On peut approximer les mesures de risque suivantes pour $\kappa$ élevés :
 	\item F-généralisée.
 \end{itemize}
 
+\subsection{Approximation Poisson du modèle individuel}
+
+\begin{itemize}
+	\item Rappel : $S = X_1 + X_2 + \dots + X_n$, où $X_j = I_j \times b_j$. On a $E[S] = \sum_{j = 1}^{n}b_j q_j$ et $Var(S) = \sum_{j = 1}^{n}b_j^2 q_j(1-q_j)$.
+	\item Si $q_j$ est petit, on peut approximer $I_j$ par une loi de Poisson en gardant la même moyenne $\lambda_j = q_j$. Une autre approximation de la loi de Poisson est de garder la même probabilité de non-paiement $e^{-\lambda_j} = 1 - q_j \Rightarrow \lambda_j = -\ln(1-q_j)$. 
+	\item Si $\Pr(B = b_j) = 1$ (comme en assurance vie), alors 
+	$$f_S(x) = \Pr(X = x) = \frac{1}{\lambda_S}\sum_{\{j: b_j = x\}} \lambda_j$$
+	
+\end{itemize}
 \section{Mutualisation et activités d'assurance}
 
 \begin{definition}{Coût moyen par contrat}{}

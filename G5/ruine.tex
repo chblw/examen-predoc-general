@@ -1,0 +1,110 @@
+\chapter{Modèles de ruine}
+
+\section{Modèles à temps discret}
+
+\begin{definition}{Processus de surplus}{}
+	Le processus de surplus $\{U_t : t \geq 0\}$ (ou la version discrète $\{U_t : t = 0, 1, \dots\}$) mesure le surplus du portefeuille au temps $t$ avec un surplus initial de $u = U_0$. Le surplus au temps $t$ est 
+	$$U_t = U_0 + P_t - S_t,$$
+	où $\{P_t : t \geq 0\}$ est le processus de primes (net des frais) et $\{S_t : t \geq 0\}$ est le processus des pertes. Le processus de pertes peut être décomposé en processus de fréquence $\{N_t : t \geq 0\}$ et de sévérité $\{X_t : t\leq 0\}$.
+\end{definition}
+
+\begin{definition}{Un modèle de ruine discret}{}
+	Soit $W_t$, l'incrément du surplus lors de l'année $t$. La v.a. $W_t$ est donné par
+	$$W_t = P_t - P_{t-1} - S_t + S_{t-1}, t = 1, 2, \dots .$$
+	Le processus de surplus est donné par 
+	$$U_t = U_{t-1} + W_t, t = 1, 2, \dots .$$
+\end{definition}
+
+\begin{definition}{Probabilités de ruine}{}
+	\begin{itemize}
+		\item Probabilité de survie, temps continu, horizon infini : 
+		$$\phi(u) = \Pr(U_t \geq 0 ~\forall~ t\geq 0 \vert U_0 = u).$$
+		\item Probabilité de survie, temps discret, horizon fini : 
+		$$\tilde{\phi}(u, \tau) = \Pr(U_t \geq 0 ~\forall~ t = 0, 1, \dots, \tau \vert U_0 = u).$$
+		\item Probabilité de survie, temps continu, horizon fini : 
+		$$\phi(u, \tau) = \Pr(U_t \geq 0 ~\forall~ 0\leq t \leq \tau \vert U_0 = u).$$
+		\item Probabilité de survie, temps discret, horizon infini : 
+		$$\tilde{\phi}(u) = \Pr(U_t \geq 0 ~\forall~ t = 0, 1, \dots \vert U_0 = u).$$
+	\end{itemize}
+	On a 
+	$$\phi(u) \leq \tilde{\phi}(u) \leq \tilde{\phi}(u, \tau)$$
+	et
+	$$\phi(u) \leq \phi(u, \tau) \leq \tilde{\phi}(u, \tau).$$
+	On a aussi
+	$$\lim\limits_{\tau \to \infty} \phi(u, \tau) = \phi(u) \text{ et } \lim\limits_{\tau \to \infty} \tilde{\phi}(u, \tau) = \tilde{\phi}(u).$$
+	Les probabilités de ruine sont donnés par $$\phi(u) = 1 - \phi(u)$$
+\end{definition}
+
+\section{Modèles à temps continu}
+
+\begin{definition}{Un modèle de ruine continu}{}
+	Soit les pertes individuelles $\{X_1, X_2, \dots\}$, des v.a. iid avec fonction de répartition $F$ et moyenne $\mu$. On suppose que le processus de pertes est Poisson composé $S_t = X_1 + \dots + X_N$, où $\{N_t : t \geq 0\}$ est un processus de Poisson avec intensité $\lambda$. On a $E[S_t] = \lambda \mu t$. De plus, les primes sont collectées à un taux constant
+	$$c = (1 + \theta)\lambda \mu.$$
+	Le facteur $\theta$ est appelé le chargement de sécurité relatif ou le facteur de chargement de prime. Le processus de surplus est donc
+	$$U_t = u + ct - S_t, t\geq 0,$$
+	où $u = U_0$ est le surplus initial. 
+	La probabilité de survie à temps infini est donné par 
+	$$\phi(u) = \Pr(U_t \geq 0 ~\forall~ t \geq 0 \vert U_0 = u)$$
+	et la probabilité de ruine est donné par $$\psi(u) = 1 - \phi(u).`$$
+\end{definition}
+
+\subsection{Coefficient d'ajustement et inégalité de Lundberg.}
+
+\begin{definition}{Coefficient d'ajustement}{}
+	Soit $t = \kappa$ la plus petite solution positive de 
+	$$1 + (1 + \theta)\mu t = M_x(t).$$
+	Équations équivalantes : 
+	\begin{itemize}
+		\item $\displaystyle E\left[e^{tS}\right] = e^{t(1 + \theta)\mu \lambda}.$
+		\item $\displaystyle 1 + \theta = \int_{0}^{\infty} e^\kappa x f_{e}(x)dx$, où $f_e$ est la fonction de densité équilibre. 
+	\end{itemize}
+\end{definition}
+
+\begin{proposition}{L'inégalité de Lundberg}{}
+	On suppose que $\kappa > 0$ est la solution du coefficient d'ajustement. Alors, la probabilité de ruine $\psi(u)$ satisfait
+	$$\psi(u) \leq e^{-\kappa u}, u \leq 0.$$
+	\tcblower
+	La probabilité de ruine est bornée par le haut par une fonction du capital initial et du chargement de sécurité relatif. Supposons qu'on tolère une proabilité de ruine de $\alpha$. Si un chargement de $u$ est disponible, 
+	$$\theta = \frac{u \left( E \left[\exp\left\{-\frac{\ln \alpha}{u} X\right\} - 1\right]\right)}{-\mu \ln \alpha} - 1.$$
+	Si un chargement de sécurité relatif de $\theta$ est prescrit, $$u = \frac{-\ln \alpha}{\kappa}$$
+\end{proposition}
+
+L'inégalité de Lundberg garanti les résultats suivantes : 
+
+\begin{itemize}
+	\item $\displaystyle \psi(\infty) = \lim\limits_{u\to \infty} \psi(u) = 0$ ;
+	\item $\displaystyle \phi(\infty) = \lim\limits_{u\to \infty} \phi(u) = 1.$
+\end{itemize}
+
+\subsection{Équation intégro-différentielle}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

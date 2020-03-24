@@ -78,63 +78,87 @@ $$\Pr(U_1>u_1, U_2>u_1) \neq \widehat{C}(u_1, u_2).$$
 		\item $\displaystyle \forall\leq u_2 \leq 1, u_1 \longmapsto \frac{\partial}{\partial u_1} C(u_1, u_2)$ est strictement croissante, c.-à-d. $u_1 \longmapsto C(u_1, u_2)$ est une fonction concave
 		\item $\displaystyle \forall\leq u_1 \leq 1, u_2 \longmapsto \frac{\partial}{\partial u_2} C(u_1, u_2)$ est strictement croissante, c.-à-d. $u_2 \longmapsto C(u_1, u_2)$ est une fonction concave
 	\end{enumerate}
-	
-	
-	
 \end{itemize}
 
+\section{Mesures de dépendance}
 
+\begin{definition}{Rho de Spearman}{}
+	La mesure d'association est donné par 
+	$$\rho_S\left(X_1, X_2\right) = \rho\left(F_1(X_1), F_2(X_2)\right),$$
+	où $\rho$ est la corrélation linéaire. 
+	\tcblower
+	On peut écrire les quantités en fonction des marginales uniformes :
+	\begin{itemize}
+		\item $\displaystyle \rho_S(X_1, X_2) = 12E[F_1(X_1)F_2(X_2)] - 3$
+		\item $\displaystyle \rho_S(X_1, X_2) = 12E[U_1U_2] - 3$
+	\end{itemize}
+\end{definition}
 
+\begin{definition}{Tau de Kendall}{}
+	On considère deux couples de v.a. iid $(X_1, X_2)$ et $(X_1^*, X_2^*)$. La mesure d'association est donné par
+	$$\tau_K\left(X_1, X_2\right) = \Pr\left((X_1 - X_1^*)(X_2 - X_2^*) > 0\right) - \Pr\left((X_1 - X_1^*)(X_2 - X_2^*) < 0\right).$$
+	Le premier terme mesure la concordance et le deuxième terme mesure la discordance. 
+	\tcblower
+	\begin{itemize}
+		\item $\displaystyle \tau_K\left(X_1, X_2\right) = E[\text{sign}(X_1 - X_1^*)(X_2 - X_2^*)]$
+		\item $\displaystyle \tau_K\left(X_1, X_2\right) = 4E[C(U_1, U_2)] - 1$
+	\end{itemize}
+\end{definition}
 
+\section{Mesures de queue}
 
+\begin{definition}{Dépendance de queue}{}
+	L'indice de dépendance de queue supérieure est donnée par
+	$$\lim\limits_{u \to 1} \Pr\left(X > F^{-1}(u) \vert Y > G^{-1} > u\right) = \lim\limits_{u\to 1} \Pr\left(U>u \vert V>u\right).$$
+	On peut réécrire cette quantité (en distribuant)
+	$$\lim\limits_{u\to 1} \frac{1 - 2u + C(u, u)}{1-u}.$$
+	\tcblower
+	L'indice de dépendance de queue inférieure est donnée par
+	$$\lim\limits_{u \to 0} \Pr\left(X \leq F^{-1}(u) \vert Y \leq G^{-1} > u\right) = \lim\limits_{u\to 1} \Pr\left(U\leq u \vert V\leq u\right).$$
+	On peut réécrire cette quantité (en distribuant)
+	$$\lim\limits_{u\to 0} \frac{C(u, u)}{u}.$$
+\end{definition}
 
+\section{Copules archimédiennes}
 
+Les copules archimédiennes sont sous la forme 
+$$C(u_1, \dots, u_d) = \phi ^{-1}\left[\phi(u_1) + \dots + \phi(u_n)\right],$$
+où $\phi(u)$ est appelé une fonction génératrice. 
 
+\begin{itemize}
+	\item La fonction génératrice est strictement décroissante, convexe et continue
+	\item Elle projette $[0, 1] \to [0, \infty]$ avec $\phi(1) = 0$
+	\item Son inverse $\phi ^{-1}$ doit être complètement monotone sur $[0, \infty]$. Elle satisfait
+	$$(-1)^n \frac{d^n}{dx^n}f(x) \geq 0, n = 1, 2, 3, \dots$$
+\end{itemize}
 
+\begin{itemize}
+	\item $\displaystyle \tau_K(X_1, X_2) = 1 + 4\int_{0}^{1}\frac{\phi(u)}{\phi'(u)}du$
+	\item $\displaystyle \lambda_U = \lim\limits_{u\to 1} \frac{1 - 2u + C(u, u)}{1-u} = \lim\limits_{u\to 1} \frac{1 - 2u + \phi^{-1}(2\phi(u))}{1-u} \stackrel{RH}{=} 2 - 2\lim\limits_{t \to 0} \frac{\frac{d}{dt}\phi^{-1}(2t)}{\frac{d}{dt}\phi^{-1}(t)}$, si $\displaystyle \lim\limits_{t\to 0}\frac{d}{dt}\phi^{-1}(t) = -\infty$, sinon il n'y a pas d'indice de dépendance de queue supérieure. 
+	\item $\displaystyle \lambda_L = 2\lim\limits_{t\to \infty} \frac{\frac{d}{dt}\phi^{-1}(2t)}{\frac{d}{dt}\phi^{-1}(t)}$ si $\displaystyle \lim\limits_{t\to \infty} \frac{d}{dt}\phi^{-1}(t) = 0$, sinon il n'y a pas d'indice de dépendance de queue inférieure.
+\end{itemize}
 
+Voir l'examen général pour une liste des générateurs et des copules. 
 
+\section{Copules elliptiques}
 
+\subsection{Copule gaussienne}
 
+\begin{itemize}
+	\item $\displaystyle C(u_1, \dots, u_d) = \Phi_P(\Phi^{-1}(u_1), \dots, \Phi^{-1}(u_d))$
+	\item $\displaystyle \tau_K(X_1, X_2) = \frac{2}{\pi}\arcsin(\rho)$
+	\item $\displaystyle \tau_K(X_i, X_j) = \frac{2}{\pi}\arcsin(\rho_{ij})$
+	\item $\lambda_U = \lambda_L = 0$
+\end{itemize}
 
+\subsection{Copule de Student}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\begin{itemize}
+	\item $\displaystyle C(u_1, \dots, u_d) = t_{\nu, P}\left(t^{-1}_\nu(u_1), \dots, t^{-1}_\nu(u_d)\right)$
+	\item $\displaystyle \tau_K(X_1, X_2) = \frac{2}{\pi}\arcsin \rho$
+	\item $\displaystyle \lambda_U = 2t_{\nu + 1}\left(-\sqrt{\frac{1-\rho}{1 + \rho}(\nu + 1)}\right)$
+	\item $\displaystyle \tau_K(X_i, X_j) = \frac{2}{\pi}\arcsin \rho_{ij}$
+	\item $\displaystyle \lambda_U = 2t_{\nu + 1}\left(-\sqrt{\frac{1-\rho_{ij}}{1 + \rho_{ij}}(\nu + 1)}\right)$
+\end{itemize}
 
 
