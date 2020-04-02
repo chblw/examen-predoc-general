@@ -1,7 +1,23 @@
 \part{Théorie de la crédibilité}
 
+\chapter{Crédibilité Américaine}
+
+Démarche générale : On doit avoir 
+$$\Pr((1-k) \mu_S \leq S \leq (1 + k)\mu_S) \geq \alpha,$$
+qui est équivalant à 
+$$\Pr\left(\left| \frac{\overline{S} - \mu_S}{\sigma_S} \right| \leq y_p\right) = p$$
+avec $y_p \leq \frac{k\mu_S}{\sigma_S}$. On obtient $y_p$ selon
+\begin{align*}
+	\Pr(|Z| \leq y_p) &= p\\
+	y_p &= \Phi(y_p) - \Phi(-y_p)\\
+	&= \Phi ^{-1}\left(\frac{p + 1}{2}\right).
+\end{align*}
+
 \chapter{Crédibilité Bayesienne}
 
+On a les fonctions de densité $f_{X \vert \Theta}$ et $g_\Theta$. On cherche la distribution a posteriori $f_{X_{n+1} \vert \boldsymbol{X}}$. 
+
+L'approche est de calculer la distribution a posteriori de $\Theta \vert \boldsymbol{X}$ et ensuite calculer l'espérance a posteriori de $X_{n+1}$ selon $E_{\Theta \vert \boldsymbol{X}}[X]$.
 
 \chapter{Le modèle de Buhlmann}
 
@@ -15,7 +31,8 @@ par rapport à $\alpha_0, \alpha_1, \dots, \alpha_n$. L'espérance est prise par
 En dérivant et en jouant avec les espérances, on a 
 $$E[X_{n+1}] = \tilde{\alpha}_0 + \sum_{j = 1}^{n}\tilde{\alpha}_j X_j$$
 et
-$$Cov(X_i, X_{n+1}) = \sum_{j = 1}^{n}\tilde{\alpha}_j Cov(X_i, X_j).$$
+$$Cov(X_i, X_{n+1}) = \sum_{j = 1}^{n}\tilde{\alpha}_j Cov(X_i, X_j),$$
+nommées les équations normales (utilisées pour déterminer les formules de crédibilité). 
 
 Notation : 
 
@@ -59,12 +76,45 @@ $$k = \frac{v}{a} = \frac{E[Var(X_j \vert \Theta)]}{Var(E[X_j \vert \Theta])}.$$
 Hypothèses : 
 
 \begin{itemize}
-	\item 
+	\item $E[X_i \vert \Theta] = \mu$
+	\item $Var(X_i \vert \Theta) = \frac{v(\theta)}{m_i}$
 \end{itemize}
 
+La prime de crédibilité devient
 
+$$\tilde{\alpha}_0 + \sum_{j = 1}^{n}\tilde{\alpha}_jX_j = Z\overline{X} + (1-Z)\mu,$$
+avec
+$$Z = \frac{m}{m + k},$$
+$$\overline{X} = \sum_{j = 1}^{n}\frac{m_i}{m} X_i$$
+et
+$$k = \frac{v}{a}.$$
 
+\section{Estimateurs}
 
+\subsection{Modèle de Buhlmann}
+
+On s'intéresse aux estimateurs des paramètres $\mu, v$ et $a$. On a 
+
+$$\hat{\mu} = \overline{X}.$$
+Ensuite, la variance inter-groupe est donné par
+$$\hat{v}_i = \frac{1}{n-1} \sum_{j = 1}^{n} (X_{ij} - \overline{X}_i)^2$$
+et l'estimateur non-biaisé de la moyenne des variances inter-groupes est
+$$\hat{v} = \frac{1}{r} \sum_{i = 1}^{r} v_i.$$
+Vu que $Var(\overline{X}_i) = a + \frac{v}{n}$, on a $a = Var(\overline{X}_i) - \frac{v}{n}$ et l'estimateur non-biaisé pour $a$ est
+$$\hat{a} = \frac{1}{r-1}  \sum_{i = 1}^{r} (\overline{X}_i - \overline{X})^2 - \frac{\hat{v}}{n}.$$
+Si $\hat{a}$ est négatif, on utilise $\tilde{a} = 0$. 
+
+\subsection{Modèle de Buhlmann-Straub}
+
+$$\mu = \frac{1}{m} \sum_{j = 1}^{n} m_j X_j$$
+
+$$\hat{v}_i = \frac{1}{n_i - 1}\sum_{j = 1}^{n_i} m_{ij}(X_{ij} - \overline{X}_i)^2$$
+$$\hat{v} = \sum_{i = 1}^{r} w_i \hat{v_i}, \quad w_i = \frac{n_i - 1}{\sum_{i = 1}^{r} (n_i - 1)},$$
+qui devient
+$$\hat{v} = \frac{1}{\sum_{i = 1}^{r} (n_i - 1)} \sum_{r = 1}^{n} \sum_{j = 1}^{n_i} m_{ij} \left(X_{ij} - \overline{X}_i\right)^2.$$
+Enfin, 
+
+$$\hat{a} = \left(m - m^{-1} \sum_{i = 1}^{r}m_i^2\right)^{-1}\left[\sum_{i = 1}^{r} m_i \left(\overline{X}_i - \overline{X}\right)^2 - \hat{v} (r-1)\right].$$
 
 
 
