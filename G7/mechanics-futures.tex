@@ -1,0 +1,122 @@
+\chapter{Méchanismes du marché des \textit{futures}}
+
+Ce chapitre survole les particularités des marchés de contrats à terme standardisés. Le prix des contrats à terme standardisés est négocié sur le marché, et déterminé par les principes d'offre et de demande. 
+
+La grande majorité des contrats à terme standardisés ne mènent pas à la livraison. La plupart des boursiers mettent leur positions à terme avant la période de livraison spécifiée dans le contrat. On peut fermer sa position dans un contrat en entrant dans la position inverse d'un contrat. 
+
+\section{Spécifications d'un contact à terme standardisé}
+
+Vu que les futures sont standardisés, on doit déterminer avec détail les particularités du contrat : le sous-jacent, la taille du contrat, où la livraison sera faite, quand la livraison sera faite. 
+
+\begin{itemize}
+	\item \textbf{Le sous-jacent} : Lorsque les sous-jacent est une marchandise (denrée, matière première), il peut y avoir de la variation dans la qualité disponible. Lorsqu'un sous-jacent est échangé, on doit spécifier le grade / la qualité de la marchandise qui est acceptable. 
+	\item \textbf{La taille du contrat} : Spécifie la quantité du sous-jacent qui doit être livré sous un seul contrat. Trop grand = peu d'acheteurs, trop petit = possiblement trop cher car il y a des frais pour chaque contrat. 
+	\item \textbf{Ententes de livraison} : La place où la livraison est faite doit être spécifiée par le marché. Ceci a un grand impacte si le sous-jacent a beaucoup de coûts de livraison. 
+	\item \textbf{Mois de livraison} : Un contrat \textit{futures} est spécifié par son mois de livraison. Le marché doit spécifier la période pendant le mois où la livraison peut être faite. 
+	\item \textbf{Devis de soumission} (price quote) : défini comment les prix sont énoncés : dollars et sous ou dollars et 32e de dollars américains ?
+	\item \textbf{Limites de prix} : parfois, les marchés limitent le mouvement des prix pour une seule journée. Si le prix baisse ou monte dans une direction plus que la limite, l'échange de ce produit est suspendu pour la journée. 
+	\item \textbf{Limites de positions} : parfois, les marchés limitent la quantité de contrats qu'un spéculateur pour détenir, pour limiter leur impacte / influence sur le marché. 
+\end{itemize}
+
+Lorsque la date de livraison approche, le prix d'un future converge vers le prix d'un spot. À la date de livraison, le prix du future est égal au prix du spot. 
+
+\section{Opérations des comptes sur marge}
+
+Un compte sur marge permet de réduire le risque de défaut sur le contrat. Ces opérations sont fait par l'intermédiaire d'une chambre de compensation (clearing house). Le but du système de marges est d'assurer que les fonds sont disponibles pour payer les investisseurs qui font un profit. 
+
+\subsection{Règlement quotidien}
+
+\begin{itemize}
+	\item Lorsqu'un investisseur achète un futures, le courtier va lui demander de déposer des fonds dans un compte sur marge. Le montant qui doit être déposé à l'entrée du contrat est la \textbf{marge initiale}. 
+	\item À la fin de chaque jour d'échange, le compte sur marge doit être ajusté pour réfléchir le gain ou la perte de l'investisseur. Cette pratique est appelé le règlement quotidien (daily settlement ou marking to market). 
+	\item Un investisseur peut retirer toute balance au delà de la marge initiale. 
+	\item Pour s'assurer que la balance dans un compte sur marge n'est jamais négatif, une marge de maintenance est déterminé. Si la valeur du compte sur marge baisse sous la marge de maintenance, l'investisseur doit ajouter des fonds pour remonter la valeur du compte à la marge initiale d'ici la prochaine journée.
+	\item L'ajout de fonds est appelé la variation sur marge. 
+	\item Un investisseur qui ne fournis par la variation sur marge, le courtier ferme la position. 
+	\item La plupart des courtiers paient de l'intérêt sur la balance des comptes sur marge. 
+	\item Si un investisseur le peut pas payer la variation sur marge, il peut offrir des bons du trésor ou des actifs à une valeur moindre que leur valeur marchande (la réduction de la valeur marchande est référée à un haircut : 10\% pour les bons du trésor et 50\% pour les actifs).  
+\end{itemize}
+
+\subsection{Chambres de compensation}
+
+Une chambre de compensation (clearing house) joue le rôle d'intermédiaire dans les transactions de futures. Il garantie que chaque partie puisse remplir ses obligations. Un courtier doit être membre d'une chambre de compensation, ou passer par un membre et payer la marge par ce membre. Une chambre de compensation surveille les transactions chaque jour et calcule la position nette de ses membres. Les membres de chambres de compensations doivent contribuer à un fonds de garantie, si un membre est incapable de fournir la variation sur la marge et qu'il y a une perte lorsque la position du membre est fermé. 
+
+\section{Marchés gré à gré (OTC)}
+
+Un contrat gré à gré est négocié entre deux parties. Le risque de crédit est plus élevé dans un marché gré à gré. Pour réduire ce risque, certains marchés gré à gré ont emprunté des idées des marchés d'échange. 
+
+\subsection{Contreparties centrales}
+
+Une contrepartie centrale (central counterparty, CCP) est agit comme chambre de compensation. Un membre d'un CCP fourni la marge initiale et la variation sur la marge. Il doit aussi contribuer au fonds de garantie. Lorsque deux parties s'entendent sur la transaction d'un produit dérivé, ils la présentent à un CCP. Celui-ci devient la contrepartie entre les deux parties. 
+
+Pour un contrat forward où A accepte d'acheter un sous-jacent de B, la chambre de compensation accepte 
+\begin{itemize}
+	\item d'acheter le sous-jacent de B au prix convenu ;
+	\item de vendre le sous-jacent à A au prix convenu. 
+\end{itemize}
+Il accepte donc le risque de crédit des deux parties. 
+
+\subsection{Compensation bilatérale}
+
+Dans un marché compensé bilatéralement, deux compagnies entrent dans une entente mère (master agreement) qui couvrent toues leurs échanges. Cette entente inclue une annexe qui requiert les compagnies à fournir une garantie (collateral). 
+
+\section{Cours du marché}
+
+Les cours de futures sont disponibles d'échanges ou en ligne. Le sous-jacent, la taille et la quantité est déterminé. 
+
+\begin{itemize}
+	\item \textbf{Prix} : Plusieurs prix sont disponibles : le prix d'ouverture (prix immédiatement à l'ouverture des marchés), le plus haut prix de la journée et le plus bas prix de la journée. 
+	\item \textbf{Prix de fermeture} Le prix de fermeture est le prix utilisé pour déterminer le gain ou la perte quotidienne et les obligations sur les marges. Il est calculé comme le prix juste avant la fermeture des marchés. 
+	\item \textbf{Volume d'échange} : le nombre de contrats échangés pendant la journée. 
+	\item \textbf{Intérêt ouvert} : le nombre de positions longues. S'il y a un grand nombre de participants, le volume d'échange peut être plus élevé que l'intérêt ouvert. 
+	\item \textbf{Patrons des futures} : Si le prix des futures est une fonction croissante de la maturité des contrats, le patron est dit dans un marché normal. Si le prix des futures est une fonction décroissante de la maturité des contrats, le patron est dit dans un marché inversé. 
+\end{itemize}
+
+\section{Livraison}
+
+Très peu de contrats futures mènent à la livraison du sous-jacent, la plupart sont fermés plus tôt. Par contre, le prix du futures doit tenir compte des frais possibles dans la livraison. 
+
+\begin{itemize}
+	\item La période où la livraison est faite est défini par le marché et varie de contrat à contrat. La décision de quand livrer est fait par la partie avec la position courte. 
+	\item Lorsque la position courte est prête à livrer, le courtier de la position courte envoie un avis de livraison à la chambre de compensation. 
+	\item Pour une marchandise, prendre livraison veut dire accepter un reçu d'entrepôt en échange de paiement immédiat. La partie qui prend livraison (position longue) accepte tous les coûts d'entreposage. 
+	\item Pour des produits financiers, la livraison est fait par virement bancaire. 
+	\item Le prix payé est le plus récent cours de fermeture. Si spécifié par l'échange, le prix peut être ajusté pour la qualité, la location de la livraison, etc. 
+	\item Il y a trois dates importantes : le premier jours d'avis est la première journée du mois où la position courte peut faire un avis de livraison. Le dernier jour de livraison est le dernier jour. Le dernier jour d'échange est quelques jours avant le dernier jours de livraison. Un investisseur qui ne veut pas prendre livraison devrait fermer sa position avant le premier jours d'avis. 
+	\item \textbf{Règlement en espèces} : certains futures, comme sur des indices d'actions, sont réglés en espèces car il est inconvénient ou impossible de livrer le sous-jacent. Lorsqu'un contrat est réglé en espèces, les contrats sont déclarés fermés dans un journée prédéterminée (pas de période pour l'avis de livraison). Le prix de règlement est égal au prix spot du sous-jacent à l'ouverture ou à la fermeture de l'échange cette-journée. 
+\end{itemize}
+
+\section{Types de boursiers}
+
+Il y a deux types de boursiers qui effectuent des échanges : les marchands de commissions futures (qui effectuent des commandes de leurs clients et qui chargent des commissions), et les locaux (qui échangent sur leur propre compte). Les individus qui prennent des positions peuvent être des gestionnaires de risques, des spéculateurs ou des arbitragistes. Les spéculateurs peuvent être caractérisés comme 
+\begin{itemize}
+	\item scalpers : analysent des tendances à court terme et tentent de profiter de petits changements dans le prix du contrat
+	\item day traders : ferment leur position à la fin de la journée, ils veulent éviter le risque qu'une nouvelle affecte le prix lorsque les marchés sont fermés. 
+	\item échangeurs de position : gardent leurs positions pour plus long et espèrent faire des profits de grands mouvements dans les marchés. 
+\end{itemize}
+
+\section{Types de commandes}
+
+\begin{itemize}
+	\item \textbf{Ordre au cours du marché} (market order) : requête qu'un échange soit fait immédiatement au meilleur prix disponible sur le marché 
+	\item \textbf{Ordre à cours limité} (limit order): spécifie un prix particulier. La commande peut être exécutée à ce prix (ou à un prix plus favorable à l'investisseur). 
+	\item \textbf{Ordre à seuil de déclenchement} (stop order ou stop-loss order) : la commande est exécutée au meilleure prix une fois que l'offre ou la demande d'achat est fait à un certain prix ou à un prix moins favorable. Ex : Stop order à 30\$ lorsque le cours du marché est 35\$ : il devient un ordre de vente lorsque le prix baisse à 30. Il limite les pertes. 
+	\item \textbf{Ordre à plage de déclenchement} (stop-limit order) : combinaison d'une stop order et d'une limit order. Ex : cours spot est 35\$, une stop-limit order est émise avec prix stop de 40 et prix limite de 41. Lorsqu'il y a une demande ou une offre à 40, la stop-limit order devient une limit order à 41. 
+	\item \textbf{Market-if-touched order} : exécuté au meilleur prix après qu'un échange arrive à un certain prix (ou plus favorable). Le MIT devient une ordre au cours du marché lorsqu'un échange est effectué à un certain prix. 
+\end{itemize}
+
+\section{Régulations}
+
+Aux états unis, les marchés de futures est régularisé par la Commodity Futures Trading Commission. Leurs rôle est de protéger l'intérêt du public : 
+
+\begin{itemize}
+	\item Irrégularités : le marché doit être efficient et dans l'intérêt du public. Une irrégularité arrive quand un groupe tente d'accaparer le marché (corner the market). Un groupe prend des positions longues dans des futures et tente de contrôler l'offre du marché du sous-jacent. Les détenteurs de positions courtes ne peuvent plus livrer le produit, et le prix des futures et du spot monte. 
+\end{itemize}
+
+\section{Forwards vs Futures}
+
+\begin{itemize}
+	\item Profits : De plus, il y a une différence \textit{quand} les gains sont réalisés. Par exemple, avec les futures, les gains / pertes sont réalisés à chaque jour car les positions sont réglées à chaque jour. Avec les forwards, le gain ou la perte est réalisée à la date de livraison. 
+	\item Cours en devises étrangères : il peut y avoir une différence dans la manière où les devises sont annoncées dans différents marchés. Souvent, forwards : USD/CAD, et futures : CAD/USD
+\end{itemize}
+

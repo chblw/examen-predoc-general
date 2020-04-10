@@ -1,0 +1,102 @@
+\chapter{Introduction}
+
+\begin{definition}{Produit dérivé}{}
+	Un produit dérivé est un outil financier dont la valeur dépend sur (ou est dérivé par) la valeur d'un autre variable sous-jancente et plus simple. 
+\end{definition}
+
+Les produits sont échangés sur différentes plateformes : 
+
+\begin{itemize}
+	\item \textbf{Marché de produits dérivés} Un marché de produits dérivés est un marché où les individus échangent des contrats standardisés, défini par le marcher d'échanges.  
+	\item \textbf{Marchés en vente libre} Lorsqu'un entente est fait entre deux parties (gré à gré), il est dit vendu en vente libre (over-the-counter). Les parties présentent le contrat à une contrepartie centrale pour réduire le risque de défaut. 
+\end{itemize}
+
+Une opération au comptant (spot contract) est une opération qui implique la vente (presque) immédiate d'un titre. La valeur de l'opération au comptant est le cours au comptant (spot price). 
+
+\section{Contrats à termes}
+
+Les contrats à termes sont des ententes entre deux parties qui oblige la première partie à acheter à la seconde partie un actif sous-jacent à une date et un prix pré-déterminé. 
+
+\begin{itemize} 
+	\item Un contrat à terme de gré à gré (forward contract) est négocié entre deux parties. Il est échangé sur un marché en vente libre. Ces contrats ont l'avantage d'être flexibles. 
+	\item Un contrat à terme standardisé (futures contract) est négocié sur un marché organisé. Le marché offre un mécanisme qui garantie que les contrats seront honorés. 
+\end{itemize}
+
+La partie qui accepte d'acheter le sous-jacent prend une position longue. La partie qui accepte de vendre le sous-jacent prend une position courte. En général, le détenteur de la position longue bénéficie d'une augmentation du prix d'un sous-jacent. 
+
+Les contrats à terme gré à gré peuvent être utilisés pour couvrir (hedge) le risque de devise étrangère. 
+
+Le paiement à terme de la position longue d'un \textit{forward} pour une unité du sous-jacent est $$S_T - K,$$ où $K$ est le prix d'exercice, $T$ est la date de maturité et $S_t$ est le prix du sous-jacent au temps $t$. Le paiement à terme de la position courte d'un forward est $$K - S_T.$$
+
+\begin{tikzpicture}
+\begin{axis}[
+scale=0.8, 
+axis lines = middle,
+xmin=0, xmax = 12,
+ymin=-6, ymax=6,
+xlabel=$S_T$,
+ylabel={Paiement à terme},
+title={Position longue}, 
+xtick={5}, 
+xticklabels={$K$},
+ytick={0}, 
+]
+
+\addplot [
+domain=0:10, 
+samples=100, 
+color=dlblue,
+]
+{x-5};	
+
+\end{axis}
+\end{tikzpicture}\hfill 
+\begin{tikzpicture}
+\begin{axis}[
+scale=0.8, 
+axis lines = middle,
+xmin=0, xmax = 12,
+ymin=-6, ymax=6,
+xlabel=$S_T$,
+ylabel={Paiement à terme},
+title={Position courte}, 
+xtick={5}, 
+xticklabels={$K$},
+ytick={0}, 
+]
+
+\addplot [
+domain=0:10, 
+samples=100, 
+color=dlblue,
+]
+{5-x};	
+
+\end{axis}
+\end{tikzpicture}
+
+\section{Options}
+
+\begin{definition}{}{}
+	\begin{itemize}
+		\item Un option d'achat (call option) donne le \textbf{droit} au détenteur d'acheter le sous-jacent d'ici une certaine date à un certain prix. 
+		\item Un option de vente (put option) donne le \textbf{droit} au détenteur de vendre le sous-jacent d'ici une certaine date à un certain prix. 
+	\end{itemize}
+	Le choix d'exercer l'option ou non est toujours à la discrétion de la partie avec la position longue. C'est cette subtilité qui distingue les contrats à terme. 
+	
+	Le prix dans le contrat est le prix d'exercice (exercise ou strike price). La date u contrat est la date de maturité. 
+	
+	Une option américaine peut être exercé à tout moment jusqu'à la maturité. Une option européenne peut seulement être exercé à la maturité. 
+\end{definition}
+
+
+\section{Participants dans les marchés}
+
+\begin{itemize}
+	\item Gestionnaires de risque (hedgers) : utilisent des produits dérivés pour couvrir leurs risque, i.e. réduire ou limiter leur exposition au risque du marché. Ils veulent réduire leur exposition aux mouvements adverses du prix d'un sous-jacent. On peut couvrir un risque avec un contrat forward (neutraliser le risque) ou avec un contrat d'option (assurance contre une baisse ou hausse). 
+	\item Spéculateurs : désirent prendre une position dans le marché et exploiter un mouvement dans le prix d'un sous-jacent. Un spéculateur qui utilise des contrats à terme est exposé à beaucoup de risque. Un spéculateur qui utilise de contrats d'options a sa perte limité par le prix de l'option. 
+	\item Arbitragiste : personne qui exploite un profit sans risque en entrant simultanément dans des positions en deux ou plusieurs marchés. 
+\end{itemize}
+
+Il peut être plus bénéfique pour les gestionnaires de risques et les spéculateurs d'utiliser des produits dérivés que le produit dérivé lui-même. 
+
