@@ -1,0 +1,124 @@
+\chapter{Gestion du risque avec les futures}
+
+L'objectif des gestionnaires de risque est de réduire un risque qu'ils font face. Ce risque peut être lié à la fluctuation dans le prix d'une marchandise ou d'une matière première.
+
+Une couverture parfaite permet de réduire complètement le risque. Ces couvertures sont rares. L'objectif des couvertures est souvent de répliquer au plus possible une couverture parfaite. 
+
+On restreint notre attention aux couvertures \textit{hedge-and-forget}, où l'on n'ajuste pas la couverture une fois qu'elle est mis en place. 
+
+\section{Principes de base}
+
+Une couverture courte implique une position courte dans un contrat de futures. Une couverture courte est appropriée lorsque le gestionnaire de risque a déjà le sous-jacent en sa possession et prévoit le vendre dans le futur. 
+
+Une couverture longue implique une position longue dans un contrat de futures. Une couverture longue est appropriée lorsque le gestionnaire de risque prévoit acheter un sous-jacent dans le futur et désire déterminer son prix maintenant. 
+
+\section{Arguments pour et contre les couvertures}
+
+\begin{itemize}
+	\item[+] La plupart des compagnies (sauf celles en finance) ne sont pas dans le domaine de finance : ils n'ont pas d'expertise dans la gestion ou dans la tarification des taux d'intérêt, des taux d'échange de devises ou du prix de la marchandise. Les compagnies peuvent donc se concentrer dans les activités qu'ils se concentrent. 
+	\item[-] Certaines compagnies croient que c'est le rôle des actionnaires de couvrir leur risque. Un actionnaire qui investi dans une compagnies de métal sait qu'il fait face à un risque lié au prix du métal : il peut lui-même couvrir son risque. Cet argument est débattable, car il assume qu'un investisseur est bien éduqué et qu'il comprend le risque le la compagnie. 
+	\item[-] Certaines compagnies croient qu'un investisseur peut diversifier lui-même son risque. Ainsi, il est moins exposé à un risque de marchandise que la compagnie. Par exemple, un investisseur qui investi dans un fournisseur et un utilisateur d'une marchandise peut couvrir son risque. 
+	\item[-] Si la couverture du risque n'est pas la norme dans une industrie, une compagnie qui couvre son risque peut être désavantagé. Une compagnie qui vend un bien à un prix qui fluctue avec le marché (bijoux) ajuste ses prix souvent. Alors, le profit est toujours prix (v.a.) + profit. Alors, le profit est constant d'une année à l'autre. Une compagnie qui couvre son risque peut fixer son prix et son produit. Alors, il n'y a plus de risque, mais ses prix ne seront pas compétitifs si le prix de l'industrie descend (et vendra à rabais si les prix de l'industrie monte). Alors, ses profits seront négatifs si le prix monte et très grand si le prix descend. Couvrir son risque peut augmenter la variabilité des profits si les compétiteurs ne couvrent pas leur risque. 
+	\item[-] La couverture des risques, en moyenne, ne change pas le profit. Si le prix d'une marchandise descend mais que le risque était couvert, le président de la compagnie peut punir le gestionnaire de risque car s'il n'avait pas couvert son risque, le profit aurait été plus élevé. Au contraire, si le prix d'une marchandise monte, un gestionnaire de risque a moins souvent de gloire, car c'est son rôle comme gestionnaire de risque. Alors, il est important de comprendre que couvrir son risque est une stratégie et non une spéculation. Tout le monde doit accepter cette politique. 
+\end{itemize}
+
+\section{Risque de corrélation}
+
+S'il existe des futures avec la marchandise exacte et les dates de livraison exactes nécessaires pour couvrir le risque, c'est simple de couvrir le risque. Par contre, il est rare qu'une telle couverture parfaite existe. 
+
+\begin{itemize}
+	\item Le sous-jacent à couvrir n'est peut-être pas exactement le même que le sous-jacent du futures
+	\item Le gestionnaire de risque peut être incertain dans la date où le sous-jacent doit être acheté ou vendu
+	\item La couverture pourrait demander que la position dans le futures doit être mis à terme avant son mois de livraison. 
+\end{itemize}
+
+Le risque de corrélation (basis risk) dans une couverture est définie comme suit : 
+
+\begin{formule}
+	$$\text{Basis = Prix spot du sous-jacent à être couvert - Prix futures du contrat utilisé.}$$
+\end{formule}
+
+Risque de corrélation dans le temps : Un gestionnaire de risque au temps $t_1$ sait qu'il veut vendre une marchandise au temps $t_2$ et prend une position courte dans un futures. Le prix qu'il obtient pour la marchandise est 
+$$S_2 + F_1 - F_2 = F_1 + b_2.$$ Vu que $F_1$ est connu au temps $t_1$, le seul risque est celui associé au risque de corrélation $b_2$. 
+
+Risque de corrélation dans une couverture croisée : Un gestionnaire de risque ne peut parfois pas couvrir exactement le sous-jacent qu'il désire, sont utilise un produit similaire. 
+
+Soit $S^*$, le prix du sous-jacent dans le contrat futures et $S$, le prix du sous-jacent qui doit être couvert. En couvrant son risque, le prix qu'une compagnie paie est 
+$$S_2 + F_1 - F_2 = F_1 + (S_2^* - F_2) + (S_2 - S_2^*).$$ 
+La première parenthèse est le risque dans le temps. La deuxième parenthèse est le risque associé à la couverture croisée. Ces deux composantes forment le risque de corrélation. 
+
+\subsection{Choix du contrat}
+
+Un facteur important qui impacte le risque de corrélation est le choix du contrat futures : 
+\begin{itemize}
+	\item le choix du sous-jacent du futures ;
+	\item le choix du mois de livraison.
+\end{itemize}
+
+\begin{itemize}
+	\item Parfois on choisit un mois de livraison plus tard que le mois où on veut livrer
+	\begin{itemize}
+		\item car le prix du futures fluctue beaucoup pendant le mois de livraison. 
+		\item car on risque de prendre possession du bien si on a une position longue.
+	\end{itemize}
+	\item En général, le risque de corrélation augmente lorsque le temps entre l'expiration de la couverture et le mois de livraison augmente. Alors, on veut un mois de livraison plus proche possible, mais pas après, l'expiration de la couverture. 
+	\begin{itemize}
+		\item Si les mois de livraison sont mars, juin, septembre et décembre, 
+		\item Les couvertures avec échéance dec, jan, fev utilisent un futures avec livraison en mars. 
+		\item Les couvertures avec échéance mar, avr, mai utilisent un futures avec livraison en juin. 
+		\item etc. 
+	\end{itemize}
+	\item Cette stratégie assume que la liquidité de tous les contrats est suffisante. En pratique, la liquidité est plus grande pour des contrats à courte maturité. Alors, un gestionnaire de risque peut utiliser des contrats à courte maturité et les renouveler (roll them forward). 
+\end{itemize}
+
+\section{Couverture croisée}
+
+La couverture croisée arrive lorsque le sous-jacent du futures et le bien nécessaire est différent. Le ratio de couverture est la taille de la position dans un contrat futures sur la taille de l'exposition. Si le sous-jacent et le bien nécessaire est égal, on peur un ratio de couverture de 1. Sinon, on tente de minimiser la variance de la valeur de la position couverte. 
+
+\subsection{Ratio de couverture optimal}
+
+Soit $\Delta S$, le changement du prix spot pendant la durée de la couverture, et $\Delta F$, le changement du prix futures pendant la durée de la couverture. Le ratio de couverture qui minimise la variance est donné par $$h^* = \rho \frac{\sigma_S}{\sigma_F},$$ où $\sigma_S$ est l'écart-type de $\Delta S$, $\sigma_F$ est l'écart-type de $\Delta F$ et $\rho$ est le coefficient de corrélation entre $\Delta F$ et $\Delta S$. L'efficacité de la couverture est la proportion de la variance éliminée par la couverture et est donné par $\rho^2$. 
+
+\subsection{Nombre de contrats optimal}
+
+Soient $Q_A$, la taille (unités) de la position couverte et $Q_F$, la taille d'un contrat futures. La couverture doit être sur $h^* Q_A$ (A = asset) unités, et le nombre de contrats futures à acheter est 
+$$N^* = h^* \frac{Q_A}{Q_F}.$$
+
+Si on utilise des futures, les prix sont réglés chaque jour avec une série de couvertures d'une journée. Parfois, le pourcentage de changements quotidien des futures et des spots sont utilisés. Soient $\hat{\rho}, \hat{\sigma}_S$ et $\hat{\sigma}_F$ les mesures équivalentes avec les pourcentages de changements quotidiens. Alors, le ratio de couverture quotidien est 
+$$\hat{\rho} \frac{S \hat{\sigma}_S}{F \hat{\sigma}_F}$$
+et le nombre de contrats nécessaire pour couvrir le risque le lendemain est 
+$$N^* = \hat{\rho} \frac{S \hat{\sigma}_S}{F \hat{\sigma}_F} \frac{Q_A}{Q)F}.$$
+
+\section{Futures sur les indices d'actions}
+
+Un indice d'actions réplique les changements dans la valeur d'un portefeuille d'actions. Le poids de chaque actif est égal à la proportion du portefeuille investi dans l'actif à un moment particulier. 
+
+\begin{itemize}
+	\item \textbf{Dow Jones Industrial Average} : 30 actions blue-chip. Le groupe CMI vend deux futures sur ces indices : 10\$ fois la valeur de l'indice et 5\$ (mini) fois la valeur de l'indice. 
+	\item \textbf{Standard \& Poor's 500} : 500 actions : 400 industriel, 40 utilités, 20 transportation, 40 institutions financières. Le groupe CMI vend deux futures sur ces indices : 250\$ fois la valeur de l'indice et 50\$ (mini) fois la valeur de l'indice. 
+	\item \textbf{Nasdaq-100} : 100 actions. Le groupe CMI vend deux futures sur ces indices : 100\$ fois la valeur de l'indice et 20\$ (mini) fois la valeur de l'indice. 
+\end{itemize}
+
+Les futures sont réglés en argent. 
+
+\subsection{Couvrir un portefeuille d'actions}
+
+Soit $V_A$, la valeur d'un portefeuille et $V_F$, la valeur d'un futures. On utilise le modèle d'évaluation des actifs financiers (CAPM) pour identifier le paramètre $\beta$, correspondant à la sensibilité du portefeuille par rapport au marché. 
+
+Le nombre de futures à acheter pour couvrir un portefeuille est 
+$$N^* = \beta \frac{V_A}{V_F}.$$
+
+Un gestionnaire qui couvre son portefeuille va avoir un gain équivalant au taux sans risque. Pourquoi avoir un portefeuille d'actifs au lieux de bons du trésor ? Un gestionnaire de risque peut décider de couvrir son portefeuille car il croit que sa sélection d'actions sera plus profitable que le marché (se profiter contre les mouvements du marché, mais rentabiliser sur l'ajout de ses sélections). Il peut aussi couvrir s'il a un portefeuille pour le long terme mais désire se couvrir pour le court terme : vendre maintenant et acheter plus tard peut avoir plus de frais de transaction que de se couvrir. 
+
+\subsection{Changer le beta d'un portefeuille}
+
+Dans la section précédente, on a réduit le beta à 0, c.-à-d. qu'on a éliminé le risque avec des futures. On peut aussi changer le beta pour une autre valeur. Pour changer le beta d'un portefeuille de $\beta$ à $\beta^*$, avec $\beta > \beta^*$, alors prendre une position courte dans 
+$$(\beta - \beta^*) \frac{V_A}{V_F}$$
+futures. Si $\beta < \beta^*$, prendre une position longue dans 
+$$(\beta^* - \beta) \frac{V_A}{V_F}$$
+futures. 
+
+\section{Stack and roll}
+
+Parfois, la date d'expiration de la couverture est plus longue que la date des futures utilisée. Le gestionnaire de risque doit donc rouler la couverture en réglant sa position d'un futures et prendre la même position dans un futures à une date ultérieure. Les couvertures peuvent être roulées plusieurs fois, dans une procédure appelée stack and roll. 
+

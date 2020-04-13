@@ -1,0 +1,98 @@
+\chapter{Taux d'intérêt}
+
+En général, répète les deux premiers chapitres de la partie \ref{part:math-fin} sur les mathématiques financières. Différents types de taux d'intérêt sont montrés. 
+
+\section{Types de taux}
+
+Les taux d'intérêt sont souvent exprimés en points de base. Un point de base est 0.01\% par année. 
+
+\begin{itemize}
+	\item \textbf{Taux du trésor} : Taux d'intérêt obtenu sur des bons du trésor. Ils sont utilisés par des gouvernements pour emprunter de l'argent. 
+	\item \textbf{LIBOR} : London Interbank Offered Rate, le taux d'emprunt à court-terme des banques (non sécurisé).
+	\item \textbf{Taux Fed Funds} : Les institutions financières aux états unis doivent maintenir un montant liquide avec la federal reserve, dépendant de leurs actifs et obligations. À la fin de la journée, certaines institutions financières ont un surplus / déficit qui doit être réglé au cours de la nuit. Le taux imposé pour cette nuit est le taux federal funds. 
+	\item \textbf{Taux repo} (Repo rate) : taux d'emprunt sécurisé (repurchase agreement). Ils vendent et rachètent un actif pour agir comme emprunt à court terme. La différence entre le prix de vente et de rachat est l'intérêt, référé au taux repo.
+	\item \textbf{Taux sans risque} : Les produits dérivés dépendent du taux sans risque. On utilise souvent el taux LIBOR comme taux sans risque (même si le taux LIBOR n'est pas sans risque). 
+\end{itemize}
+
+\section{Mesure de l'intérêt}
+
+Savoir comment composer $m$ fois par année, continuellement. 
+
+\section{Taux zero coupon}
+
+Le taux d'intérêt d'un zero-coupon $n$ années est le taux d'intérêt accru sur un investissement qui commence aujourd'hui est dure $n$ années. L'intérêt et le principal initial est repayé à la fin des $n$ années, il n'y a aucun paiement intermédiaire. C'est appelé un zero-coupon car c'est un obligation (dette) sans coupon. 
+
+
+\section{Tarification des obligations}
+
+Un obligation est une dette que l'investisseur achète aujourd'hui. En retour, il reçoit des coupons (paiements intermédiaires). L'investisseur reçoit le paiement initial à la fin de la durée du coupon. Le prix théorique d'un obligation est déterminé par la valeur actualisée de tous les sorties de fonds : les coupons et le paiement à échéance. 
+
+Il peut y avoir un taux d'escompte pour tous les coupons, ou utiliser différents taux zéro-coupon pour actualiser chaque coupon. 
+
+\subsection{Taux de rendement des obligations}
+
+Le taux de rendement de l'obligation est le taux d'escompte à utiliser si tous les maturités ont le même taux d'escompte annuel. On doit souvent résoudre des équations non-linéaires pour obtenir le taux de rendement.
+
+\subsection{Taux valeur nominale}
+
+Le taux de valeur nominale (par yield) pour un obligation est le taux de rendement dont la valeur actualisée des paiements est égal à la valeur nominale.
+
+\section{Détermination des taux zero-coupon des bons du trésor}
+
+Pour déterminer les taux zéro-coupon sur les bons du trésor, il faut décomposer un bon du trésor en bandes (strips). Ces obligations zéro-coupon sont créés synthétiquement et vendu comme coupons individuels, séparé de la valeur nominale de l'obligation. 
+
+
+Une autre méthode est la méthode \textit{bootstrap}. On prend des bons du trésor avec plusieurs maturités. Les taux zéro-coupon sont déterminés par les coupons avec aucun coupon. Pour les obligations avec des coupons, les coupons sont actualisés avec les taux zéro-coupon déterminés avec maturités plus courtes correspondants. 
+
+\section{Taux forward}
+
+Les taux d'intérêt forward sont les taux d'intérêt implicites des taux zéro-coupon. Si le taux d'intérêt 0 coupon de maturité 1 et 2 sont respectivement 3\% et 4\%, le taux d'intérêt entre l'année 1 et 2 est le taux d'intérêt tel que $(1.03)(1+x) = (1.04)^2$. 
+
+\section{Accords de taux forwards}
+
+Un accord de taux d'intérêt forward est un accord gré-à-gré pour déterminer le taux d'intérêt pour emprunter une certaine valeur nominale pour une période de temps dans le futur. Les taux LIBOR sont souvent utilisés comme taux de référence : les accords paient la différence. 
+
+\subsection{Valuation}
+
+Lorsqu'un contrat à terme est entré, la valeur du contrat est 0 car aucune valeur n'est échangée. Par contre, lorsque le prix change, la valeur du contrat change. La valeur marchande d'un produit dérivé est son évaluation à la valeur de marché (mark-to-market, MTM)
+
+\section{Duration}
+
+La duration d'un obligation mesure la durée de temps qu'un investisseur doit attendre pour recevoir des paiements. La duration d'un obligation zéro-coupon de $n$ années est $n$ années. Un obligation $n$ années avec des coupons a une duration de moins que $n$ années. 
+
+Un obligation retourne des flux monétaires de valeur $c_i$ au temps $t_i, 1\leq i\leq n$. Le prix de l'obligation $B$ et le taux de rendement interne est déterminé par la relation
+$$B = \sum_{i = 1}^{n}c_i e^{-yt_i}.$$
+La duration de l'obligation est notée par 
+$$D = \frac{1}{B} \sum_{i = 1}^{n}t_ic_ie^{-yt_i} = \sum_{i = 1}^{n} t_i \left[\frac{c_i e^{-yt_i}}{B}\right],$$
+qui est une moyenne dy temps, pondéré par la valeur des paiements. Pour calculer la duration, toutes les actualisations sont faites avec le taux de rendement de l'obligation. 
+
+On a l'équation différentielle 
+$$\frac{\Delta B}{B} = -D\Delta y,$$
+qui permet d'approximer le changement de pourcentage du prix de l'obligation avec le changement dans son taux de rendement. 
+
+La duration est faite avec l'hypothèse d'intérêt composé en continu. Si l'intérêt est composé $m$ fois par année, on a 
+$$\Delta B = - \frac{BD \Delta y}{1 + y/m}.$$
+La variable $D^* = \frac{D}{1 + y/m}$ est noté la duration mofifiée, qui permet d'écrire
+$$\Delta B = -BD^* \Delta y,$$
+oỳ $y$ est le taux d'intérêt composé $m$ fois par année. 
+
+\subsection{Portefeuille d'obligations}
+
+La duration $D$ d'un portefeuille est défini comme la moyenne pondérée (par le prix des obligations) des durations des obligations individuelles dans le portefeuille. 
+
+\section{Convexité}
+
+La convexité mesure la courbature des fonctions de taux de rendement. Une mesure de convexité est
+$$C = \frac{1}{B} \frac{d^2 B}{dy^2} = \frac{1}{B} \sum_{i = 1}^{n} c_i t_i^2 e^{-yt_i}.$$
+De l'expansion de Taylor de $\Delta B$, on a 
+$$\frac{\Delta B}{B} = -D\Delta y  \frac{1}{2} C (\Delta y)^2.$$
+Pour un portefeuille avec une certaine duration, la convexité d'un portefeuille d'obligations tend à être plus grande quand les coupons sont répartis sur une grande période et plus petite lorsque les paiements sont concentrés à une date. 
+
+\section{Théories de la structure à terme des taux d'intérêt}
+
+\begin{itemize}
+	\item \textbf{Expectations theory} : les taux d'intérêt à long terme devraient reflecter les taux d'intérêt à court terme. 
+	\item \textbf{Market segmentation theory} : il n'y a aucune relation entre les taux d'intérêt à court, moyen et long terme. 
+	\item \textbf{Liquidity preference theory} : plus populaire. Les investisseurs préfèrent préserver leur liquidité et investir dans des produits à court terme. Les emprunteurs désirent sécuriser leur taux d'intérêt pour longtemps et préfèrent les produits à long terme. Par exemple, la majorité des dépôts dans les banques sont sur des produits court terme, et la majorité des prets hypothéquaires sont pour 5 ans. Alors, il y a un désaccord entre les actifs et obligations. 
+\end{itemize}
+
