@@ -1,0 +1,127 @@
+\chapter{Futures sur les taux d'intérêts}
+
+\section{Conventions}
+
+\subsection{Convention au compte de jours}
+
+Le day count défini comment l'intérêt est accumulé. On connaît l'intérêt obtenu sur une période de référence, on tente de calculer l'intérêt obtenu sur une autre période. \\
+La convention day count est exprimée sous la forme $X/Y$ : 
+\begin{itemize}
+	\item $X$ défini la manière dont le nombre de jours est calculé entre deux dates ;
+	\item $Y$ défini la manière dont le nombre total de jours dans la période de référence est calculé. 
+\end{itemize}
+L'intérêt entre deux dates est 
+$$\frac{\text{Nombre de jours entre dates}}{\text{Nombre de jours dans la période de référence}} \times \text{Intérêt rapporté dans la période de référence}.$$
+Les conventions day count communément utilisés aux États Unis sont
+\begin{itemize}
+	\item Actuel / actuel (inter période), bons du trésor ;
+	\item 30 / 360, obligations corporatifs et municipaux ;
+	\item Actuel / 360, instruments sur le marché monétaire (money market instruments).
+\end{itemize}
+Ces conventions peuvent être différents dans d'autres pays. Au Canada, la convention day count pour les instruments sur les marchés monétaires sont cotés sur une base actuel / 365. 
+
+\subsection{Cotes de prix des bons du trésor aux ÉU}
+
+Le prix d'instruments sur le marché monétaire sont parfois cotés en utilisant un taux d'escompte . 
+
+Soient $P$, le prix coté, $Y$, le prix comptant, $n$, le nombre de jours restant. On a, pour une valeur monétaire de 100\$,  
+$$P = \frac{360}{n}(100 - Y).$$
+
+\subsection{Cotes de prix des obligations du trésor aux ÉU}
+
+Les obligations du trésor aux ÉU sont cotées en dollars et 32${}^{\text{e}}$ de dollars. Le prix est coté pour une obligation avec valeur monétaire 100\$. Par exemple, une cote de $90-05$ veut dire qu'une obligation avec valeur monétaire 100\$ coûte $90 + \frac{5}{32} = 90.15625$. \\
+
+Le prix coté est le prix \textit{clean}. Le prix d'un obligation revendu (dirty) est 
+$$\text{prix} = \text{prix coté} + \text{intérêt accru depuis le dernier coupon}.$$
+
+\section{Contrats à termes sur les bons du trésor}
+
+Les futures sur les bons et obligations du trésor sont échangés sur le marché. Ils sont cotés de la même manière que les bons du trésor (dollars et 32e). La position courte peut choisir quel obligation remettre (avec certaines intervalles sur la maturité possible).
+
+\textbf{Facteurs de conversion} : Lorsqu'un obligation est livré, un paramètre appelé facteur de conversion défini le prix reçu pour l'obligation par la partie avec la position courte. Le montant reçu pour une obligation livrée avec une valeur monétaire de 100\$ est 
+$$\text{Cours de fermeture le plus récent} \times \text{Facteur de conversion} + \text{Intérêt accru}$$
+
+Le facteur de conversion est basé sur le prix de l'obligation, en actualisant tous les coupons et le capital (avec des règles pour les approximations). 
+
+\textbf{Obligation la moins cher à livrer} Vu qu'il y a une différence entre le montant à livrer et le prix d'acquisition, la position courte dans le forward peut choisir quel obligation rendre. 
+
+\textbf{Prix du futures} Si la date de livraison est connue, on a 
+$$F_0 = (S_0 - I)e^{rT},$$
+où $I$ est la valeur actualisée des coupons pendant la durée sur contrat à terme. 
+
+\section{Contrat à terme Eurodollar}
+
+À faire : important ?
+
+\section{Couvrir des portefeuilles d'actifs et de passifs}
+
+Les institutions financières peuvent se couvrir contre leur risque de taux d'intérêt en s'assurant que la duration moyenne de leurs actifs est égal à la duration moyenne de leurs passifs. Cette stratégie s'appelle duration matching ou portfolio immunization. Ceci couvre des mouvements parallèle des courbes de taux d'intérêts. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

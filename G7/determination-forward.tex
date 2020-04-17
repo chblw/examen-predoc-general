@@ -1,0 +1,155 @@
+\chapter{Tarification des contrats à terme}
+
+\begin{definition}{Actif d'investissement vs actif de consommation}{}
+	Un actif d'investissement est un actif qui est détenu pour des fins d'investissements par au moins certains investisseurs. Par exemple, l'or est un actif qui peut être consommé (bijoux, électronique) mais certains investisseurs l'utilisent pour investir. \\
+	
+	Un actif de consommation est détenu pour des fins de consommation : ils ne sont pas utilisés pour des fins d'investissement.\\
+	
+	On peut déterminer le prix de contrats à terme pour des actifs d'investissement mais pas pour des actifs de consommation. 
+\end{definition}
+
+\section{Vente à découverte}
+
+La vente à découverte consiste à vendre un actif qui n'est pas en notre possession. L'investisseur doit payer les dividendes ou l'intérêt à l'acheteur comme s'il vendait vraiment l'actif. L'investisseur doit aussi garder un compte sur marge avec le courtier. 
+
+\section{Hypothèses et notation}
+
+On applique les hypothèses suivantes : 
+
+\begin{enumerate}
+	\item Les participants n'ont pas de frais de transaction.
+	\item Les participants sont sujets au même taux de taxation sur tous les profits. 
+	\item Les participants peuvent emprunter au même taux d'intérêt sans risque qu'ils peuvent prêter. 
+	\item Les participants exploitent toutes les opportunités d'arbitrage. 
+\end{enumerate}
+
+On utilise la notation suivante : 
+
+\begin{itemize}
+	\item $T$ : temps de livraison d'un contrat à terme (en années)
+	\item $S_0$ : prix du sous-jacent dans le contrat à terme aujourd'hui
+	\item $F_0$ : prix du contrat à terme aujourd'hui
+	\item $r$ : taux d'intérêt zéro-coupon par année, composé en continu pour un investissement à échéance $T$. 
+\end{itemize}
+
+\section{Contrat à terme gré à gré pour un actif d'investissement}
+
+Si le sous-jacent ne verse aucun flux monétaire (dividende, coupons), la relation entre le prix du sous-jacent et le contrat à terme est 
+$$F_0 = S_0 e^{rT}.$$
+Si $F_0 > S_0 e^{rT}$, un investisseur peut acheter le sous-jacent et prendre une position courte dans un forward sur le sous-jacent. Si $F_0 < S_0 e^{rT}$, un investisseur peut vendre à découvert le sous-jacent et prendre une position longue dans un forward. Le seul prix en absence d'arbitrage est $S_0 e^{rT}$.
+
+\subsection{Et si on ne peut pas vendre à découvert}
+
+Il n'est pas nécessaire de vendre à découvert un actif pour pouvoir avoir la relation précédente. Si un actif est un actif d'investissement, on peut emprunter le capital nécessaire pour acheter ou vendre le sous-jacent. Pour acheter le sous-jacent, on peut
+\begin{enumerate}
+	\item Emprunter $S_0$ au taux sans risque $r$ pour $T$ années ;
+	\item Acheter une unité du sous-jacent.
+\end{enumerate}
+Pour vendre à découvert le sous-jacent, on peut
+\begin{enumerate}
+	\item Vendre le sous-jacent pour $S_0$ ;
+	\item Investir ce montant au taux sans risque $r$ pour $T$ années. 
+\end{enumerate}
+
+\subsection{Comparaison des contrats à terme}
+
+Est-ce que les futures et les forwards ont la même valeur ?  En théorie, oui. Par contre, il y a plusieurs facteurs qui peuvent changer cela. 
+
+\begin{itemize}
+	\item \textbf{Variabilité des taux d'intérêts } : Si le sous-jacent et les taux d'intérêts sont positivement corrélés, les règlements quotidiens sont investis à un taux d'intérêt plus élevé, augmentant la valeur de la position. Les futures peuvent donc être plus avantageux, dont le prix pourrait être plus élevé.
+	\item \textbf{Frais} : En pratique, il peut y avoir des différences de taxes, de frais de transaction, de comptes sur marges, de risque de liquidité. 
+\end{itemize}
+
+On assume que ces facteurs sont négligeables et que le prix des futures et des forwards sont égaux. 
+
+\subsection{Paiements connus}
+
+Si le sous-jacent verse un flux monétaire attendu, on peut trouver une relation entre le sous-jacent et le contrat à terme. Soit $I$, la valeur actualisée des flux monétaires pendant la durée du contrat à terme. Alors, on a 
+$$F_0 = (S_0 - I)e^{rT}.$$
+
+\subsection{Rendement connu}
+
+Si le sous-jacent verse un rendement connu (dividende, coupons) proportionnel au prix du sous-jacent, le prix du contrat à terme est donné par 
+$$S_0 = S_0 e^{(r-q)T},$$
+où $q$ est le rendement moyen par année sur le sous-jacent. \\
+
+Un indice d'actions peut être considéré comme un sous-jacent qui offre des dividendes en continu. \\
+
+Une devise étrangère peut être considéré comme un sous-jacent qui offre un rendement continu (son propre taux sans risque). Soit $r_f$, le taux sans risque dans une devise étrangère pour $T$ années et $r$, le taux sans risque dans notre devise pour $T$ années. La relation pour le contrat à terme est
+$$F_0 = S_0 e^{(r-r_f)T}$$
+
+\subsection{Valeur d'un contrat à terme gré à gré}
+
+La valeur initiale d'un contrat à terme gré à gré est 0 car il n'y a aucun échange monétaire. Lorsque le temps $t$ avance, la valeur du sous-jacent $S_t$ change et la valeur du contrat à terme change. 
+
+Soit $K$, le prix de livraison, $F_0$, la valeur d'un forward si le contrat était négocié aujourd'hui et $f$, la valeur du forward initial en date d'aujourd'hui. La valeur (longue) d'un forward avec échéance dans $T$ années est
+$$f = (F_0 - K) e^{-rT}.$$
+On peut donc calculer la valeur marchande du contrat en assumant que le prix du sous-jacent à maturité est le prix du forward $F_0$. 
+
+En utilisant les relations des sous-sections précédentes, on a 
+\begin{align*}
+f &= S_0 - Ke^{-rT} \text{ (aucun paiement)};\\
+f &= S_0 - I - Ke^{-rT} \text{ (paiement connu)};\\
+f &= S_0e^{-qT} - Ke^{-rT}  \text{ (rendement connu)}.
+\end{align*}
+
+\section{Contrats à terme sur les marchandises}
+
+Dans cette section, on analyse les contrats à terme sur la marchandise : les sous-jacents d'investissement et de consommation. 
+
+\subsection{Flux monétaires et coûts d'entreposage}
+
+Certains sous-jacents, comme l'or et l'argent, coûtent de l'intérêt pour emprunter. L'or et l'argent peut donc apporter du rendement au propriétaire. Ces actifs sont physiques, donc il y a un coût associé à les entreposer. Un coût d'entreposage peut être considéré comme un flux monétaire négatif. 
+
+Soit $U$, la valeur actualisée des coûts d'entreposage, net de revenus, pendant la durée du forward. Alors, 
+$$F_0 = (S_0 + U) e^{rT}.$$
+Si le coût d'entreposage est proportionnel au prix de l'actif, on a 
+$$F_0 = S_0 e^{(r + u)T},$$
+où $u$ correspond aux coûts annuels et net de revenus. 
+
+\subsection{Actifs de consommation}
+
+Les actifs de consommation n'apportent habituellement pas de revenus, mais ont quand même des frais d'entreposage significatifs. Les utilisateurs d'actifs de consommation veulent utiliser ces actifs, il est donc plus favorables d'avoir l'actif en sa possession (alors que pour des actifs d'investissement, avoir un forward ou avoir l'actif est équivalant en terme de valeur). Alors, on a 
+$$F_0 \leq (S_0 + U) e^{rT}$$
+ou
+$$F_0 \leq S_0 e^{(r + u)T}.$$
+
+\subsection{Rendement de convenance}
+
+Les bienfaits d'avoir un sous-jacent en sa possession peut être considéré comme un rendement de convenance. Le rendement de convenance $y$ est déterminé tel qu'une des  relations suivantes tiennent : 
+\begin{align*}
+F_0e^{yT} &= (S_0 + U) e^{rT}\\
+F_0e^{yT} &=  e^{(r+u)T}.
+\end{align*}
+Pour les actifs d'investissement, le rendement de convenance doit être 0, sinon il y a une opportunité d'arbitrage. Si le prix de futures décroît lorsque la maturité du contrat augmente, cela suggère que $y > r+u$ pendant cette période. 
+
+\subsection{Le coût de porter}
+
+La relation entre les coûts futures et spot sont résumés en un coût de porter. Ceci mesure le coût d'entreposage, l'intérêt payé pour financer le sous-jacent moins le rendement sur l'actif. Soit $c$, le coût de porter. Pour un actif d'investissement, on a 
+$$F_0 = S_0 e^{cT}$$
+et pour un actif de consommation, on a 
+$$F_0 = S_0 e^{(c-y)T}.$$
+
+\subsection{Options de livraison}
+
+Pour des actifs de consommation, la date de livraison est une période pendant le mois. Si $c>y$ (les bienfaits d'avoir le sous-jacent est moins que le taux sans risque), la position courte dans le future est avantagé s'il livre la marchandise le plus tôt possible dans la période de livraison (et plus tard possible si $c<y$).
+
+\section{Prix futures et prix futures espéré}
+
+\begin{itemize}
+	\item L'opinion moyenne du marché sur le prix spot dans le future est appelée le prix spot espéré.
+	\item Keynes \& Hicks : le gestionnaires de risque veulent des positions courtes et les spéculateurs veulent des positions longues : le prix futures d'un sous-jacent sera plus bas que le prix spot espéré car les spéculateurs désirent être compensés pour le risque qu'ils maintiennent. 
+	\item Selon le CAPM, le risque d'un actif peut être décomposé en risque systématique et en risque non-systématique. Un investisseur requiert un rendement plus élevé que le taux sans-risque pour maintenir un risque systématique positif. 
+	\item Un investisseur qui achète un futures (flux monétaire de $-F_0 e^{-rT}$) pour avoir le sous-jacent en retour (flux monétaire de $+S_T$) doit avoir une position nette nulle pour être en absence d'arbitrage. Vu qu'on ne connaît pas $S_T$, on doit utiliser $E[S_T]$. On a 
+	$$F_0 = E[S_T]e^{(r-k)T},$$
+	où $k$ est le rendement désiré par l'investisseur. Le tableau suivant énumère les situations possibles et les relations entre le futures et le spot. \\
+	\begin{center}
+		\begin{tabular}{ccc}
+			 Aucun risque systématique  & $k=r$ & $F_0 = E[S_T]$ \\
+			Risque systématique positif & $k>r$ & $F_0 < E[S_T]$ \\
+			Risque systématique négatif & $k<r$ & $F_0 > E[S_T]$
+		\end{tabular} 
+	\end{center}
+	\item Lorsque $F_0 < E[S_T]$, on appelle \textit{normal backwardation}. Lorsque $F_0 > E[S_T]$, on appelle \textit{contango}. 
+\end{itemize}
+
