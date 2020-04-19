@@ -1,0 +1,214 @@
+\chapter{Arbres binomiaux}
+
+\section{Modèle binomial à une étape}
+
+On considère que la valeur d'un sous-jacent peut seulement augmenter d'un facteur $u>1$ ou diminuer d'un facteur $0<d<1$. On considère deux produits financiers, un actif et un option sur l'actif. Vu qu'il y a seulement deux dénouements possibles, il est toujours possible d'établir un portefeuille sans risque. 
+
+Soit un action de valeur $S_0$ et un option sur l'action dont le prix aujourd'hui est $f$. Si le prix de l'action monte, sa valeur sera $S_0u$ et le paiement de l'option sera $f_u$. Si le prix de l'action diminue, sa valeur sera $S_0 d$ et le paiement de l'option sera $f_d$. On imagine un portefeuille constitué d'une position longue dans $\Delta$ actions et une position courte dans l'option. On doit calculer $\Delta$ tel que le portefeuille est sans risque. 
+
+\begin{itemize}
+	\item Si le prix de l'action monte, la valeur du portefeuille est $S_0u\Delta - f_u$
+	\item Si le prix de l'action baisse, la valeur du portefeuille est $S_0d\Delta - f_d$
+	\item En posant les deux égaux, on a 
+	$$\Delta = \frac{f_u - f_d}{S_0 u - S_0 d}.$$
+\end{itemize}
+
+Pour trouver le coût de l'option, on remarque que la valeur actualisée du portefeuille est $(S_0u\Delta - f_u) e^{-rT}$ et le coût pour établir le portefeuille est $S_0 \Delta - f$. On isole $$f = S_0 \Delta(1-ue^{-rT}) + f_u e^{-rT}.$$
+En substituant pour la valeur de $\Delta$, on obtient
+$$f = e^{-rT}\left[p f_u + (1-p)f_d\right],$$
+où $$p = \frac{e^{rT} - d}{u-d}.$$
+Alors, la valeur de l'option est la v.a. de l'espérance du paiement dans le futur, où la probabilité d'une hausse du prix est déterminé telle qu'il soit impossible d'établir une position d'arbitrage. On note que $p$ ne dépend pas du rendement attendu sur l'action. Les probabilités de mouvements vers le haut ou vers le bas sont déjà incorporés dans le prix de l'action, il n'est pas nécessaire de les considérer dans le prix de l'option. 
+
+\section{Évaluation neutre au risque}
+
+Lorsqu'on détermine le prix d'un produit dérivé, on doit être neutre au risque. Ceci veut dire que les investisseurs ne s'attendent pas à un surplus de rendement pour un surplus de risque dans leur position. On appelle un marché qui est neutre au risque un monde neutre au risque. Ceci est faux en pratique, mais on peut montrer que les prix calculés dans ce monde correspond aux prix dans notre monde. Une des raisons est que lorsque les investisseurs sont averses au risque, le prix des actions diminuent, mais les formules qui déterminent le prix des options demeurent le même. \\
+
+Le monde neutre au risque nous permet d'utiliser le taux sans risque comme rendement attendu sur un action, et actualiser le paiement attendu sur un option au taux sans risque. \\
+
+Pour calculer le prix d'un option dans un monde neutre au risque, on calcule les probabilités des résultats dans un monde neutre au risque. Ensuite, on calcule la valeur actualisée des paiements selon les différentes probabilités. \\
+
+Dans un monde neutre au risque, l'espérance du prix futur est égal à la valeur accumulée du prix de l'action aujourd'hui : $$S_0 u p + S_0 d (1-p) = S_0 e^{rT}.$$
+
+Pour déterminer les probabilités dans le vrai monde, on utilise le rendement attendu $\mu$ dans la formule de $p$, qu'on nommera $p^*$.
+
+\section{Arbres binomiaux à deux étapes}
+
+L'objectif est de calculer le nœud initial de l'arbre. Pour calculer chaque nœud, on doit appliquer la méthode vue plus haut. Soit $\Delta t$, le temps entre chaque nœud. On sait que 
+\begin{equation}\label{eq:arbre-binom}
+f = e^{-r\Delta t} \left[p f_u + (1-p) f_d\right], \qquad p = \frac{e^{r\Delta t} - d}{u - d}.
+\end{equation}
+De plus, on a 
+\begin{align*}
+f_u = e^{-r\Delta t} \left[p f_{uu} + (1-p) f_{ud}\right]\\
+f_d = e^{-r\Delta t} \left[p f_{ud} + (1-p) f_{dd}\right].
+\end{align*}
+On conclut que 
+$$f = e^{-2r\Delta t}\left[p^2 f_{uu} + 2p(1-p) f_{ud}^2 + (1-p)^2 f_{dd}\right].$$
+On remarque que le nombre de mouvements vers le haut suit une loi binomiale, où $n$ est le nombre d'étapes et $p$ est la probabilité d'un mouvement vers le haut. 
+
+\section{Options américaines}
+
+La procédure est similaire, mais c'est possible que l'exercice plus tôt soit avantageuse. La valeur de chaque nœud est le plus grand de
+\begin{itemize}
+	\item La valeur donnée par l'espérance du paiement (\ref{eq:arbre-binom}).
+	\item Le profit de l'exercice anticipée. 
+\end{itemize}
+
+\section{Delta}
+
+Le delta ($\Delta$) d'un option est le nombre d'unités de l'action nécessaire pour créer un portefeuille sans risque de l'option. Le delta d'un call est positif, le delta d'un put est négatif. Il représente aussi le ratio de $\Delta f$ sur $\Delta S$. 
+
+Pour maintenir une couverture sans risque dans l'option et dans le sous-jacent, on doit ajuster nos parts périodiquement. Cette pratique est parfois appelée la couverture delta (delta hedging). 
+
+\section{Déterminer $u$ et $d$ en fonction de la variabilité}
+
+Soit la valeur d'un dollar dans le sous-jacent aujourd'hui. Soit $X$, la v.a. qui représente la valeur de cette position dans une période. On sait déjà que $E[X] = e^{r\Delta t}$. De plus, 
+$$Var(X) = p(u-1)^2 + (1-p)(d-1)^2 - e^{2r\Delta t}.$$ 
+On souhaite que cette valeur soit égale à une certaine volatilité $\sigma^2 \Delta t$. En isolant pour $u$ et $d$, on obtient\footnote{En prenant l'expansion de Taylor de $e^x$ et en assumant que les termes $\Delta t^2$ et plus sont ignorés.}
+$$u = e^{\sigma \sqrt{\Delta t}} \text{  et  } d = e^{-\sigma \sqrt{\Delta t}} = \frac{1}{u}.$$
+On remarque que $u$ et $d$ ne dépendent pas du rendement attendu sur l'option (ni $p$, $p^*$, $r$ ou $\mu$).
+
+\begin{itemize}
+	\item \textbf{Théorème de Girsanov} : Lorsqu'on change d'un un ensemble de préférences vers un autre, le rendement attendu sur l'action change, mais sa volatilité demeure la même.
+	\item Lorsqu'on change du monde neutre au risque vers le vrai monde, le rendement attendu sur l'action change, mais sa volatilité demeure la même.
+	\item Changer d'un ensemble de préférences de risque vers un autre est appelé le changement de mesure. La mesure du vrai monde est appelé la $P-measure$, alors que le monde neutre au risque est appelé $Q-measure$.
+\end{itemize}
+
+\section{Options sur d'autres sous-jacents}
+
+\begin{itemize}
+	\item On peut utiliser les arbres binomiaux pour d'autres options, mais où $p$ change. 
+	\item \textbf{Actions avec dividendes} : Les dividendes sont distribués en continu avec taux $q$. Les gains sur le capital sont $r-q$. Le taux sans risque est remplacé par $r-q$ pour la formule de $p$.
+	\item \textbf{Indices d'actions} : Les indices d'actions retournent un taux de dividende $q$, comme dans le point plus haut. 
+	\item \textbf{Devises} Une devise étrangère peut être considéré comme un sous-jacent qui accumule le taux sans risque $r_f$ (comme une dividende). 
+	\item \textbf{Futures} Ça ne coûte rien d'entrer dans un futures. Alors, le rendement est 0 et le taux sans risque est $0$. 
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

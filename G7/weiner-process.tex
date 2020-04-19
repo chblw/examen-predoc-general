@@ -1,0 +1,73 @@
+\chapter{Processus de Wiener}
+
+\section{Processus de Wiener}
+
+
+\subsection{Mouvement brownien}
+Un mouvement brownien a des propriétés suivantes : 
+
+\begin{itemize}
+	\item Le changement $\Delta W$ pendant une petite période de temps $\Delta t$ est $\Delta W = \varepsilon \sqrt{\Delta t}$, où $\varepsilon\sim Norm(0, 1)$. 
+	\item Les valeurs de $\Delta W$ pour deux intervalles différentes $\Delta$ sont indépendantes. 
+\end{itemize}
+
+
+\subsection{Processus de Wiener généralisé}
+
+Un processus de Wiener généralisé $X$ est définie en termes de $dt$ et $dW$ comme
+$$dX = adt + bdW,$$
+où $a$ et $b$ sont des constantes. Le terme $adt$ est la dérive (drift) déterministe et le terme $bdW$ est le terme aléatoire.
+
+\subsection{Processus d'Itô}
+
+Un processus d'Itô est un processus de Wiener généralisé, où les paramètres $a$ et $b$ sont des fonctions de $X$ et du temps $t$. On peut écrire le processus d'Itô sous la forme
+$$dX = a(X, t) dt + b(X, t)dW.$$
+
+\section{Le processus du prix d'un action}
+
+Le rendement attendu et l'écart-type sont constants (proportionnels au prix de l'action). Cela suggère que le prix de l'action suis le processus
+$$dS = \mu S dt + \sigma S dz,$$
+ou
+$$\frac{dS}{S} = \mu dt + \sigma dz.$$
+Selon les propriétés des mouvements browniens, on a
+$$\frac{\Delta S}{S} \sim Norm(\mu \Delta t, \sigma^2 \Delta t).$$
+On peut estimer la volatilité comme l'écart-type du changement du prix de l'action sur une période d'un an. 
+
+\section{Processus corrélés}
+
+Soit la paire de processus $(X_1, X_2)$, donnés selon
+$$dX_1 = a_1 dt + b_1 dW_1 \text{  et  } dX_2 = a_2 dt + b_2 dW_2.$$
+Si $W_1$ et $W_2$ sont corrélés, on peut simuler leurs valeurs avec une loi normale bivariée. 
+
+\section{Lemme d'Îto}
+
+On suppose que la valeur de la variable $X$ est un processus d'Itô avec 
+$$dX = a(X, t) dt + b(X, t) dW,$$
+où $dW$ est un processus de Wiener. Une fonction $G$ de $X$ et $t$ suit un processus
+$$dG = \left(\frac{\partial G}{\partial x} a + \frac{\partial G}{\partial t} + \frac{1}{2} \frac{\partial^2 G^2}{\partial x^2}b^2\right) + \frac{\partial G}{\partial x} b dW,$$
+donc $G$ suit un processus d'Itô avec dérive $\frac{\partial G}{\partial x} a + \frac{\partial G}{\partial t} + \frac{1}{2} \frac{\partial^2 G^2}{\partial x^2}b^2$ et variance $\left(\frac{\partial G}{\partial x}\right)^2 b^2.$\\
+
+Lorsque $S$ est le prix d'un action, et $G$ est un sous-jacent (fonction de $S$ et $t$), on a
+$$dG = \left(\frac{\partial G}{\partial S} a + \frac{\partial G}{\partial t} + \frac{1}{2} \frac{\partial^2 G^2}{\partial S^2}b^2\right) + \frac{\partial G}{\partial S} b dW.$$
+On remarque que $S$ et $G$ partagent la même volatilité $dW$. 
+
+\section{Application aux forwards}
+
+La relation entre le prix d'un forward $F$ et d'un actif $S$ est, pour $t<T$, 
+$$F = Se^{r(T-t)}.$$
+Ceci est un processus d'Itô, et on a 
+$$\frac{\partial F}{\partial S} = e^{r(T-t)}, \quad \frac{\partial^2 F}{\partial S^2} = 0, \quad \frac{\partial F}{\partial t} = -rSe^{r(T-t)}.$$
+En remplacant ces termes dans le lemme d'Itô, on obtient
+$$dF = (\mu - r) F dt + \sigma F dW,$$
+qui suit un mouvement brownien. 
+
+\section{Propriété log-normale}
+
+Soit $G = \ln S$. en utilisant le lemme d'Itô, on a 
+$$dG = \left(\mu - \frac{\sigma^2}{2}\right) dt + \sigma dW. $$
+Alors, 
+$$\ln S_t - \ln S_0 \sim Norm\left(\left[\mu - \frac{\sigma^2}{2}\right]T, \sigma^2 T\right),$$
+qui devient
+$$\ln S_t\sim Norm\left(\ln S_0 + \left[\mu - \frac{\sigma^2}{2}\right]T, \sigma^2 T\right).$$
+On conclut que $\ln S_t$ suit une loi normale et $S_t$ suit une loi log-normale. 
+
