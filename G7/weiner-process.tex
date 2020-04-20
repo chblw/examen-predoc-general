@@ -1,7 +1,6 @@
 \chapter{Processus de Wiener}
-
+Pour les propriétés générales, voir le chapitre \ref{ch:brownien} de la partie \ref{part:processus}.
 \section{Processus de Wiener}
-
 
 \subsection{Mouvement brownien}
 Un mouvement brownien a des propriétés suivantes : 
@@ -39,7 +38,7 @@ Soit la paire de processus $(X_1, X_2)$, donnés selon
 $$dX_1 = a_1 dt + b_1 dW_1 \text{  et  } dX_2 = a_2 dt + b_2 dW_2.$$
 Si $W_1$ et $W_2$ sont corrélés, on peut simuler leurs valeurs avec une loi normale bivariée. 
 
-\section{Lemme d'Îto}
+\section{Lemme d'Itô}
 
 On suppose que la valeur de la variable $X$ est un processus d'Itô avec 
 $$dX = a(X, t) dt + b(X, t) dW,$$
@@ -61,7 +60,7 @@ En remplacant ces termes dans le lemme d'Itô, on obtient
 $$dF = (\mu - r) F dt + \sigma F dW,$$
 qui suit un mouvement brownien. 
 
-\section{Propriété log-normale}
+\section{Propriété log-normale}\label{sec:ln-prop}
 
 Soit $G = \ln S$. en utilisant le lemme d'Itô, on a 
 $$dG = \left(\mu - \frac{\sigma^2}{2}\right) dt + \sigma dW. $$
