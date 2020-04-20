@@ -1,0 +1,91 @@
+\chapter{Le modèle Black-Scholes-Merton}
+
+\section{Distribution du rendement}
+
+On tente de trouver la distribution du rendement sur un action. On a 
+$$S_T = S_0 e^{xT},$$
+qui devient
+$$x = \frac{1}{T}\ln \frac{S_T}{S_0}.$$
+Comme vu dans la section \ref{sec:ln-prop}, on a
+$$\ln \frac{S_t}{S_0}\sim Norm\left(\left[\mu - \frac{\sigma^2}{2}\right]T, \sigma^2 T\right).$$
+On conclut que la distribution de $x$ est 
+$$x \sim Norm\left(\mu - \frac{\sigma^2}{2}, \frac{\sigma^2}{T} \right).$$
+
+\subsection{Rendement attendu}
+
+Le rendement attendu sur un petit intervalle de temps $\Delta t$ est $\mu \Delta t$. Par contre, l'espérance du rendement attendu est $\mu - \frac{\sigma^2}{2}$ et non $\mu$ : on peut expliquer cela car la moyenne géométrique est toujours moins grande que la moyenne arithmétique. On peut aussi attribuer cela à l'inégalité de Jensen : on sait que $\ln E[S_T] > E[\ln S_T]$.
+
+\subsection{Volatilité}
+
+La volatilité attendue sur un petit intervalle de temps $\Delta t$ est $\sigma^2 \Delta t$. Cela représente la variabilité du prix de l'action sur un an. Pour estimer la volatilité du prix d'un action empiriquement, on calcule les rendements pour une période $\Delta t$
+$$u_i = \ln \frac{S_i}{S_{i-1}}, ~ i = 1, 2, \dots, n$$
+et on calcule
+$$s^2 = \frac{1}{n-1} \sum_{i = 1}^{n}\left(u_i - \overline{u}\right)^2.$$
+On obtient 
+$$\hat{\sigma}^2 = \frac{s}{\Delta t}. $$
+Si un action paie des dividendes, on peut adapter le rendement. Si un intervalle ne contient pas de dividendes, utiliser la formule plus haut. Si il contient un dividende, utiliser
+$$u_i = \ln \frac{S_i + D}{S_{i-1}},$$
+où $D$ est le montant du dividende. 
+
+La volatilité lors d'un jour d'échange est plus élevée que lors d'un jours non échange (la fin de semaine, par exemple). On considère souvent seulement la volatilité pendant les jours d'échange pour estimer la volatilité. La volatilité par année peut être calculée par 
+$$\substack{\text{Volatilité}\\\text{par année}} = \substack{\text{Volatilité par}\\\text{jours d'échange}} \times \sqrt{\substack{\text{Nombre de jours d'échange}\\\text{par année}}}.$$
+La vie d'un option est souvent exprimé en termes de jours d'échanges. $T$ est parfois calculé comme le nombre de jours d'échange jusqu'à maturité, divisé par 252. 
+
+\section{Le modèle Black-Scholes-Merton}
+
+\begin{itemize}
+	\item Le prix de l'action suit le processus $dS = \mu S dt + \sigma S dW$.
+	\item On peut vendre des actions à découvert.
+	\item Il n'y a aucun frais de transaction ou taxes, et les actifs sont parfaitement divisibles. 
+	\item Il n'y a pas de dividendes pendant la vie du produit dérivé.
+	\item Il n'y a pas d'opportunités d'arbitrage.
+	\item L'échange est en continu.
+	\item Le taux sans risque est $r$ et est constant pour toutes les maturité.
+\end{itemize}
+
+Dans cette section, on considère le prix de l'option au temps $t$, alors le temps à maturité est $T - t$. \\
+
+Pour créer un portefeuille sans risque, on doit créer un portefeuille telle que le processus $dW$ est éliminé. Ce portefeuille est 
+\begin{itemize}
+	\item -1 parts dans le produit dérivé ;
+	\item + $\frac{\partial f}{\partial S}$ parts dans le sous-jacent. 
+\end{itemize}
+Ce portefeuille satisfait 
+\begin{equation}\label{eq:BS}
+\frac{\partial f}{\partial t} + rS \frac{\partial f}{\partial S} + \frac{1}{2} \sigma^2 S^2 \frac{\partial^2 f}{\partial S^2} = rf,
+\end{equation}
+qui correspond à l'équation différentielle de Black-Scholes-Merton. Cette équation a plusieurs solutions, correspondant à tous les produits dérivés de $S$. Toute fonction $f(S, t)$ qui est une solution à \eqref{eq:BS} est le prix d'un produit dérivé dont il est possible de créer sans opportunités d'arbitrage. \\
+
+Vu que l'équation de Black-Scholes-Merton ne dépend pas de préférences de risque (comme $\mu$), on conclut que ces préférences de risques n'ont aucun impact sur leurs solutions. Alors, il n'est pas nécessaire de trouver le prix de l'action dans le vrai monde, on peut faire les calculs dans le monde neutre au risque. L'évaluation neutre au risque est un outil artificiel pour obtenir des solutions à \eqref{eq:BS}, et ces solutions sont valides dans tous les mondes (tous les ensembles de préférences). 
+
+\section{Les formules de Black-Scholes-Merton}
+
+Deux solutions à \eqref{eq:BS} sont pour le prix des options européens. On a 
+$$c = S_0 \Phi(d_1) - Ke^{-rT}N(d_2)$$
+et
+$$p = Ke^{-rT}N(-d_2) - S_0 N(-d_1),$$
+où 
+\begin{align*}
+d_1 &= \frac{\ln(S_0 / K) + (r + \sigma^2/2)T}{\sigma \sqrt{T}} ;\\
+d_2 &= \frac{\ln(S_0 / K) + (r - \sigma^2/2)T}{\sigma \sqrt{T}} = d_1 - \sigma \sqrt{T}.
+\end{align*}
+Le terme $\Phi(d_2)$ correspond à la probabilité qu'un call soit exercé dans un monde neutre au risque. 
+
+\section{Volatilité implicite}
+
+On a vu comment estimer la volatilité $\sigma$ empiriquement. En pratique, les participants utilisent la volatilité implicite à la place. Cette volatilité est celle sous-entendue par le prix des options sur le marché. La volatilité implicite est utilisée pour suivre l'opinion du marché sur la volatilité d'un sous-jacent. La volatilité historique représente le passé, alors que la volatilité implicite représente le futur. 
+
+\section{Dividendes}
+
+Il est possible de calculer le prix d'un option si le montant et le moment du versement du dividende est connu avec certitude. Le jour du versement d'un dividende est appelé la date ex-dividende, et le prix du sous-jacent diminue par le montant du dividende à cette date. 
+
+\subsection{Options européens}
+
+On assume que le prix d'un action peut être décomposé en composante déterministe (le dividende connu) et en composante aléatoire. À la maturité de l'option, les dividendes ont été payés et la composante sans risque n'existe plus. Si on utilise $S_0$ comme le prix de la composante risquée (on a retiré la valeur actualisée des dividendes pendant la durée de l'option), les formules de Black-Scholes-Merton sont encore valides. \\
+
+Cette approche est critiquée. Par contre, en pratique les options européens sont calculés en utilisant les prix des forwards du sous-jacent. Alors, on peut ignorer les versements du sous-jacent pendant la durée de l'option. 
+
+\subsection{Call américains}
+
+S'il y a des dividendes, le seul moment opportun pour exercer l'option d'avance est juste avant la date ex-dividende. Voir les inégalités dans le livre. En général, il peut être optimal d'exercer l'option juste avant le dernier dividende si la date du dernier dividende est proche de la maturité et si la valeur du dividende est élevé. 
+
