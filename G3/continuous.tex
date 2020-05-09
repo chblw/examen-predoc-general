@@ -155,8 +155,8 @@ Soit $M_{n}$, la variable aléatoire qui correspond à la valeur maximale de $n$
 $$F_{n}(x) = \Pr(M_n \leq x) = \Pr(X_1\leq x, X_2 \leq x, \dots, X_n \leq x) \stackrel{\text{ind}}{=} \prod_{i = 1}^{n} \Pr(X_i\leq x) = \left[F_{X}(x)\right]^n.$$
 Les deux premiers moments sont
 
-$$E\left[M_n\right] = \int_{0}^{\infty} [1 - F_{X}^n] dx;$$
-$$E\left[M_n^2\right] = 2\int_{0}^{\infty} x[1 - F_{X}^n] dx.$$
+$$E\left[M_n\right] = \int_{0}^{\infty} [1 - F_{X}^n(x)] dx;$$
+$$E\left[M_n^2\right] = 2\int_{0}^{\infty} x[1 - F_{X}^n(x)] dx.$$
 
 Si le nombre $n$ est inconnu, $N$ est une variable aléatoire. On a 
 \begin{align*}
@@ -170,16 +170,110 @@ F_{M_{N}}(x) &= \Pr(M_{N} \leq x) \\
 
 On peut montrer que la distribution du maximum des DVE, après normalisation du paramètre de location ou d'échelle, est la même DVE.
 
+\begin{itemize}
+	\item \textbf{Gumbel} : $\mu^* = \mu + \theta \ln n$
+	\item \textbf{Fréchet} : $\theta^* = \theta n^{1/\alpha}$
+\end{itemize}
+
 \subsection{Théorème Fisher-Tippett}
 
+On souhaite évaluer le maximum de $n$ observations lorsque le nombre d'observations approche l'infini. Vu que le maximum est dégénérée. Alors, on étudie une variable normalisée tel que la distribution du maximum n'est pas dégénéré. On requiert une transformation linéaire tel que 
+$$\lim\limits_{n\to\infty} F_{n}\left(\frac{x - b_n}{a_n}\right) = G(x) ~ \forall~ x.$$
+Si une telle transformation linéaire existe, on peut appliquer le théorème suivant : 
 
+\begin{theoreme}{Théorème Fisher-Tippett}{}
+	Si $\left[F\left(\frac{x - b_n}{a_n}\right)\right]^n$ a une distribution non-dégénérée lorsque $n\to\infty$ pour des constantes $a_n$ et $b_n$ qui dépendent de $n$, alors 
+	$$\left[F\left(\frac{x - b_n}{a_n}\right)\right]^n \to G(x)$$
+	pour $n\to \infty, ~\forall ~ x$, où $G$ est une distribution de valeur extrême. 
+\end{theoreme}
 
+Ce théorème nous permet d'étudier le maximum d'une distribution $F$ par $G$, sans nécessairement connaître $F$. 
 
+\begin{itemize}
+	\item \textbf{Exponentiel} : $a_n = 1, b_n = \ln n$
+	\item \textbf{Pareto} : $a_n = \theta n^{1/\alpha}/\alpha, b = \theta n^{1/\alpha} - \theta$
+\end{itemize}
 
+\subsection{Domaine d'attraction du maximum}
 
+\begin{definition}{Domaine d'attraction du maximum}{}
+	Le domaine d'attraction du maximum (MDA) pour une distribution $G$ est l'ensemble de toutes les distributions qui ont $G$ comme distribution limite lorsque $n\to \infty$ du maximum normalisé $(M_n - b_n)/a_n$ pour des constantes $a_n$ et $b_n$. 
+\end{definition}
 
+Vu qu'on s'intéresse au maximum d'une distribution, le domaine d'attraction du maximum ne dépend que de la queue de la distribution. 
 
+\begin{theoreme}{Caractérisation du MDA par la queue}{}
+	Une distribution $F$ appartient au MDA d'une distribution $G_i$ avec constantes de normalisation $a_n$ et $b_n$ si et seulement si 
+	$$\lim\limits_{n\to \infty} nS(a_n x + b_n) = -\ln G_i(x).$$
+\end{theoreme}
 
+Deux distributions $X$ et $Y$ sont dites équivalentes dans la queue si 
+$$\lim\limits_{x\to \infty} \frac{S_X(x)}{S_Y(x)} = c,$$
+où $c$ est une constante. Deux distributions équivalentes dans la queue appartiennent au même domaine d'attraction du maximum car $c$ peut absorber les constantes de normalisation. 
 
+\begin{itemize}
+	\item Toutes les formes de queue asymptotiques $cx^{-\alpha}$ sont dans le MDA Fréchet. 
+	\item Toutes les formes de queue asymptotiques $ke^{-x\theta}$ sont dans le MDA Gumbel. 
+\end{itemize}
 
+Toutes les distributions avec l'infini comme borne supérieure appartiennent au MDA Fréchet ou Gumbel.
+
+\begin{theoreme}{}{}
+	Une distribution qui a une queue de la forme $S(x) \tilde x^{-\alpha} C(x)$ où $C(x)$ est une fonction qui varie lentement, est dans le MDA Fréchet. 
+\end{theoreme}
+
+\subsection{Distributions Pareto généralisées}
+
+Les distributions Pareto généralisées sont reliées avec les distributions à valeur extrême par la relation 
+$$W(x) = 1 + \ln G(x)$$
+avec la condition supplémentaire que $W(x)$ soit positif ($G(x) > e^{-1}$).
+
+\begin{itemize}
+	\item \textbf{Distribution exponentielle} : Gumbel 
+	\item \textbf{Distribution Pareto} : Fréchet
+	\item \textbf{Distribution beta} : Weibull
+\end{itemize}
+
+La distribution Pareto généralisée incorpore toutes les distributions 
+$$F(x) = 1 - \left(1 + \frac{x}{\alpha \theta}\right)^{-\alpha}$$
+ou parfois écrit sous la forme 
+$$1 - \left(1 + \gamma \frac{x}{\theta}\right)^{-1/\gamma}.$$
+
+\subsection{La stabilité de l'excès}
+
+Les distributions Pareto généralisées ont la propriété de stabilité de l'excès. Soit $Y - d \vert X > d$, la variable aléatoire d'excès conditionnelle. Pour la distribution Pareto généralisée, la distribution d'excès conditionnelle  a la même forme que la distribution sous-jacente. 
+
+\subsection{Distribution limite de l'excès}
+
+La variable aléatoire d'excès conditionnelle est définie par $Y = X-d \vert X > d$ avec fonction de distribution 
+\begin{align*}
+F^* (y) &= F_Y(y) = \Pr(Y \leq y)\\
+&= \Pr(X \leq d + y \vert X > d)\\
+&= \frac{F(d + y) - F(d)}{1 - F(d)}
+\end{align*}
+
+\begin{theoreme}{Théorème Balkema-de Haan-Pickands}{}
+	Si, pour des constantes $a_n$ et $b_n$, les distributions conditionnelles d'excès $F^*(a_n x + b_n)$ ont des distributions limites continues lorsque $d$ approche le borne supérieure du support de $X$, alors $$F^*(x) \to W(x)$$ lorsque $d \to \infty, ~\forall~ x$, où $W$ est une distribution Pareto généralisée. 
+\end{theoreme}
+
+Lorsque $d$ augmente, la queue droite de la distribution de l'excès converge vers une distribution Pareto généralisée. En pratique, on peut utiliser une distribution Pareto généralisée pour approximer la queue lorsque $d$ est élevé (sans avoir besoin de beaucoup de données). 
+
+\subsection{TVaR des DVA}
+
+Si la distribution d'excès d'une v.a. suit une distribution Pareto généralisée, alors pour $x>d$ on peut écrire la fonction de survie comme
+\begin{align}
+S_X(x) &= S_X(d) \Pr(X-d > x- d \vert X > d)\nonumber\\
+&= S_X(d) S_{Y}^*(y)\label{eq:tail_evd}
+\end{align}
+où $Y$ est la distribution d'excès conditionnelle $X-d\vert X>d$, $y = x-d$ et $S_Y^*(y)$ est la queue de la distribution d'excès
+$$S_Y^*(y) = \left(1 + \gamma \frac{y}{\theta + \gamma d}\right)^{-1/\gamma}.$$
+La moyenne de $Y$ est 
+$$\frac{\theta}{1-\gamma} + \frac{\gamma}{1 - \gamma}d$$
+qui est linéaire en $d$ et existe si $\gamma < 1$. Si $d = VaR_\kappa(X)$, on a 
+$$TVaR_p(X) = \frac{VaR_p(X)}{1-\gamma} + \frac{\theta}{1 - \gamma}.$$
+
+Si $d < VaR_\kappa(X)$, on obtient la $VaR$ en inversant \eqref{eq:tail_evd} pour avoir 
+$$VaR_\kappa(X) = d + \frac{\theta + \gamma d}{\gamma} \left[ \left( \frac{1 - p}{S_X(d)}\right)^{-\gamma} - 1\right], ~ x > d$$
+et
+$$TVaR_p(X) = \frac{VaR_p(X)}{1-\gamma} + \frac{\theta}{1 - \gamma}.$$
 
