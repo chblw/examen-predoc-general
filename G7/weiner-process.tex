@@ -43,11 +43,11 @@ Si $W_1$ et $W_2$ sont corrélés, on peut simuler leurs valeurs avec une loi no
 On suppose que la valeur de la variable $X$ est un processus d'Itô avec 
 $$dX = a(X, t) dt + b(X, t) dW,$$
 où $dW$ est un processus de Wiener. Une fonction $G$ de $X$ et $t$ suit un processus
-$$dG = \left(\frac{\partial G}{\partial x} a + \frac{\partial G}{\partial t} + \frac{1}{2} \frac{\partial^2 G^2}{\partial x^2}b^2\right) + \frac{\partial G}{\partial x} b dW,$$
+$$dG = \left(\frac{\partial G}{\partial x} a + \frac{\partial G}{\partial t} + \frac{1}{2} \frac{\partial^2 G^2}{\partial x^2}b^2\right)dt + \frac{\partial G}{\partial x} b dW,$$
 donc $G$ suit un processus d'Itô avec dérive $\frac{\partial G}{\partial x} a + \frac{\partial G}{\partial t} + \frac{1}{2} \frac{\partial^2 G^2}{\partial x^2}b^2$ et variance $\left(\frac{\partial G}{\partial x}\right)^2 b^2.$\\
 
 Lorsque $S$ est le prix d'un action, et $G$ est un sous-jacent (fonction de $S$ et $t$), on a
-$$dG = \left(\frac{\partial G}{\partial S} a + \frac{\partial G}{\partial t} + \frac{1}{2} \frac{\partial^2 G^2}{\partial S^2}b^2\right) + \frac{\partial G}{\partial S} b dW.$$
+$$dG = \left(\frac{\partial G}{\partial S} a + \frac{\partial G}{\partial t} + \frac{1}{2} \frac{\partial^2 G^2}{\partial S^2}b^2\right)dt + \frac{\partial G}{\partial S} b dW.$$
 On remarque que $S$ et $G$ partagent la même volatilité $dW$. 
 
 \section{Application aux forwards}

@@ -24,7 +24,7 @@ $$P = \left|\begin{array}{ccccc}
 On étudie les probabilité de transition pour plus d'une période. Soit 
 $$P_{ij}^{n} = \Pr(X_{n+k} = j \vert X_k = i), \quad n\geq 0, i, j \geq 0.$$
 Pour calculer ces valeurs, on a 
-$$P_{ij}^{n+1} = \sum_{k = 0}^{\infty} P_{ik}^nP_{kj}^m \quad \text{ pour }n, m \geq 0 \forall i, j.$$
+$$P_{ij}^{n+1} = \sum_{k = 0}^{\infty} P_{ik}^nP_{kj}^m \quad \text{ pour }n, m \geq 0 ~\forall~ i, j.$$
 Intuition : la probabilité de partir de $i$ et finir à $j$ est la somme de tous les chemins possibles. En notation matricielle, on a 
 $$P^{n+m} = P^n P^m.$$
 
@@ -35,7 +35,7 @@ On s'intéresse à la probabilité qu'un processus visite un état à un moment.
 \begin{align*}
 Q_{i,j} &= P_{i,j}, \text{ si } \notin \mathcal{A}, j\notin \mathcal{A}\\
 Q_{i,A} &= \sum_{j\in \mathcal{A}} P_{i,j}, \text{ si } i\notin \mathcal{A}\\
-Q_{A, A} = 1.
+Q_{A, A} &= 1.
 \end{align*}
 
 \section{Classification des états}

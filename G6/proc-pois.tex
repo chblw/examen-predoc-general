@@ -65,34 +65,35 @@ Un processus de comptage a
 \end{definition}
 
 \begin{definition}{}{}
-	La séquence de temps entre les arrivés est notée par $\{T_n, n = 1, 2, \dots\}$. Le temps du premier sinistre est $T_1$. Avec 
-	$$\Pr(T_1 > t) = \Pr(N(t) = 0) = e^{-\lambda t},$$
+	La séquence de temps entre les arrivés est notée par $\{W_n, n = 1, 2, \dots\}$. Le temps du premier sinistre est $W_1$. Avec 
+	$$\Pr(W_1 > t) = \Pr(N(t) = 0) = e^{-\lambda t},$$
 	donc le temps du premier sinistre est de distribution exponentielle avec paramètre $\lambda$. Le temps entre le premier et le deuxième sinistre $T_2$ est 
-	$$\Pr(T_2 > t \vert T_1 = s) = \Pr(N(t + s) - N(s) = 0) = e^{-\lambda (t + s - s)} = e^{-\lambda t}.$$
+	$$\Pr(W_2 > t \vert T_1 = s) = \Pr(N(t + s) - N(s) = 0) = e^{-\lambda (t + s - s)} = e^{-\lambda t}.$$
 	\tcblower
-	$T_n, n = 1, 2, \dots$ sont iid et de distribution exponentielle avec paramètre $\lambda$. 
+	$W_n\vert, n = 1, 2, \dots$ sont iid et de distribution exponentielle avec paramètre $\lambda$. 
 \end{definition}
 
 \begin{definition}{}{}
-	Le temps d'attente au $n^\text{e}$ évènement est noté par la v.a. $S_n = \sum_{i = 1}^{n}T_i, n\geq 1$. De plus, on a $S_n \sim Gamma(n, \lambda)$.
+	Le temps d'attente au $n^\text{e}$ évènement est noté par la v.a. $T_n = \sum_{i = 1}^{n}W_i, n\geq 1$. De plus, on a $T_n \sim Gamma(n, \lambda)$.
 \end{definition}
 
 Les énoncés suivants sont équivalents : 
-$$N(t) \geq n \Leftrightarrow S_n \leq t.$$
+$$N(t) \geq n \Leftrightarrow T_n \leq t.$$
 
 \begin{propriete}{}{}
 	Soient $N_1(t)$ et $N_2(t)$, deux processus de Poisson avec intensités respectives $\lambda p$ et $\lambda(1-p)$. Alors, $N(t) = N_1(t) + N_2(t)$ est un processus de Poisson avec intensité $\lambda$. 
 \end{propriete}
 
 La probabilité que $n$ évènements de type I (noté $S_n^1$) arrivent avant $m$ évènements de type II (noté $S_m^2$). On a $P(S_1^1 < S_1^2) = \frac{\lambda_1}{\lambda_1 + \lambda_2}$. Répéter cette expérience donne une v.a. binomiale et on a 
-$$\Pr\left(S_n^1<S_m^2\right) = \sum_{k = n}^{n + m - 1} \binom{m + n - 1}{k} \left(\frac{\lambda_1}{\lambda_1 + \lambda_2}\right)^k \left(\frac{\lambda_2}{\lambda_1 + \lambda_2}\right)^{n+m-1-k}.$$
+$$\Pr\left(T_n^1<T_m^2\right) = \sum_{k = n}^{n + m - 1} \binom{m + n - 1}{k} \left(\frac{\lambda_1}{\lambda_1 + \lambda_2}\right)^k \left(\frac{\lambda_2}{\lambda_1 + \lambda_2}\right)^{n+m-1-k}.$$
 
 \begin{proposition}{}{}
 	Si 1 évènement d'un processus de Poisson a eu lieu au temps $t$, le temps de cet évènement est uniforme sur $[0, t]$. En effet, on a 
 	\begin{align*}
-	\Pr(T_1 < s \vert N(t) = 1) &= \frac{\Pr(T_1 < s, N(t) = 1)}{\Pr(N(t) = 1)}\\
+	\Pr(W_1 < s \vert N(t) = 1) &= \frac{\Pr(W_1 < s, N(t) = 1)}{\Pr(N(t) = 1)}\\
 	&= \frac{\Pr(\text{1 évènement sur }[0, s), \text{0 évènement sur }[s, t])}{\Pr(N(t) = 1)}\\
 	&= \frac{\Pr(\text{1 évènement sur }[0, s))\Pr(\text{0 évènement sur }[s, t])}{\Pr(N(t) = 1)}\\
+	&= \frac{\Pr(N(s) = 1)\Pr(N(t) - N(s) = 0)}{\Pr(N(t) = 1)}\\
 	&= \frac{\lambda s e^{-\lambda s} e^{-\lambda(t-s)}}{\lambda t e^{-\lambda t}}\\
 	&= \frac{s}{t}.
 	\end{align*}
@@ -101,9 +102,9 @@ $$\Pr\left(S_n^1<S_m^2\right) = \sum_{k = n}^{n + m - 1} \binom{m + n - 1}{k} \l
 Une version plus générale de ce résultat est présenté dans le théorème suivant : 
 
 \begin{theoreme}{}{}
-	Sachant $N(t) = n$, les temps d'inter-arrivé $S_1, \dots, S_n$ sont distribués comme les statistiques d'ordres des $n$ v.a. uniformes sur $(0, t)$.
+	Sachant $N(t) = n$, les temps d'inter-arrivé $T_1, \dots, T_n$ sont distribués comme les statistiques d'ordres des $n$ v.a. uniformes sur $(0, t)$.
 	\tcblower
-	La densité conditionnelle de $S_1, \dots, S_n$ sachant $N(t) = n$ est équivalante à la densité conditionnelle de $T_1 = s_1, T_2 = s_2 - s_1, \dots, T_n = s_n - s_{n-1}, T_{n+1} > t - s_n$. Alors, on a 
+	La densité conditionnelle de $T_1, \dots, T_n$ sachant $N(t) = n$ est équivalente à la densité conditionnelle de $W_1 = s_1, W_2 = s_2 - s_1, \dots, W_n = s_n - s_{n-1}, W_{n+1} > t - s_n$. Alors, on a 
 	\begin{align*}
 	f(s_1, \dots, s_n \vert n) &= \frac{f(s_1, \dots, s_n, n)}{\Pr(N(t) = n)}\\
 	&= \frac{\lambda e^{-\lambda s_1} \lambda e^{-\lambda(s_2 - s_1)} \dots \lambda e^{-\lambda (s_n - s_{n-1})} e^{\lambda(t-s_n)}}{\frac{e^{-\lambda t}(\lambda t)^n}{n!}}\\
@@ -112,7 +113,7 @@ Une version plus générale de ce résultat est présenté dans le théorème su
 \end{theoreme}
 
 \begin{proposition}{}{}
-	On suppose que si un évènement arrive au temps $y$, alors il sera classifié comme type $i$, indépendanment, avec probabilité $P_i(y), i = 1, \dots, k$, où $\sum_{i = 1}^{k}\pi_i(y) = 1.$ Alors, si $N_i(t), i = 1, \dots, k$ représente le nombre d'évènements de type $i$ qui arrivent d'ici le temps $t$ alors $N_i(t), i = 1, \dots, k$ sont des v.a. indépendantes avec moyennes 
+	On suppose que si un évènement arrive au temps $y$, alors il sera classifié comme type $i$, indépendanment, avec probabilité $P_i(y), i = 1, \dots, k$, où $\sum_{i = 1}^{k}P_i(y) = 1.$ Alors, si $N_i(t), i = 1, \dots, k$ représente le nombre d'évènements de type $i$ qui arrivent d'ici le temps $t$ alors $N_i(t), i = 1, \dots, k$ sont des v.a. indépendantes avec moyennes 
 	$$E[N_i(t)] = \lambda \int_{0}^{t}P_i(s) ds. $$
 \end{proposition}
 
