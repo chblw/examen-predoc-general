@@ -14,8 +14,8 @@
 La densité conjointe des observations est 
 $$f(x_1, x_2, \dots, x_n) = f_{t_1}(x_1)f_{t_2 - t_1}(x_2 - x_1) \dots f_{t_n - t_{n-1}}(x_1 - x_n).$$
 Avec cette fonction de densité, on peut calculer, par exemple, la distribution conditionnelle de $X(s)$ sachant que $X(t) = B$, où $s<t$. On a 
-$$f_{s\vert t}(x \vert B) = \frac{f_{s}(x) f_{t-s}(B - x)}{f(B)} \propto \exp\left\{-\frac{(x - Bs/t)^2}{2s(t-s)/t}\right\},$$
-donc $(X(s) \vert X(t) = B) \sim Norm\left(\frac{s}{t}B, \frac{s}{t}(t-s)\right)$. 
+$$f_{s\vert t}(x \vert B) = \frac{f_{s}(x) f_{t-s}(B - x)}{f(B)} \propto \exp\left\{-\frac{(x - Bs/t)^2}{2\sigma^2 s(t-s)/t}\right\},$$
+donc $(X(s) \vert X(t) = B) \sim Norm\left(\frac{s}{t}B, \frac{s}{t}(t-s)\sigma^2\right)$. 
 
 \section{Temps d'atteinte d'une barrière}
 

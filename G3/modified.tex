@@ -11,4 +11,22 @@
 
 En actuariat, on a des données tronquées à gauche et des données censurées à droite. 
 
-INCOMPLET
+Soit l'ensemble de risque $r_j$, le nombre de personnes observées vivantes à l'age $y_j$. En IARD, $r_j$ est le nombre de polices où la perte observée est supérieure à $y_j$ moins ceux qui ont un déductible plus grand ou égal à $y_j$. 
+
+$$S_n = \left\{  \begin{array}{ll}
+	                                1,                                 &           0\leq t < y_1            \\ 
+	     \prod_{i = 1}^{j-1} \left(\frac{r_i - s_i}{r_i}\right),       & y_{j-1}\leq t < y_j,~j=2, \dots, k \\ 
+	\prod_{i = 1}^{k}\left(\frac{r_i - s_i}{r_i}\right) \text{ ou } 0, &             t\geq y_k              \\ 
+\end{array}       \right.$$
+
+
+
+
+
+
+
+
+
+
+
+
